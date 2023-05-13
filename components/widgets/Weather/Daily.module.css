@@ -1,0 +1,21 @@
+.table {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+}
+
+.day {
+  text-align: center;
+  font-size: 1.125em;
+}
+
+.code {
+  text-align: center;
+}
+
+.temperature {
+  text-align: center;
+  font-size: 1.2em;
+}

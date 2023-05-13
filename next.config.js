@@ -3,6 +3,15 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'openweathermap.org',
+        pathname: '/img/wn/**',
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

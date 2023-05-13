@@ -1,0 +1,82 @@
+.container {
+  flex-direction: column;
+  display: flex;
+  margin: 1em;
+  padding: 3em;
+  border-radius: 15px;
+  color: white;
+  text-shadow: #000 5px 5px 10px;
+  overflow: hidden;
+
+  & .current {
+    display: flex;
+    justify-content: space-between;
+
+    & .left {
+      flex-direction: column;
+      flex-basis: 70%;
+      display: flex;
+
+      & .locationDate {
+        & .location {
+          font-size: 2em;
+        }
+
+        & .date {
+          font-size: 1.125em;
+        }
+      }
+
+      & .currentConditions {
+        margin-top: -15px;
+        margin-left: -15px;
+      }
+    }
+
+    & .right {
+      flex-basis: 30%;
+      text-align: center;
+
+      & .currentTemp {
+        font-size: 4em;
+      }
+
+      & .minMaxTemp {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  & .forecast {
+    flex-direction: column;
+    display: flex;
+
+    & .tabsNav {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style-type: none;
+      border-bottom: 1px solid white;
+
+      & .tabButton {
+        &:hover {
+          cursor: pointer;
+        }
+        &:not(:last-child) {
+          margin-right: 1em;
+        }
+      }
+
+      & .tabActive {
+        border-bottom: 2px solid white;
+      }
+    }
+
+    & .tab {
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+      margin: 0 -1em;
+      padding: 0.5em 1em;
+    }
+  }
+}
