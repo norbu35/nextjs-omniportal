@@ -63,7 +63,9 @@ export default function Weather(): JSX.Element {
     const { weatherIcon, weatherBgImg } = getWeatherIconBg(
       weatherData?.current_weather.weathercode,
       true,
+      weatherData?.current_weather.time,
     );
+
     setCurrentWeatherIcon(weatherIcon);
     if (weatherBgImg) {
       setCurrentWeatherBgImg(weatherBgImg);
@@ -73,7 +75,6 @@ export default function Weather(): JSX.Element {
   function handleSwitchView(viewType: string) {
     setActiveView(viewType);
   }
-
   const currentDate = new Date();
   const localDate = currentDate.toLocaleDateString();
   const city = geocode?.results[9].formatted_address.split(',')[0] ?? '';
@@ -81,7 +82,6 @@ export default function Weather(): JSX.Element {
   if (loading) {
     return <p>Loading weather data...</p>;
   }
-
   return (
     <>
       {weatherData && weatherData.daily ? (
@@ -113,6 +113,7 @@ export default function Weather(): JSX.Element {
                 {weatherData.daily.temperature_2m_max[0]}° /&nbsp;
                 {weatherData.daily.temperature_2m_min[0]}°
               </div>
+              <div className={styles.wind}></div>
             </div>
           </div>
           <div className={styles.forecast}>

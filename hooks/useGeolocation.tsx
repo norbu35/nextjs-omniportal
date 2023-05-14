@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
-import { GeolocationState } from '../types/index';
+
+export interface GeolocationState {
+  position: GeolocationCoordinates | null;
+  error: string | null;
+}
 
 const useGeolocation = (): GeolocationState => {
   const [position, setPosition] = useState<GeolocationCoordinates | null>(null);

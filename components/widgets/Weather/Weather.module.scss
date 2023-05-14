@@ -52,18 +52,21 @@
     display: flex;
 
     & .tabsNav {
-      margin: 0;
       padding: 0;
       display: flex;
       list-style-type: none;
       border-bottom: 1px solid white;
 
       & .tabButton {
+        line-height: 22px;
         &:hover {
           cursor: pointer;
         }
+        &:first-child {
+          margin-left: 0.5em;
+        }
         &:not(:last-child) {
-          margin-right: 1em;
+          margin-right: 2em;
         }
       }
 
@@ -75,8 +78,9 @@
     & .tab {
       backdrop-filter: blur(20px);
       overflow: hidden;
-      margin: 0 -1em;
-      padding: 0.5em 1em;
+      height: 145px;
+      margin: 0 -1em -1em;
+      padding: 0.5em;
     }
   }
 }

@@ -11,12 +11,12 @@ import overcastNight from '/public/widgets/Weather/overcast-night.jpg';
 import styles from './Weather.module.scss';
 
 export default function getWeatherIconBg(
-  weatherCode: number | null,
+  weatherCode: number | undefined,
   isLarge: boolean,
+  time: string = '2023-04-20T12:00',
 ) {
-  const currentDate = new Date();
-  const timeOfDay =
-    currentDate.getHours() > 21 || currentDate.getHours() < 6 ? 'n' : 'd';
+  const hour = parseInt(time.split('T')[1].split(':')[0]);
+  const timeOfDay = hour > 20 || hour < 6 ? 'n' : 'd';
   const iconUrl = 'https://openweathermap.org/img/wn/';
   const size = isLarge ? '@2x' : '';
   let weatherBgImg;

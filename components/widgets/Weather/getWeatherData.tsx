@@ -15,7 +15,7 @@ export default async function getWeatherData(position: GeolocationCoordinates) {
       longitude: position.longitude.toString(),
       latitude: position.latitude.toString(),
       daily: ['temperature_2m_max', 'temperature_2m_min', 'weathercode'],
-      hourly: ['temperature_2m'],
+      hourly: ['temperature_2m', 'precipitation_probability', 'weathercode'],
       timezone,
       current_weather: true,
     };

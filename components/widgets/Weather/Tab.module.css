@@ -6,16 +6,15 @@
   width: 100%;
 }
 
-.day {
+.heading,
+.code,
+.temperature {
   text-align: center;
+}
+.heading {
   font-size: 1.125em;
 }
 
-.code {
-  text-align: center;
-}
-
 .temperature {
-  text-align: center;
   font-size: 1.2em;
 }
