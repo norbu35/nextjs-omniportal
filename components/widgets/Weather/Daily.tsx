@@ -21,14 +21,14 @@ function HeadingCell({ date }: { date: Date }): JSX.Element {
 function IconCell({ date, code }: { date: Date; code: number }): JSX.Element {
   const isoDate = toIsoString(date);
   return (
-    <td className={styles.code}>
+    <td className={styles.icon}>
       {getWeatherIconBg(code, false, isoDate).weatherIcon}
     </td>
   );
 }
 
 function TemperatureCell({ temp }: { temp: number }): JSX.Element {
-  return <td className={styles.temperature}>{temp}°</td>;
+  return <td className={styles.data}>{temp}°</td>;
 }
 
 export default function Daily({ weatherData }: Props) {

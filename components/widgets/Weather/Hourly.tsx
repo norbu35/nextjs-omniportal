@@ -20,18 +20,18 @@ function HeadingCell({ date }: { date: Date }) {
 function IconCell({ date, code }: { date: Date; code: number }) {
   const isoDate = toIsoString(date);
   return (
-    <td className={styles.code}>
+    <td className={styles.icon}>
       {getWeatherIconBg(code, false, isoDate).weatherIcon}
     </td>
   );
 }
 
 function TemperatureCell({ temp }: { temp: number }) {
-  return <td className={styles.temperature}>{temp}°</td>;
+  return <td className={styles.data}>{temp}°</td>;
 }
 
 function PrecipitationCell({ precip }: { precip: number }) {
-  return <td className={styles.temperature}>{precip}%</td>;
+  return <td className={styles.data}>{precip}%</td>;
 }
 
 export default function Hourly({ weatherData }: Props) {

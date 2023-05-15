@@ -103,6 +103,18 @@ export default function getWeatherIconBg(
         />
       );
       break;
+    // Snow
+    case 85:
+    case 86:
+      weatherIcon = (
+        <Image
+          width={isLarge ? 100 : 50}
+          height={isLarge ? 100 : 50}
+          className={styles.weatherIcon}
+          src={`${iconUrl}13${timeOfDay}${size}.png`}
+          alt="weather icon"
+        />
+      );
     // Thunderstorm
     case 95:
     case 96:

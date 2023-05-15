@@ -1,20 +1,18 @@
-.table {
-  width: 100%;
-}
-
-.row {
+.table,
+.row,
+.lineGraph {
   width: 100%;
 }
 
 .heading,
-.code,
-.temperature {
+.icon,
+.data {
   text-align: center;
 }
 .heading {
   font-size: 1.125em;
 }
 
-.temperature {
+.data {
   font-size: 1.2em;
 }

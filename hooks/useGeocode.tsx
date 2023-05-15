@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 const useGeocode = (position: GeolocationCoordinates | null) => {
   const [geocodeResult, setGeocodeResult] =
     useState<google.maps.GeocoderResponse | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,12 +15,12 @@ const useGeocode = (position: GeolocationCoordinates | null) => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('error fetching from Google Maps API');
+          throw Error('Error fetching from Google Maps API');
         }
         const data = await response.json();
         setGeocodeResult(data);
       } catch (err) {
-        console.log(err);
+        if (err instanceof Error) setError(err);
       }
     };
 
@@ -28,7 +29,7 @@ const useGeocode = (position: GeolocationCoordinates | null) => {
     }
   }, [position]);
 
-  return { geocodeResult };
+  return { geocodeResult, error };
 };
 
 export default useGeocode;

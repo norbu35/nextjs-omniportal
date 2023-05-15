@@ -25,7 +25,7 @@ the project might take to complete.
 
 This Document will be updated continuously and will reflect the progress of the Project.
 
-### Overview of the MongolHub Internet Portal Project
+### Overview of the MonHub Internet Portal Project
 
 There lacks a comprehensive website to act as a unified source of information. As Mongolia is a small country with a small population,
 such a unified website could be of great use for many people when they need to easily find various kinds of information on the internet.

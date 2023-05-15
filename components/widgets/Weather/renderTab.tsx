@@ -1,5 +1,7 @@
 import Daily from './Daily';
 import Hourly from './Hourly';
+import Precipitation from './Precipitation';
+
 import { WeatherData } from './types';
 
 export default function renderTab(
@@ -16,7 +18,7 @@ export default function renderTab(
       return <Daily weatherData={weatherData} />;
 
     case 'precipitation':
-      tabElement = <div>precipitation tab</div>;
+      return <Precipitation weatherData={weatherData} />;
   }
   return tabElement;
 }
