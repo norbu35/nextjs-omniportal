@@ -10,8 +10,8 @@ import overcastNight from '/public/widgets/Weather/overcast-night.jpg';
 
 import styles from './Weather.module.scss';
 
-export default function getWeatherIconBg(
-  weatherCode: number | undefined,
+function getWeatherIconBg(
+  weatherCode: number,
   isLarge: boolean,
   time: string = '2023-04-20T12:00',
 ) {
@@ -160,3 +160,5 @@ export default function getWeatherIconBg(
 
   return { weatherIcon, weatherBgImg };
 }
+
+export { getWeatherIconBg };

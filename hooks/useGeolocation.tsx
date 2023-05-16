@@ -28,4 +28,4 @@ const useGeolocation = (): GeolocationState => {
   return { position, error };
 };
 
-export default useGeolocation;
+export { useGeolocation };

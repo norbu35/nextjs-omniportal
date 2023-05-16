@@ -1,4 +1,4 @@
-import Widgets from '@/components/layout/Widgets/Widgets';
+import { Widgets } from '@/components/layout/Widgets/Widgets';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'normalize.css/normalize.css';
 

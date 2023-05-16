@@ -6,7 +6,7 @@ type Props = {
   heading: string;
 };
 
-export default function Box({ heading, children }: Props): JSX.Element {
+function Box({ heading, children }: Props): JSX.Element {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>{heading}</h1>
@@ -14,3 +14,5 @@ export default function Box({ heading, children }: Props): JSX.Element {
     </div>
   );
 }
+
+export { Box };

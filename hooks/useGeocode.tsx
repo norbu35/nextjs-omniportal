@@ -6,6 +6,8 @@ const useGeocode = (position: GeolocationCoordinates | null) => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    if (!position) return;
+
     const fetchData = async () => {
       const latitude = position?.latitude;
       const longitude = position?.longitude;
@@ -32,4 +34,4 @@ const useGeocode = (position: GeolocationCoordinates | null) => {
   return { geocodeResult, error };
 };
 
-export default useGeocode;
+export { useGeocode };

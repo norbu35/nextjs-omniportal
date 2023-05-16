@@ -9,7 +9,7 @@ interface Options {
   current_weather: boolean;
 }
 
-export default function useWeatherData(
+function useWeatherData(
   position: GeolocationCoordinates | null,
 ): {
     data: WeatherData | null;
@@ -63,3 +63,5 @@ export default function useWeatherData(
 
   return { data, error };
 }
+
+export { useWeatherData };

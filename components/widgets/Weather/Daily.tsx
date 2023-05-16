@@ -1,7 +1,6 @@
 import { WeatherData } from './types';
-
+import { getWeatherIconBg } from './getWeatherIconBg';
 import styles from './Tab.module.css';
-import getWeatherIconBg from './getWeatherIconBg';
 import toIsoString from '@/utils/date/toIsoString';
 
 interface Props {
@@ -31,7 +30,7 @@ function TemperatureCell({ temp }: { temp: number }): JSX.Element {
   return <td className={styles.data}>{temp}°</td>;
 }
 
-export default function Daily({ weatherData }: Props) {
+function Daily({ weatherData }: Props) {
   const { daily } = weatherData;
   const dailyTemps = daily.time.map<[Date, number, number, number]>(
     (day, index) => [
@@ -73,3 +72,5 @@ export default function Daily({ weatherData }: Props) {
     </div>
   );
 }
+
+export { Daily };

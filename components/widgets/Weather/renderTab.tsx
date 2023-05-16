@@ -1,10 +1,10 @@
-import Daily from './Daily';
-import Hourly from './Hourly';
-import Precipitation from './Precipitation';
+import { Daily } from './Daily';
+import { Hourly } from './Hourly';
+import { Precipitation } from './Precipitation';
 
 import { WeatherData } from './types';
 
-export default function renderTab(
+function renderTab(
   activeView: string,
   weatherData: WeatherData,
 ) {
@@ -22,3 +22,5 @@ export default function renderTab(
   }
   return tabElement;
 }
+
+export { renderTab };

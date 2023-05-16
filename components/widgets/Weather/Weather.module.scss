@@ -1,12 +1,19 @@
 .container {
   flex-direction: column;
   display: flex;
-  margin: 1em;
   padding: 3em;
   border-radius: 15px;
   color: white;
   text-shadow: #000 5px 5px 10px;
   overflow: hidden;
+
+  @media only screen and (max-width: 480px) {
+    padding: 2em 1em;
+  }
+
+  @media only screen and (max-width: 460) {
+    padding: 2em;
+  }
 
   & .current {
     display: flex;

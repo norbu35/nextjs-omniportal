@@ -1,6 +1,6 @@
 import { WeatherData } from './types';
 import styles from './Tab.module.css';
-import getWeatherIconBg from './getWeatherIconBg';
+import { getWeatherIconBg } from './getWeatherIconBg';
 import toIsoString from '../../../utils/date/toIsoString';
 
 interface Props {
@@ -34,7 +34,7 @@ function PrecipitationCell({ precip }: { precip: number }) {
   return <td className={styles.data}>{precip}%</td>;
 }
 
-export default function Hourly({ weatherData }: Props) {
+function Hourly({ weatherData }: Props) {
   const { hourly } = weatherData;
   const currentDate = new Date();
   const hourlyTemps = hourly.time
@@ -79,3 +79,5 @@ export default function Hourly({ weatherData }: Props) {
     </div>
   );
 }
+
+export { Hourly };

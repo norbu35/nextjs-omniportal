@@ -1,4 +1,4 @@
-export interface WeatherData {
+interface WeatherData {
   current_weather: {
     temperature: number;
     windspeed: number;
@@ -22,3 +22,5 @@ export interface WeatherData {
     weathercode: number[];
   };
 }
+
+export type { WeatherData };
