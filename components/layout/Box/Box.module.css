@@ -1,10 +1,13 @@
 .container {
+  padding: 1em;
   border: 1px solid black;
   border-radius: 5px;
   max-width: 700px;
+  height: 400px;
 }
 
 .heading {
   padding: 0 1em;
   font-size: 1.25rem;
+  display: none;
 }

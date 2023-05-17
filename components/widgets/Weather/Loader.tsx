@@ -12,6 +12,7 @@ function Loader() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '348.2px',
+        width: '364px',
       }}
     >
       <Spinner />

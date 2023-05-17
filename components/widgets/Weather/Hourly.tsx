@@ -1,5 +1,5 @@
 import { WeatherData } from './types';
-import styles from './Tab.module.css';
+import styles from './Tab.module.scss';
 import { getWeatherIconBg } from './getWeatherIconBg';
 import toIsoString from '../../../utils/date/toIsoString';
 

@@ -59,7 +59,9 @@
     display: flex;
 
     & .tabsNav {
-      padding: 0;
+      padding: 0 0.5em;
+      margin-left: -1em;
+      margin-right: -1em;
       display: flex;
       list-style-type: none;
       border-bottom: 1px solid white;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { WeatherData } from './types';
 import styles from './Weather.module.scss';
@@ -13,7 +13,7 @@ import { getWeatherIconBg } from './getWeatherIconBg';
 import { renderTab } from './renderTab';
 import { Loader } from './Loader';
 
-function Weather(): JSX.Element {
+function Weather() {
   const [error, setError] = useState<Error | null>(null);
   const [position, setPosition] = useState<GeolocationCoordinates | null>(null);
   const [geocode, setGeocode] = useState<google.maps.GeocoderResponse | null>(
@@ -108,7 +108,9 @@ function Weather(): JSX.Element {
             {weatherData?.current_weather.temperature}°
           </div>
           <div className={styles.minMaxTemp}>
-            {weatherData?.daily?.temperature_2m_max[0]}° /&nbsp;
+            {weatherData?.daily?.temperature_2m_max[0]}°
+          </div>
+          <div className={styles.minMaxTemp}>
             {weatherData?.daily?.temperature_2m_min[0]}°
           </div>
           <div className={styles.wind}></div>
@@ -156,3 +158,4 @@ function Weather(): JSX.Element {
 }
 
 export { Weather };
+export default Weather;

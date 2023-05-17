@@ -1,6 +1,6 @@
 import { WeatherData } from './types';
 import { getWeatherIconBg } from './getWeatherIconBg';
-import styles from './Tab.module.css';
+import styles from './Tab.module.scss';
 import toIsoString from '@/utils/date/toIsoString';
 
 interface Props {

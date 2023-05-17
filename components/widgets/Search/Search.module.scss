@@ -1,12 +1,32 @@
 .container {
-  width: 700px;
-  display: flex;
-}
+  .barContainer {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 15px;
+    height: 40px;
 
-.input {
-  width: 400px;
-}
+    .icon {
+      align-items: center;
+      display: flex;
+      margin-left: 12px;
+      height: 16px;
+    }
 
-.engineOptions {
-  width: 150px;
+    .input {
+      flex-basis: 50%;
+      margin: 0 12px 0;
+      height: 100%;
+    }
+
+    .engineOptions {
+      flex-basis: 30%;
+      width: 200px;
+    }
+
+    .button {
+      background-color: "lightblue";
+    }
+  }
 }

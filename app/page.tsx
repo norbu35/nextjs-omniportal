@@ -2,7 +2,7 @@ import { Widgets } from '@/components/layout/Widgets/Widgets';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'normalize.css/normalize.css';
 
-export default function Home(): JSX.Element {
+function Home(): JSX.Element {
   return (
     <>
       <main style={{ height: '100vh' }}>
@@ -11,3 +11,6 @@ export default function Home(): JSX.Element {
     </>
   );
 }
+
+export { Home };
+export default Home;
