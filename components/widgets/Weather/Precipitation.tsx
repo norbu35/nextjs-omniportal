@@ -14,7 +14,7 @@ interface Props {
   weatherData: WeatherData;
 }
 
-function Precipitation({ weatherData }: Props) {
+function Precipitation({ weatherData }: Props): JSX.Element {
   const { daily } = weatherData;
 
   ChartJS.register(CategoryScale, LinearScale, BarElement, Legend);

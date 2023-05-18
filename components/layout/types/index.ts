@@ -7,8 +7,10 @@ export interface WidgetState {
     width: number,
     height: number
   }
-  minWidth: number | string | undefined,
-  minHeight: number | string | undefined,
+  maxWidth: number | string,
+  minWidth: number | string,
+  maxHeight: number | string,
+  minHeight: number | string,
 }
 
 export interface WidgetStates {

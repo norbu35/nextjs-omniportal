@@ -7,7 +7,7 @@ import { WeatherData } from './types';
 function renderTab(
   activeView: string,
   weatherData: WeatherData,
-) {
+): React.ReactNode {
   let tabElement;
 
   switch (activeView) {

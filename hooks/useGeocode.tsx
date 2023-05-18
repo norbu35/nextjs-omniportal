@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useGeocode = (position: GeolocationCoordinates | null) => {
+interface UseGeocodeResult {
+  geocodeResult: google.maps.GeocoderResponse | null;
+  error: Error | null;
+}
+
+const useGeocode = (position: GeolocationCoordinates | null): UseGeocodeResult  => {
   const [geocodeResult, setGeocodeResult] =
     useState<google.maps.GeocoderResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);

@@ -6,8 +6,12 @@
     },
     "size": {
       "width": 500,
-      "height": 500
-    }
+      "height": 410
+    },
+    "maxWidth": 600,
+    "minWidth": 320,
+    "maxHeight": 410,
+    "minHeight": 410
   },
   "search": {
     "position": {
@@ -18,7 +22,9 @@
       "width": 600,
       "height": 45
     },
+    "maxWidth": -1,
     "minWidth": 480,
+    "maxHeight": 45,
     "minHeight": 45
   }
 }

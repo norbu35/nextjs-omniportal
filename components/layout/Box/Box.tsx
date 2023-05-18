@@ -1,23 +1,32 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { ReactNode, useState } from 'react';
+import React, { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import styles from './Box.module.scss';
-import { WidgetState } from '../types';
+import { WidgetState, WidgetStates } from '../types';
 
 type Props = {
-  heading: string;
-  state: WidgetState;
+  name: string
+  state: WidgetStates;
+  setStates: Dispatch<SetStateAction<WidgetStates>>
   children: ReactNode;
   isUnlocked: boolean;
 };
 
 function Box({
-  heading,
+  name,
   state: initialState,
+  setStates,
   isUnlocked,
   children,
 }: Props): JSX.Element {
-  const [state, setState] = useState<WidgetState>(initialState);
+  const [state, setState] = useState<WidgetState>(initialState[name]);
+
+  useEffect(() => setStates((prevState) => ({
+    ...prevState,
+    [name]: state,
+  })), [state, setStates, name]);
+
+  const heading = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <div className={styles.container}>
@@ -30,8 +39,11 @@ function Box({
           width: state.size.width,
           height: state.size.height,
         }}
+        maxWidth={state.maxWidth}
         minWidth={state.minWidth}
+        maxHeight={state.maxHeight}
         minHeight={state.minHeight}
+        disableDragging={isUnlocked ? false : true}
         onDragStop={(_e, d) => {
           setState((prevState) => ({
             ...prevState,
@@ -41,6 +53,7 @@ function Box({
             },
           }));
         }}
+        enableResizing={isUnlocked ? true : false}
         onResizeStop={(_e, _direction, ref, _delta, _position) => {
           setState((prevState) => ({
             ...prevState,

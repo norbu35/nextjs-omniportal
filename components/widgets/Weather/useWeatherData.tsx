@@ -9,12 +9,14 @@ interface Options {
   current_weather: boolean;
 }
 
+interface WeatherDataResult {
+  data: WeatherData | null;
+  error: Error | null;
+} 
+
 function useWeatherData(
   position: GeolocationCoordinates | null,
-): {
-    data: WeatherData | null;
-    error: Error | null;
-  } {
+): WeatherDataResult {
   const [data, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<Error | null>(null);
 

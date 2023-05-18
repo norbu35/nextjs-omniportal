@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    border: 1px solid white;
+    border: 1px solid #212a3e;
     border-radius: 15px;
     min-width: 475px;
     width: 100%;
@@ -20,17 +20,17 @@
     }
 
     .input {
-      flex-basis: 50%;
+      flex-basis: 60%;
       flex-shrink: 2;
     }
 
     .engineOptions {
-      flex-basis: 30%;
-      min-width: 170px;
+      flex-basis: 20%;
+      min-width: 150px;
     }
 
-    .button {
-      background-color: "lightblue";
+    .button > button {
+      border-radius: 0 15px 15px 0;
     }
   }
 }

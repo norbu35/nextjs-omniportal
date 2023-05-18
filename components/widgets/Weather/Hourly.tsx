@@ -7,7 +7,7 @@ interface Props {
   weatherData: WeatherData;
 }
 
-function HeadingCell({ date }: { date: Date }) {
+function HeadingCell({ date }: { date: Date }): JSX.Element {
   return (
     <td className={styles.heading}>
       {date.getHours() < 10
@@ -17,16 +17,16 @@ function HeadingCell({ date }: { date: Date }) {
   );
 }
 
-function IconCell({ date, code }: { date: Date; code: number }) {
+function IconCell({ date, code }: { date: Date; code: number }): JSX.Element {
   const isoDate = toIsoString(date);
   return (
     <td className={styles.icon}>
-      {getWeatherIconBg(code, false, isoDate).weatherIcon}
+      {getWeatherIconBg(code, false, isoDate)?.weatherIcon}
     </td>
   );
 }
 
-function TemperatureCell({ temp }: { temp: number }) {
+function TemperatureCell({ temp }: { temp: number }): JSX.Element {
   return <td className={styles.data}>{temp}°</td>;
 }
 
@@ -34,7 +34,7 @@ function PrecipitationCell({ precip }: { precip: number }) {
   return <td className={styles.data}>{precip}%</td>;
 }
 
-function Hourly({ weatherData }: Props) {
+function Hourly({ weatherData }: Props): JSX.Element {
   const { hourly } = weatherData;
   const currentDate = new Date();
   const hourlyTemps = hourly.time

@@ -67,7 +67,7 @@ function Weather() {
     }
   }, [weatherData]);
 
-  function handleSwitchView(viewType: string) {
+  function handleSwitchView(viewType: string): void {
     setActiveView(viewType);
   }
 

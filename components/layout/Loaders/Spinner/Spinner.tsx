@@ -1,6 +1,6 @@
 import styles from './Spinner.module.scss';
 
-function Spinner() {
+function Spinner(): JSX.Element {
   return (
     <div className={styles.spinner}>
       <div></div>

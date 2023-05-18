@@ -21,7 +21,7 @@ function IconCell({ date, code }: { date: Date; code: number }): JSX.Element {
   const isoDate = toIsoString(date);
   return (
     <td className={styles.icon}>
-      {getWeatherIconBg(code, false, isoDate).weatherIcon}
+      {getWeatherIconBg(code, false, isoDate)?.weatherIcon}
     </td>
   );
 }
@@ -30,7 +30,7 @@ function TemperatureCell({ temp }: { temp: number }): JSX.Element {
   return <td className={styles.data}>{temp}°</td>;
 }
 
-function Daily({ weatherData }: Props) {
+function Daily({ weatherData }: Props): JSX.Element {
   const { daily } = weatherData;
   const dailyTemps = daily.time.map<[Date, number, number, number]>(
     (day, index) => [

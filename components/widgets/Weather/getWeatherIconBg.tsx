@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import clearDay from '/public/widgets/Weather/clear-day.jpg';
 import clearNight from '/public/widgets/Weather/clear-night.jpg';
 import mainlyClearDay from '/public/widgets/Weather/mainly-clear-day.jpg';
@@ -10,11 +10,20 @@ import overcastNight from '/public/widgets/Weather/overcast-night.jpg';
 
 import styles from './Weather.module.scss';
 
+interface WeatherIconBgImg {
+  weatherIcon: React.ReactNode | null;
+  weatherBgImg: StaticImageData | undefined;
+}
+
 function getWeatherIconBg(
   weatherCode: number,
   isLarge: boolean,
   time: string = '2023-04-20T12:00',
-) {
+): WeatherIconBgImg {
+  if (!weatherCode) {
+    return { weatherIcon: null, weatherBgImg: undefined };
+  }
+
   const hour = parseInt(time.split('T')[1].split(':')[0]);
   const timeOfDay = hour > 20 || hour < 6 ? 'n' : 'd';
   const iconUrl = 'https://openweathermap.org/img/wn/';

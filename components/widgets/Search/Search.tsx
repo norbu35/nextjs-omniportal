@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import Select, {  StylesConfig } from 'react-select';
+import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import { StaticImageData } from 'next/image';
 
 import iconGoogle from '/public/widgets/Search/icon-google.png';
@@ -12,6 +12,7 @@ import iconWikipedia from '/public/widgets/Search/icon-wikipedia.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './Search.module.scss';
+import Button from '@/components/composite/Button/Button';
 
 interface SearchEngine {
   readonly value: string;
@@ -41,7 +42,7 @@ const searchEngines: SearchEngine[] = [
   },
 ];
 
-function inputIcon(icon: StaticImageData)  {
+function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
   return {
     alignItems: 'center',
     display: 'flex',
@@ -125,9 +126,9 @@ function Search(): JSX.Element {
           onChange={(newValue) => handleSearchEngineChange(newValue)}
           className={styles.engineOptions}
         />
-        <button className={styles.button} type="button" onClick={handleSearch}>
-          Search
-        </button>
+        <div className={styles.button}>
+          <Button type="button" label="Search" onClick={handleSearch} variant="primary"/>
+        </div>
       </div>
     </div>
   );
