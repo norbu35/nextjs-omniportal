@@ -1,0 +1,13 @@
+.container {
+  border: 1px solid black;
+  border-radius: 5px;
+
+  .titleBar {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 2em;
+    width: 100%;
+  }
+}

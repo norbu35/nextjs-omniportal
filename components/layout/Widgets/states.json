@@ -1,0 +1,24 @@
+{
+  "weather": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "size": {
+      "width": 500,
+      "height": 500
+    }
+  },
+  "search": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "size": {
+      "width": 600,
+      "height": 45
+    },
+    "minWidth": 480,
+    "minHeight": 45
+  }
+}

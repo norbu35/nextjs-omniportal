@@ -1,11 +1,14 @@
 .container {
   flex-direction: column;
   display: flex;
-  padding: 3em;
+  box-sizing: border-box;
   border-radius: 15px;
   color: white;
   text-shadow: #000 5px 5px 10px;
   overflow: hidden;
+  padding: 2em;
+  width: inherit;
+  height: inherit;
 
   @media only screen and (max-width: 480px) {
     padding: 2em 1em;
