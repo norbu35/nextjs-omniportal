@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { Box } from '../Box/Box';
+import { useEffect, useRef, useState } from 'react';
+import Box from '../Box/Box';
 import { Search } from '@/components/widgets/Search/Search';
 import { Weather } from '@/components/widgets/Weather/Weather';
 
@@ -14,6 +14,8 @@ interface Props {
 }
 
 function Widgets({ isUnlocked }: Props): JSX.Element {
+  const boxRefs = useRef<HTMLDivElement[]>([]);
+
   let initialState;
   const storedState = localStorage.getItem('portal_state');
   if (storedState) {
@@ -27,9 +29,17 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
     localStorage.setItem('portal_state', JSON.stringify(state));
   }, [state]);
 
+  function addBoxRef(ref: HTMLDivElement) {
+    if (ref && !boxRefs.current.includes(ref)) {
+      boxRefs.current.push(ref);
+    } 
+  }
+
   return (
     <section className={styles.container}>
       <Box
+        ref={addBoxRef}
+        boxRefs={boxRefs.current}
         name="weather"
         state={state}
         isUnlocked={isUnlocked}
@@ -38,6 +48,8 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
         <Weather />
       </Box>
       <Box
+        ref={addBoxRef}
+        boxRefs={boxRefs.current}
         name="search"
         state={state}
         setStates={setState}
