@@ -9,7 +9,7 @@
 }
 
 :root * {
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 /* @media (prefers-color-scheme: dark) { */
 /*   :root { */

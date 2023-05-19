@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import Box from '../Box/Box';
 import { Search } from '@/components/widgets/Search/Search';
@@ -14,23 +15,27 @@ interface Props {
 }
 
 function Widgets({ isUnlocked }: Props): JSX.Element {
-  const boxRefs = useRef<HTMLDivElement[]>([]);
-
   let initialState;
-  const storedState = localStorage.getItem('portal_state');
+  let storedState;
+  if (typeof window !== 'undefined') {
+    storedState = localStorage.getItem('portal_state');
+  }
   if (storedState) {
     initialState = JSON.parse(storedState);
   } else {
     initialState = defaultState;
   }
   const [state, setState] = useState<WidgetStates>(initialState);
+  const boxRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    console.log('widget storage: ', state.weather.position);
     localStorage.setItem('portal_state', JSON.stringify(state));
   }, [state]);
 
   function addBoxRef(ref: HTMLDivElement) {
     if (ref && !boxRefs.current.includes(ref)) {
+      console.log(ref);
       boxRefs.current.push(ref);
     } 
   }

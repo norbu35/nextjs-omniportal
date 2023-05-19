@@ -18,7 +18,8 @@ function Header({ isUnlocked, setIsUnlocked }: Props): JSX.Element {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Portal</h1>
-     <Button type="button" label={text} onClick={() => setIsUnlocked(!isUnlocked)} variant="primary"/ >
+      <Button type="button" label={text} onClick={() => setIsUnlocked(!isUnlocked)} variant="primary" />
+      <Button type="button" label="reset" onClick={() => localStorage.clear()} variant="primary" />
     </div>
   );
 }
