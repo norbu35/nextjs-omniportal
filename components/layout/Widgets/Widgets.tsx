@@ -29,13 +29,11 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
   const boxRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    console.log('widget storage: ', state.weather.position);
     localStorage.setItem('portal_state', JSON.stringify(state));
   }, [state]);
 
   function addBoxRef(ref: HTMLDivElement) {
     if (ref && !boxRefs.current.includes(ref)) {
-      console.log(ref);
       boxRefs.current.push(ref);
     } 
   }

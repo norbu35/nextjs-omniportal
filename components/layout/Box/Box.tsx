@@ -62,7 +62,7 @@ function Box(
     [state, setStates, name],
   );
 
-  function handleOverlap(node: HTMLDivElement, { x, y }: Coordinates) {
+  function handleOverlap(node: HTMLElement, { x, y }: Coordinates) {
     const main = node;
     const targetRect = main.getBoundingClientRect();
     [...boxRefs].some((element) => {
@@ -74,17 +74,14 @@ function Box(
         return true;
       }
       setIsCollision(false);
+      y -= 242;
+      setSafePoint({ x, y });
     });
   }
-  // function handleDragStart(_e, { node, x, y }: DraggableData): void {
-  //   setSafePoint({ x, y });
-  // }
 
   function handleDrag(_e, { node, x, y }: DraggableData): void {
-    setSafePoint({ x, y });
-    console.log('safePOint: ', safePoint);
-    setTimeout(() => handleOverlap(node, { x, y }), 1);
-    console.log('handle: ', { x, y });
+    handleOverlap(node, { x, y });
+    console.log(x, y);
   }
 
   function handleDragStop(_e, d: DraggableData) {
@@ -107,7 +104,7 @@ function Box(
       }));
     }
   }
-  console.log(`${name}`, state.position);
+
   return (
     <div className={styles.container} ref={ref}>
       <Rnd
@@ -124,19 +121,23 @@ function Box(
         maxHeight={state.maxHeight}
         minHeight={state.minHeight}
         disableDragging={isUnlocked ? false : true}
-        // onDragStart={handleDragStart}
         onDrag={handleDrag}
         onDragStop={handleDragStop}
         enableResizing={isUnlocked ? true : false}
-        onResizeStop={(_e, _direction, _ref, _delta, _position) => {
+        onResizeStop={(_e, _direction, elRef, _delta, position) => {
           setState((prevState) => ({
             ...prevState,
             size: {
-              width: parseInt(_ref.style.width),
-              height: parseInt(_ref.style.height),
+              width: parseInt(elRef.style.width),
+              height: parseInt(elRef.style.height),
+            },
+            position: {
+              x: position.x,
+              y: position.y,
             },
           }));
         }}
+        bounds="section"
       >
         {isUnlocked && <div className={styles.titleBar}>{heading}</div>}
         {children}
