@@ -1,13 +1,15 @@
+import { ReactNode } from 'react';
 import styles from './Button.module.css';
 
 interface Props {
-  label: string;
   type: 'button' | 'submit' | 'reset';
-  onClick: () => void;
+  className?: React.CSSProperties
+  onClick?: () => void;
   variant: string;
+  children: ReactNode
 }
 
-function Button({ label, type, onClick, variant }: Props): JSX.Element {
+function Button({ type, className, onClick, variant, children }: Props): JSX.Element {
   let style;
   switch (variant) {
     case 'primary':
@@ -24,12 +26,12 @@ function Button({ label, type, onClick, variant }: Props): JSX.Element {
 
   return (
     <button
-      className={styles.button}
+      className={`${styles.button} ${className}`}
       type={type}
       onClick={onClick}
       style={style}
     >
-      {label}
+      {children}
     </button>
   );
 }

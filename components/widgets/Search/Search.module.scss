@@ -2,26 +2,27 @@
   box-sizing: border-box;
   width: inherit;
   height: inherit;
+  border-radius: inherit;
 
-  .barContainer {
+  .searchBarContainer {
+    border-radius: inherit;
     align-items: center;
     justify-content: center;
     display: flex;
     border: 1px solid #212a3e;
-    border-radius: 15px;
     min-width: 475px;
     width: 100%;
 
     .icon {
       align-items: center;
       display: flex;
-      margin: 0 16px;
+      margin: 0 12px 0 16px;
       height: 16px;
     }
 
     .input {
-      flex-basis: 60%;
-      flex-shrink: 2;
+      flex: 2 60%;
+      margin-right: 16px;
     }
 
     .engineOptions {
@@ -30,7 +31,7 @@
     }
 
     .button > button {
-      border-radius: 0 15px 15px 0;
+      border-radius: 0 13px 13px 0;
     }
   }
 }

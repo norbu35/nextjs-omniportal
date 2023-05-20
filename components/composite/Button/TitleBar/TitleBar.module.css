@@ -1,0 +1,18 @@
+.container {
+  position: absolute;
+  top: -34px;
+  border-radius: 15px 15px 0 0;
+  border: 1px solid #212a3e;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #394867;
+  opacity: 50%;
+  color: white;
+  height: 2em;
+  width: 100%;
+
+  .heading {
+    font-size: 1.25em;
+  }
+}

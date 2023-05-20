@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 'use client';
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { WeatherData } from './types';
-import styles from './Weather.module.scss';
+
 
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useGeocode } from '@/hooks/useGeocode';
@@ -12,6 +13,9 @@ import { useWeatherData } from './useWeatherData';
 import { getWeatherIconBg } from './getWeatherIconBg';
 import { renderTab } from './renderTab';
 import { Loader } from './Loader';
+
+import '@fontsource/inter/200.css';
+import styles from './Weather.module.scss';
 
 function Weather() {
   const [error, setError] = useState<Error | null>(null);
@@ -107,10 +111,10 @@ function Weather() {
           <div className={styles.currentTemp}>
             {weatherData?.current_weather.temperature}°
           </div>
-          <div className={styles.minMaxTemp}>
+          <div className={styles.maxTemp}>
             {weatherData?.daily?.temperature_2m_max[0]}°
           </div>
-          <div className={styles.minMaxTemp}>
+          <div className={styles.minTemp}>
             {weatherData?.daily?.temperature_2m_min[0]}°
           </div>
           <div className={styles.wind}></div>

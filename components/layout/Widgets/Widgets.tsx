@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Box from '../Box/Box';
-import { Search } from '@/components/widgets/Search/Search';
-import { Weather } from '@/components/widgets/Weather/Weather';
 
+import Box from '../Box/Box';
 import { WidgetStates } from '../types';
 import styles from './Widgets.module.scss';
 
 import defaultState from './state.json';
+import componentsMap from './componentsMap';
 
 interface Props {
   isUnlocked: boolean;
@@ -25,41 +24,40 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
   } else {
     initialState = defaultState;
   }
-  const [state, setState] = useState<WidgetStates>(initialState);
+  const [states, setStates] = useState<WidgetStates>(initialState);
   const boxRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('portal_state', JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem('portal_state', JSON.stringify(states));
+  }, [states]);
 
   function addBoxRef(ref: HTMLDivElement) {
     if (ref && !boxRefs.current.includes(ref)) {
       boxRefs.current.push(ref);
-    } 
+    }
   }
 
   return (
     <section className={styles.container}>
-      <Box
-        ref={addBoxRef}
-        boxRefs={boxRefs.current}
-        name="weather"
-        state={state}
-        isUnlocked={isUnlocked}
-        setStates={setState}
-      >
-        <Weather />
-      </Box>
-      <Box
-        ref={addBoxRef}
-        boxRefs={boxRefs.current}
-        name="search"
-        state={state}
-        setStates={setState}
-        isUnlocked={isUnlocked}
-      >
-        <Search />
-      </Box>
+      {Object.keys(states).map((key) => {
+        if (states[key].isVisible) {
+          const Component = componentsMap[key as keyof typeof componentsMap];
+          return (
+            <Box
+              name={key}
+              state={states}
+              setStates={setStates}
+              ref={addBoxRef}
+              boxRefs={boxRefs.current}
+              isUnlocked={isUnlocked}
+              key={key}
+            >
+              <Component />
+            </Box>
+          );
+        }
+        return null;
+      })}
     </section>
   );
 }

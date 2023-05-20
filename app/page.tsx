@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 'use client';
 import dynamic from 'next/dynamic';
+import '@fontsource/inter';
 
 import { useState } from 'react';
 import { Header } from '@/components/layout/Header/Header';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'normalize.css/normalize.css';
 
 const Widgets = dynamic(() => import('../components/layout/Widgets/Widgets'), {
@@ -15,7 +16,7 @@ function Home(): JSX.Element {
 
   return (
     <>
-      <main style={{ height: '100vh' }}>
+      <main>
         <Header isUnlocked={isUnlocked} setIsUnlocked={setIsUnlocked} />
         <Widgets isUnlocked={isUnlocked} />
       </main>

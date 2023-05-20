@@ -2,13 +2,15 @@
   flex-direction: column;
   display: flex;
   box-sizing: border-box;
-  border-radius: 15px;
   color: white;
   text-shadow: #000 5px 5px 10px;
-  overflow: hidden;
+  font-family: "Inter";
+  font-weight: 200;
   padding: 2em;
   width: inherit;
   height: inherit;
+  border-radius: inherit;
+  overflow: hidden;
 
   @media only screen and (max-width: 480px) {
     padding: 2em 1em;
@@ -29,6 +31,7 @@
 
       & .locationDate {
         & .location {
+          font-weight: 600;
           font-size: 2em;
         }
 
@@ -48,11 +51,21 @@
       text-align: center;
 
       & .currentTemp {
+        font-weight: 500;
         font-size: 4em;
       }
 
-      & .minMaxTemp {
+      & .maxTemp,
+      .minTemp {
         font-size: 1.5em;
+      }
+
+      & .maxTemp {
+        color: tomato;
+      }
+
+      & .minTemp {
+        color: lightskyblue;
       }
     }
   }

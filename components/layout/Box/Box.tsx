@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, {
   Dispatch,
   ForwardedRef,
@@ -8,9 +7,15 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { createPortal } from 'react-dom';
 import { DraggableData, Rnd } from 'react-rnd';
-import styles from './Box.module.scss';
+
+import Modal from '../Modal/Modal';
+import TitleBar from '@/components/composite/Button/TitleBar/TitleBar';
+import Settings from '@/components/settings/Settings';
+
 import { WidgetState, WidgetStates } from '../types';
+import styles from './Box.module.scss';
 
 interface Props {
   name: string;
@@ -45,22 +50,31 @@ function Box(
     children,
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
-) {
+): JSX.Element {
   const [state, setState] = useState<WidgetState>(initialState[name]);
+  const [isVisible, setIsVisible] = useState<boolean>(state.isVisible);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [isCollision, setIsCollision] = useState<boolean>(false);
-  const [safePoint, setSafePoint] = useState<Coordinates>({ x: state.position.x, y: state.position.y });
-
+  const { window } = state;
+  const [safePoint, setSafePoint] = useState<Coordinates>({
+    x: window.position.x,
+    y: window.position.y,
+  });
   const heading = name.charAt(0).toUpperCase() + name.slice(1);
 
-  useEffect(
-    () => {
-      setStates((prevState) => ({
-        ...prevState,
-        [name]: state,
-      }));
-    },
-    [state, setStates, name],
-  );
+  useEffect(() => {
+    setStates((prevState) => ({
+      ...prevState,
+      [name]: state,
+    }));
+  }, [state, setStates, name]);
+
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      isVisible: isVisible,
+    }));
+  }, [isVisible]);
 
   function handleOverlap(node: HTMLElement, { x, y }: Coordinates) {
     const main = node;
@@ -69,37 +83,48 @@ function Box(
       if (element.children[0] === main) {
         return;
       }
-      if (haveIntersection(element.children[0].getBoundingClientRect(), targetRect)) {
+      if (
+        haveIntersection(
+          element.children[0].getBoundingClientRect(),
+          targetRect,
+        )
+      ) {
         setIsCollision(true);
         return true;
       }
       setIsCollision(false);
-      y -= 242;
+      y -= 243;
       setSafePoint({ x, y });
     });
   }
 
-  function handleDrag(_e, { node, x, y }: DraggableData): void {
-    handleOverlap(node, { x, y });
-    console.log(x, y);
+  function handleDrag(_e: any, { node, x, y }: DraggableData): void {
+    console.log({ x, y });
+    setTimeout(() => handleOverlap(node, { x, y }));
   }
 
-  function handleDragStop(_e, d: DraggableData) {
+  function handleDragStop(_e: any, d: DraggableData) {
     if (isCollision) {
       setState((prevState) => ({
         ...prevState,
-        position: {
-          x: safePoint.x,
-          y: safePoint.y,
+        window: {
+          ...prevState.window,
+          position: {
+            x: safePoint.x,
+            y: safePoint.y,
+          },
         },
       }));
       setIsCollision(false);
     } else {
       setState((prevState) => ({
         ...prevState,
-        position: {
-          x: d.x,
-          y: d.y,
+        window: {
+          ...prevState.window,
+          position: {
+            x: d.x,
+            y: d.y,
+          },
         },
       }));
     }
@@ -109,21 +134,21 @@ function Box(
     <div className={styles.container} ref={ref}>
       <Rnd
         position={{
-          x: state.position.x,
-          y: state.position.y,
+          x: window.position.x,
+          y: window.position.y,
         }}
         size={{
-          width: state.size.width,
-          height: state.size.height,
+          width: window.size.width,
+          height: window.size.height,
         }}
-        maxWidth={state.maxWidth}
-        minWidth={state.minWidth}
-        maxHeight={state.maxHeight}
-        minHeight={state.minHeight}
+        maxWidth={window.maxWidth}
+        minWidth={window.minWidth}
+        maxHeight={window.maxHeight}
+        minHeight={window.minHeight}
         disableDragging={isUnlocked ? false : true}
+        enableResizing={isUnlocked ? true : false}
         onDrag={handleDrag}
         onDragStop={handleDragStop}
-        enableResizing={isUnlocked ? true : false}
         onResizeStop={(_e, _direction, elRef, _delta, position) => {
           setState((prevState) => ({
             ...prevState,
@@ -139,9 +164,25 @@ function Box(
         }}
         bounds="section"
       >
-        {isUnlocked && <div className={styles.titleBar}>{heading}</div>}
-        {children}
+        {isUnlocked && (
+          <TitleBar setIsVisible={setIsVisible} setModalIsOpen={setModalIsOpen}>
+            {heading}
+          </TitleBar>
+        )}
+        <div
+          className={styles.children}
+          style={{ borderRadius: isUnlocked ? '0 0 15px 15px' : '15px' }}
+        >
+          {children}
+        </div>
       </Rnd>
+      {modalIsOpen &&
+        createPortal(
+          <Modal>
+            <Settings state={state} setModalIsOpen={setModalIsOpen} />
+          </Modal>,
+          document.body,
+        )}
     </div>
   );
 }

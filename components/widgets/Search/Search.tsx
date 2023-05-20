@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import { StaticImageData } from 'next/image';
 
@@ -74,7 +73,7 @@ const optionStyles: StylesConfig<SearchEngine> = {
       width: 20,
     },
   }),
-  control: (provided) => ({ ...provided, backgroundColor: 'white' }),
+  control: (provided) => ({ ...provided, backgroundColor: 'white', border: 'none' }),
   singleValue: (provided, { data }) => ({
     ...provided,
     ...inputIcon(data.icon),
@@ -87,7 +86,9 @@ function Search(): JSX.Element {
     useState<SearchEngine>(defaultSearchEngine);
   const [query, setQuery] = useState<string>('');
 
-  function handleSearch(): void {
+  function handleSearch(e: FormEvent): void {
+    e.preventDefault();
+
     let params = new URLSearchParams();
     if (searchEngine.value === 'google' || searchEngine.value === 'bing') {
       params.append('q', query);
@@ -107,7 +108,7 @@ function Search(): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <div className={styles.barContainer}>
+      <form className={styles.searchBarContainer} onSubmit={handleSearch}>
         <FontAwesomeIcon
           className={styles.icon}
           icon={faMagnifyingGlass}
@@ -127,9 +128,12 @@ function Search(): JSX.Element {
           className={styles.engineOptions}
         />
         <div className={styles.button}>
-          <Button type="button" label="Search" onClick={handleSearch} variant="primary"/>
+          <Button
+            type="submit"
+            variant="primary"
+          >Search</Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
