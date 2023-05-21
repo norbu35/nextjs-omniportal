@@ -11,7 +11,6 @@ interface Props {
 function Settings({ state, setModalIsOpen }: Props) {
   return (
     <div className={styles.container}>
-      Settings...
       <Button type="button" onClick={() => setModalIsOpen(false)} variant="primary">Close</Button>
     </div >
   );

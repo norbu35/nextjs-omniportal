@@ -1,0 +1,14 @@
+@import '../../../theme/main.scss';
+
+.button {
+  width: 75px;
+  height: 40px;
+  background-color: $fg-primary;
+  color: white;
+  border-style: none;
+  border-radius: 15px;
+}
+
+.secondary {
+  background-color: orange;
+}

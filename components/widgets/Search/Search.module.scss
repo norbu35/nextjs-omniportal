@@ -1,3 +1,5 @@
+@import '../../../theme/main.scss';
+
 .container {
   box-sizing: border-box;
   width: inherit;
@@ -9,7 +11,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    border: 1px solid #212a3e;
+    border: 1px solid $fg-primary;
     min-width: 475px;
     width: 100%;
 

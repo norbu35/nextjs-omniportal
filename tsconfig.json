@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -26,6 +27,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "theme": [
+        "./theme/main.scss"
       ]
     }
   },

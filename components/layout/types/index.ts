@@ -1,19 +1,8 @@
+import { WindowState } from '@/components/Window/types';
+
 export interface WidgetState {
   isVisible: boolean;
-  window: {
-    position: {
-      x: number;
-      y: number;
-    };
-    size: {
-      width: number;
-      height: number;
-    };
-    maxWidth: number | string;
-    minWidth: number | string;
-    maxHeight: number | string;
-    minHeight: number | string;
-  };
+  window: WindowState;
 }
 
 export interface WidgetStates {

@@ -15,12 +15,10 @@ function Home(): JSX.Element {
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
 
   return (
-    <>
       <main>
         <Header isUnlocked={isUnlocked} setIsUnlocked={setIsUnlocked} />
         <Widgets isUnlocked={isUnlocked} />
       </main>
-    </>
   );
 }
 

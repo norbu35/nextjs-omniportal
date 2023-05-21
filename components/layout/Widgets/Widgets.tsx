@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import Box from '../Box/Box';
-import { WidgetStates } from '../types';
-import styles from './Widgets.module.scss';
-
 import defaultState from './state.json';
+import { WidgetStates } from '../types';
+
 import componentsMap from './componentsMap';
+import styles from './Widgets.module.scss';
+import Window from 'components/Window/Window';
 
 interface Props {
   isUnlocked: boolean;
@@ -24,36 +24,36 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
   } else {
     initialState = defaultState;
   }
-  const [states, setStates] = useState<WidgetStates>(initialState);
-  const boxRefs = useRef<HTMLDivElement[]>([]);
+  const [state, setState] = useState<WidgetStates>(initialState);
+  const windowRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('portal_state', JSON.stringify(states));
-  }, [states]);
+    localStorage.setItem('portal_state', JSON.stringify(state));
+  }, [state]);
 
-  function addBoxRef(ref: HTMLDivElement) {
-    if (ref && !boxRefs.current.includes(ref)) {
-      boxRefs.current.push(ref);
+  function addWindowRef(ref: HTMLDivElement) {
+    if (ref && !windowRefs.current.includes(ref)) {
+      windowRefs.current.push(ref);
     }
   }
 
   return (
     <section className={styles.container}>
-      {Object.keys(states).map((key) => {
-        if (states[key].isVisible) {
+      {Object.keys(state).map((key) => {
+        if (state[key].isVisible) {
           const Component = componentsMap[key as keyof typeof componentsMap];
           return (
-            <Box
+            <Window
               name={key}
-              state={states}
-              setStates={setStates}
-              ref={addBoxRef}
-              boxRefs={boxRefs.current}
+              state={state[key]}
+              setGlobalState={setState}
+              ref={addWindowRef}
+              windowRefs={windowRefs.current}
               isUnlocked={isUnlocked}
               key={key}
             >
               <Component />
-            </Box>
+            </Window>
           );
         }
         return null;

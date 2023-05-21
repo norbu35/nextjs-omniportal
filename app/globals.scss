@@ -1,13 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'normalize.css';
+@import "../theme/main.scss";
 
 :root * {
   /* border: 1px solid red; */
 }
 
 body {
-  background: "#F1F6F9";
+  background: $bg-primary; 
   font-family: "Inter";
 }
 

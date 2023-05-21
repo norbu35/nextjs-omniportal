@@ -11,6 +11,8 @@ function Loader(): JSX.Element {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        width: 'inherit',
+        height: 'inherit',
       }}
     >
       <Spinner />
@@ -19,3 +21,4 @@ function Loader(): JSX.Element {
 }
 
 export { Loader };
+export default Loader;

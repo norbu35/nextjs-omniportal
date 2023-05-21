@@ -1,5 +1,8 @@
+@import '../../../theme/main.scss';
+
 .container {
   height: 100px;
+  background: $fg-primary;
   text-align: center;
 }
 

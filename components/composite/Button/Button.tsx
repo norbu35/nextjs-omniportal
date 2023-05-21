@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import styles from './Button.module.css';
+import styles from './Button.module.scss';
 
 interface Props {
   type: 'button' | 'submit' | 'reset';
@@ -9,27 +9,13 @@ interface Props {
   children: ReactNode
 }
 
-function Button({ type, className, onClick, variant, children }: Props): JSX.Element {
-  let style;
-  switch (variant) {
-    case 'primary':
-      style = {
-        backgroundColor: '#212A3E',
-      };
-      break;
-    case 'secondary':
-      style = {
-        backgroundColor: '#394867',
-      };
-      break;
-  }
+function Button({ type, className, onClick, variant,  children }: Props): JSX.Element {
 
   return (
     <button
-      className={`${styles.button} ${className}`}
+      className={`${className} ${styles.button} ${styles[variant]}`}
       type={type}
       onClick={onClick}
-      style={style}
     >
       {children}
     </button>

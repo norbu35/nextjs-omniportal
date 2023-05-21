@@ -7,6 +7,7 @@ import { StaticImageData } from 'next/image';
 import iconGoogle from '/public/widgets/Search/icon-google.png';
 import iconBing from '/public/widgets/Search/icon-bing.png';
 import iconWikipedia from '/public/widgets/Search/icon-wikipedia.png';
+import iconYoutube from '/public/widgets/Search/icon-youtube.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -38,6 +39,12 @@ const searchEngines: SearchEngine[] = [
     label: 'Wikipedia',
     icon: iconWikipedia,
     url: 'https://en.wikipedia.org/w/index.php',
+  },
+  {
+    value: 'youtube',
+    label: 'Youtube',
+    icon: iconYoutube,
+    url: 'https://www.youtube.com/results',
   },
 ];
 
@@ -73,7 +80,7 @@ const optionStyles: StylesConfig<SearchEngine> = {
       width: 20,
     },
   }),
-  control: (provided) => ({ ...provided, backgroundColor: 'white', border: 'none' }),
+  control: (provided) => ({ ...provided, backgroundColor: '#F1F6F9', border: 'none' }),
   singleValue: (provided, { data }) => ({
     ...provided,
     ...inputIcon(data.icon),
@@ -95,6 +102,9 @@ function Search(): JSX.Element {
     }
     if (searchEngine.value === 'wikipedia') {
       params.append('search', query);
+    }
+    if (searchEngine.value === 'youtube') {
+      params.append('search_query', query);
     }
 
     window.open(`${searchEngine.url}?${params.toString()}`, '_blank');
@@ -130,7 +140,7 @@ function Search(): JSX.Element {
         <div className={styles.button}>
           <Button
             type="submit"
-            variant="primary"
+            variant="secondary"
           >Search</Button>
         </div>
       </form>
