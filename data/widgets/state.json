@@ -1,7 +1,7 @@
 {
   "weather": {
-    "isVisible": true,
     "window": {
+      "isVisible": true,
       "position": {
         "x": 0,
         "y": 0
@@ -17,11 +17,11 @@
     }
   },
   "search": {
-    "isVisible": true,
     "window": {
+      "isVisible": true,
       "position": {
-        "x": 600,
-        "y": 0
+        "x": 500,
+        "y": 300
       },
       "size": {
         "width": 600,
@@ -31,6 +31,23 @@
       "minWidth": 480,
       "maxHeight": 45,
       "minHeight": 45
+    }
+  },
+  "clock": {
+    "window": {
+      "isVisible": true,
+      "position": {
+        "x": 750,
+        "y": 200
+      },
+      "size": {
+        "width": 200,
+        "height": 100
+      },
+      "maxWidth": 300,
+      "minWidth": 100,
+      "maxHeight": 200,
+      "minHeight": 50
     }
   }
 }

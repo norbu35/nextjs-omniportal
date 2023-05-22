@@ -1,8 +1,7 @@
 .container {
-  width: 0;
-  height: 0;
-
   .children {
+    height: inherit;
+    width: inherit;
     border-radius: 15px;
   }
 }

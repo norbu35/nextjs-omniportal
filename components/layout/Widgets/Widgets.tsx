@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import defaultState from './state.json';
-import { WidgetStates } from '../types';
+import Window from 'components/layout/Window/Window';
 
-import componentsMap from './componentsMap';
+import { WidgetStates } from '../types';
+import widgetsMap from './widgetsMap';
 import styles from './Widgets.module.scss';
-import Window from 'components/Window/Window';
+import defaultState from '@/data/widgets/state.json';
 
 interface Props {
   isUnlocked: boolean;
@@ -40,19 +40,19 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
   return (
     <section className={styles.container}>
       {Object.keys(state).map((key) => {
-        if (state[key].isVisible) {
-          const Component = componentsMap[key as keyof typeof componentsMap];
+        if (state[key].window.isVisible) {
+          const Widget = widgetsMap[key as keyof typeof widgetsMap];
           return (
             <Window
               name={key}
               state={state[key]}
-              setGlobalState={setState}
+              setState={setState}
               ref={addWindowRef}
               windowRefs={windowRefs.current}
               isUnlocked={isUnlocked}
               key={key}
             >
-              <Component />
+              <Widget />
             </Window>
           );
         }

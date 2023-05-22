@@ -10,7 +10,6 @@ interface Props {
 function Header({ isUnlocked, setIsUnlocked }: Props): JSX.Element {
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Portal</h1>
       <div style={{ display: 'flex', gap: '1em', width: '100%', justifyContent: 'center' }}>
         <Button
           type="button"

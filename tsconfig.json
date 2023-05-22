@@ -28,7 +28,10 @@
       "@/*": [
         "./*"
       ],
-      "theme": [
+      "@comps": [
+        "./components/"
+      ],
+      "@theme": [
         "./theme/main.scss"
       ]
     }

@@ -7,10 +7,4 @@
   height: 100%;
   width: 100%;
   background: rgba(155, 164, 181, 0.5);
-
-  .content {
-    opacity: 1;
-    width: 50vw;
-    height: 80vh;
-  }
 }

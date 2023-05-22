@@ -1,4 +1,4 @@
-import { Spinner } from '@/components/layout/Loaders/Spinner/Spinner';
+import { Spinner } from '@/components/loaders/Spinner/Spinner';
 import styles from './Weather.module.scss';
 
 function Loader(): JSX.Element {
@@ -11,7 +11,6 @@ function Loader(): JSX.Element {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 'inherit',
         height: 'inherit',
       }}
     >

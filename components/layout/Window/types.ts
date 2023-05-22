@@ -1,4 +1,5 @@
 export interface WindowState {
+  isVisible: boolean,
   position: {
     x: number,
     y: number,

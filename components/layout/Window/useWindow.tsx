@@ -30,10 +30,12 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
           targetRect,
         )
       ) {
+        // console.log('is collision');
+        // console.log('safestate', safeState.position);
+        // console.log('position', newPos);
         setIsCollision(true);
         return true;
       }
-      setIsCollision(false);
       setSafeState((prevState: WindowState) => ({
         ...prevState,
         position: {
@@ -45,13 +47,14 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
           height: newSize.height,
         },
       }));
+      setIsCollision(false);
     });
   }
 
   function handleDrag(_e: any, { node, x, y }: DraggableData): void {
     const width = node.clientWidth;
     const height = node.clientHeight;
-    y = y - 243;
+    y = y - 80;
     handleOverlap(node, { x, y }, { width, height });
   }
 
@@ -70,7 +73,6 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
           y: safeState.position.y,
         },
       }));
-      setIsCollision(false);
     } else {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
@@ -79,8 +81,8 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
           y: d.y,
         },
       }));
-      setIsCollision(false);
     }
+    setIsCollision(false);
   }
 
   function handleResizeStop(_e: MouseEvent | TouchEvent, _direction: Direction, elRef: any, _delta: any, position: { x: number, y: number }) {
