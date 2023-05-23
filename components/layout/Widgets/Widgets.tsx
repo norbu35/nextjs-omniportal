@@ -7,7 +7,7 @@ import Window from 'components/layout/Window/Window';
 import { WidgetStates } from '../types';
 import widgetsMap from './widgetsMap';
 import styles from './Widgets.module.scss';
-import defaultState from '@/data/widgets/state.json';
+import defaultConfig from '@/data/widgets/config.json';
 
 interface Props {
   isUnlocked: boolean;
@@ -22,7 +22,7 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
   if (storedState) {
     initialState = JSON.parse(storedState);
   } else {
-    initialState = defaultState;
+    initialState = defaultConfig;
   }
   const [state, setState] = useState<WidgetStates>(initialState);
   const windowRefs = useRef<HTMLDivElement[]>([]);
@@ -36,12 +36,13 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
       windowRefs.current.push(ref);
     }
   }
-
+  
   return (
     <section className={styles.container}>
       {Object.keys(state).map((key) => {
         if (state[key].window.isVisible) {
           const Widget = widgetsMap[key as keyof typeof widgetsMap];
+
           return (
             <Window
               name={key}
@@ -52,7 +53,7 @@ function Widgets({ isUnlocked }: Props): JSX.Element {
               isUnlocked={isUnlocked}
               key={key}
             >
-              <Widget />
+              <Widget state={state[key]} />
             </Window>
           );
         }

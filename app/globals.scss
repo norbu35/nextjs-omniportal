@@ -1,15 +1,15 @@
-@import 'normalize.css';
+@import "normalize.css";
 @import "../theme/main.scss";
 
 :root * {
-  /* border: 1px solid red; */
+  // border: 1px solid red;
 }
 
 body {
-  background-color: $bg-primary; 
+  background-color: $bg-primary;
   font-family: "Inter";
 }
 
-input {
-  all: unset;
-}
+// input {
+//   all: unset;
+// }

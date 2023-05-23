@@ -1,7 +1,6 @@
 .container {
-  font-size: 4em;
+  font-size: 4rem;
   justify-content: center;
   align-items: center;
   display: flex;
 }
-

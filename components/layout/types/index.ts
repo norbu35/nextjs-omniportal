@@ -1,8 +1,9 @@
 import { WindowState } from '@/components/layout/Window/types';
+import WeatherSettingsType from '@/components/widgets/Weather/Settings';
 
 export interface WidgetState {
-  isVisible: boolean;
   window: WindowState;
+  settings: WeatherSettingsType | null
 }
 
 export interface WidgetStates {

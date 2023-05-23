@@ -2,15 +2,13 @@
   flex-direction: column;
   display: flex;
   box-sizing: border-box;
+  overflow: hidden;
+  padding: 2em;
+  border-radius: inherit;
+  font-family: "Inter";
   color: white;
   text-shadow: #000 5px 5px 10px;
-  font-family: "Inter";
   font-weight: 200;
-  padding: 2em;
-  width: inherit;
-  height: inherit;
-  border-radius: inherit;
-  overflow: hidden;
 
   @media only screen and (max-width: 480px) {
     padding: 2em 1em;
@@ -20,61 +18,84 @@
     padding: 2em;
   }
 
-  & .current {
+  .current {
     display: flex;
     justify-content: space-between;
 
-    & .left {
+    .left {
       flex-direction: column;
       flex-basis: 70%;
       display: flex;
 
-      & .locationDate {
-        & .location {
+      .locationDate {
+        .location {
           font-weight: 600;
           font-size: 2em;
         }
 
-        & .date {
+        .date {
           font-size: 1.125em;
         }
       }
 
-      & .currentConditions {
-        margin-top: -15px;
-        margin-left: -15px;
+      .currentConditions {
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        margin-top: 0.5em;
+        margin-left: 0.5em;
+
+        .currentIcon {
+          height: calc(1em * 10) px;
+        }
       }
     }
 
-    & .right {
+    .right {
       flex-basis: 30%;
       text-align: center;
 
-      & .currentTemp {
+      .currentTemp {
         font-weight: 500;
         font-size: 4em;
       }
 
-      & .maxTemp,
+      .maxTemp,
       .minTemp {
         font-size: 1.5em;
       }
 
-      & .maxTemp {
+      .maxTemp {
         color: tomato;
       }
 
-      & .minTemp {
+      .minTemp {
         color: lightskyblue;
       }
     }
   }
 
-  & .forecast {
+  .forecastButtonTop,
+  .foreacstButtonBottom {
+    margin: 0 auto;
+    position: absolute;
+  }
+
+  .forecastButtonTop {
+    bottom: 1em;
+    left: 50%;
+  }
+
+  .forecastButtonBottom {
+    transform: rotate(180deg);
+    right: 50%;
+  }
+
+  .forecast {
     flex-direction: column;
     display: flex;
 
-    & .tabsNav {
+    .tabsNav {
       padding: 0 0.5em;
       margin-left: -1em;
       margin-right: -1em;
@@ -82,8 +103,8 @@
       list-style-type: none;
       border-bottom: 1px solid white;
 
-      & .tabButton {
-        line-height: 22px;
+      .tabButton {
+        line-height: 1.5em;
         &:hover {
           cursor: pointer;
         }
@@ -95,15 +116,14 @@
         }
       }
 
-      & .tabActive {
+      .tabActive {
         border-bottom: 2px solid white;
       }
     }
 
-    & .tab {
-      backdrop-filter: blur(20px);
-      overflow: hidden;
-      height: 145px;
+    .tab {
+      backdrop-filter: blur(18px);
+      overflow: scroll;
       margin: 0 -1em -1em;
       padding: 0.5em;
     }

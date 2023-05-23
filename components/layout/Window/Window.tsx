@@ -1,7 +1,7 @@
 import React, {
   Dispatch,
   ForwardedRef,
-  ReactNode,
+  ReactElement,
   SetStateAction,
   forwardRef,
   useEffect,
@@ -16,41 +16,38 @@ import { useWindow } from './useWindow';
 import { WidgetState, WidgetStates } from '../../layout/types';
 import { WindowState } from './types';
 import styles from './Window.module.scss';
-import Settings from '../Widgets/Settings';
+import SettingsLayout from '../Widgets/SettingsLayout';
+import settingsMap from './settingsMap';
+import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
 
 interface Props {
   name: string;
   state: WidgetState;
   setState: Dispatch<SetStateAction<WidgetStates>>;
   windowRefs: HTMLDivElement[];
-  children: ReactNode;
+  children: ReactElement;
   isUnlocked?: boolean;
 }
 
+type SettingsType = WeatherSettingsType;
+
 function Window(
-  {
-    name,
-    state,
-    setState,
-    windowRefs,
-    isUnlocked,
-    children,
-  }: Props,
+  { name, state, setState, windowRefs, isUnlocked, children }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
   const [widgetState, setWidgetState] = useState<WidgetState>(state);
-  const [windowState, setWindowState] = useState<WindowState>(widgetState.window);
-  const { handleDrag, handleDragStop, handleResize, handleResizeStop } = useWindow(windowState, windowRefs, setWindowState);
+  const [windowState, setWindowState] = useState<WindowState>(
+    widgetState.window,
+  );
+  const [settingsState, setSettingsState] = useState<SettingsType>(
+    widgetState.settings,
+  );
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
-  const title = name.charAt(0).toUpperCase() + name.slice(1);
 
-  useEffect(() => {
-    setWidgetState((prevState) => ({
-      ...prevState,
-      window: windowState,
-    }));
-  }, [windowState, name]);
+  const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
+    useWindow(windowState, windowRefs, setWindowState);
+  const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
     setState((prevState) => ({
@@ -60,12 +57,27 @@ function Window(
   }, [widgetState, name, setState]);
 
   useEffect(() => {
-    setWindowState(prevState => ({
+    setWidgetState((prevState) => ({
+      ...prevState,
+      window: windowState,
+    }));
+  }, [windowState]);
+
+  useEffect(() => {
+    setWidgetState((prevState) => ({
+      ...prevState,
+      settings: settingsState,
+    }));
+  }, [settingsState]);
+
+  useEffect(() => {
+    setWindowState((prevState) => ({
       ...prevState,
       isVisible: isVisible,
     }));
   }, [isVisible]);
 
+  const SettingsComponent = settingsMap[name as keyof typeof settingsMap];
 
   return (
     <>
@@ -92,7 +104,11 @@ function Window(
           bounds="section"
         >
           {isUnlocked && (
-            <TitleBar setIsVisible={setIsVisible} setSettingsIsOpen={setSettingsIsOpen} settingsIsOpen={settingsIsOpen}>
+            <TitleBar
+              setIsVisible={setIsVisible}
+              setSettingsIsOpen={setSettingsIsOpen}
+              settingsIsOpen={settingsIsOpen}
+            >
               {title}
             </TitleBar>
           )}
@@ -104,13 +120,16 @@ function Window(
           </div>
         </Rnd>
       </div>
-      {settingsIsOpen &&
-        <Settings name={name} state={state} setIsVisible={setSettingsIsOpen}>test</Settings>
-      }
+      {settingsIsOpen && (
+        <SettingsLayout name={name} setIsVisible={setSettingsIsOpen}>
+          <SettingsComponent
+            settingsState={settingsState}
+            setSettingsState={setSettingsState}
+          />
+        </SettingsLayout>
+      )}
     </>
   );
 }
 
 export default forwardRef(Window);
-
-

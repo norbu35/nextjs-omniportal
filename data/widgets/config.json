@@ -10,10 +10,15 @@
         "width": 500,
         "height": 410
       },
-      "maxWidth": 600,
-      "minWidth": 320,
-      "maxHeight": 410,
-      "minHeight": 410
+      "maxWidth": -1,
+      "minWidth": -1,
+      "maxHeight": -1,
+      "minHeight": -1
+    },
+    "settings": {
+      "fontSize": 16,
+      "fontColor": "black",
+      "bgImg": true
     }
   },
   "search": {
@@ -28,9 +33,9 @@
         "height": 45
       },
       "maxWidth": -1,
-      "minWidth": 480,
-      "maxHeight": 45,
-      "minHeight": 45
+      "minWidth": -1,
+      "maxHeight": -1,
+      "minHeight": -1
     }
   },
   "clock": {
@@ -44,10 +49,10 @@
         "width": 200,
         "height": 100
       },
-      "maxWidth": 300,
-      "minWidth": 100,
-      "maxHeight": 200,
-      "minHeight": 50
+      "maxWidth": -1,
+      "minWidth": -1,
+      "maxHeight": -1,
+      "minHeight": -1
     }
   }
 }
