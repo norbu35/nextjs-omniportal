@@ -11,7 +11,7 @@ const Widgets = dynamic(() => import('../components/layout/Widgets/Widgets'), {
   ssr: false,
 });
 
-function Home(): JSX.Element {
+const Home = () => {
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
 
   return (
@@ -20,7 +20,7 @@ function Home(): JSX.Element {
         <Widgets isUnlocked={isUnlocked} />
       </main>
   );
-}
+};
 
 export { Home };
 export default Home;
