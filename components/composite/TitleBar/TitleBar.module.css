@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  top: -34px;
+  top: -2em;
   border-radius: 15px 15px 0 0;
   border: 1px solid #212a3e;
   justify-content: center;
@@ -14,14 +14,14 @@
 
   .buttonsContainer {
     position: absolute;
-    right: 16px;
+    right: 1em;
     display: flex;
     gap: 0.25em;
-    right: 8px;
+    right: 0.5em;
 
     .icon {
-      width: 16px;
-      height: 16px;
+      width: 1.25em;
+      height: 1.25em;
     }
   }
 }

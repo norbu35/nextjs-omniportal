@@ -12,26 +12,26 @@
     justify-content: center;
     display: flex;
     border: 1px solid $fg-primary;
-    min-width: 475px;
+    min-width: 30em;
     width: 100%;
 
     .icon {
       align-items: center;
       display: flex;
-      margin: 0 12px 0 16px;
-      height: 16px;
+      margin: 0 0.75em 0 1em;
+      height: 1em;
     }
 
     .input {
       flex: 2 60%;
-      margin-right: 16px;
+      margin-right: 1em;
       all: unset;
       width: 100%;
     }
 
     .engineOptions {
       flex-basis: 20%;
-      min-width: 150px;
+      min-width: 9em;
     }
 
     .button > button {

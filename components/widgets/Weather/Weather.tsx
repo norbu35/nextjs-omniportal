@@ -108,6 +108,7 @@ function Weather({ state }: Props) {
             ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
+        backgroundPosition: 'center',
         fontSize: (settings!.fontSize / 16).toFixed(3) + 'rem',
       }}
     >
