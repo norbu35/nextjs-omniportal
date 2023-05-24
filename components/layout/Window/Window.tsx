@@ -31,15 +31,15 @@ interface Props {
 type SettingsType = WeatherSettingsType;
 
 function Window(
-  { name, state, setState, windowRefs, isUnlocked, children }: Props,
+  { name, state: globalState, setState: setGlobalState, windowRefs, isUnlocked, children }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
-  const [widgetState, setWidgetState] = useState<WidgetState>(state);
+  const [widgetState, setWidgetState] = useState<WidgetState>(globalState);
   const [windowState, setWindowState] = useState<WindowState>(
     widgetState.window,
   );
   const [settingsState, setSettingsState] = useState<SettingsType>(
-    widgetState.settings,
+    widgetState.settings!,
   );
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
@@ -49,11 +49,11 @@ function Window(
   const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
-    setState((prevState) => ({
+    setGlobalState((prevState) => ({
       ...prevState,
       [name]: widgetState,
     }));
-  }, [widgetState, name, setState]);
+  }, [widgetState, name, setGlobalState]);
 
   useEffect(() => {
     setWidgetState((prevState) => ({
