@@ -13,7 +13,6 @@ import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import SettingsLayout from '../Widgets/SettingsLayout';
 
 import { useWindow } from './useWindow';
-
 import { WidgetState, WidgetStates } from '../../layout/types';
 import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
 import { WindowState } from './types';
