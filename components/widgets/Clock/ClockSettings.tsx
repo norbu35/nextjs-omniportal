@@ -6,6 +6,7 @@ interface Props {
 }
 
 function ClockSettings({ widgetState }: Props) {
+  console.log(widgetState);
   return (
     <div className={styles.container}></div>
   );

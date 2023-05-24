@@ -5,6 +5,7 @@ interface Props {
   widgetState: WidgetState
 }
 function SearchSettings({ widgetState }: Props) {
+  console.log(widgetState);
   return (
     <div className={styles.container}></div>
   );
