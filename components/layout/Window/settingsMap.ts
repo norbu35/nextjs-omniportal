@@ -1,5 +1,5 @@
-import ClockSettings from '@/components/widgets/Clock/ClockSettings';
-import SearchSettings from '@/components/widgets/Search/SearchSettings';
+// import ClockSettings from '@/components/widgets/Clock/ClockSettings';
+// import SearchSettings from '@/components/widgets/Search/SearchSettings';
 import WeatherSettings from '@/components/widgets/Weather/WeatherSettings';
 
 const settingsMap = {
