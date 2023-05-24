@@ -6,6 +6,7 @@ interface Props {
 }
 
 function WidgetSettings({ widgetStates }: Props) {
+  console.log(widgetStates);
   return (
     <Rnd
       default={{
