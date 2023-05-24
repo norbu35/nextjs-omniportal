@@ -103,12 +103,12 @@ function Weather({ state }: Props) {
     <div
       className={styles.container}
       style={{
-        backgroundImage: settings.bgImg
+        backgroundImage: settings!.bgImg
           ? currentWeatherBgImg
             ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
-        fontSize: (settings.fontSize / 16).toFixed(3) + 'rem',
+        fontSize: (settings!.fontSize / 16).toFixed(3) + 'rem',
       }}
     >
       <div className={styles.current}>
@@ -118,9 +118,7 @@ function Weather({ state }: Props) {
             <div className={styles.date}>{localDate}</div>
           </div>
           <div className={styles.currentConditions}>
-            <div className={styles.currentIcon}>
-              {currentWeatherIcon}
-            </div>
+            {currentWeatherIcon}
             <div className={styles.conditionDescription}></div>
           </div>
         </div>
