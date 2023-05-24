@@ -89,7 +89,7 @@ function Weather({ state }: Props) {
   }
 
   const localDate = new Date().toLocaleDateString();
-  const city = geocode?.results[9].formatted_address.split(',')[0] ?? '';
+  const city = geocode?.results[9]?.formatted_address.split(',')[0] ?? '';
 
   if (loading) {
     return <Loader />;
