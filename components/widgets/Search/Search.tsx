@@ -54,12 +54,12 @@ function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
     display: 'flex',
 
     ':before': {
-      backgroundImage: `url(${icon.src})`,
-      backgroundSize: 'cover',
       content: '""',
       marginRight: 5,
-      height: 20,
       width: 20,
+      height: 20,
+      backgroundSize: 'cover',
+      backgroundImage: `url(${icon.src})`,
     },
   };
 }
@@ -72,15 +72,19 @@ const optionStyles: StylesConfig<SearchEngine> = {
     padding: '0.35em',
 
     ':before': {
-      backgroundImage: `url(${data.icon.src})`,
-      backgroundSize: 'cover',
       content: '""',
       marginRight: '0.35em',
-      height: '1.25em',
       width: '1.25em',
+      height: '1.25em',
+      backgroundImage: `url(${data.icon.src})`,
+      backgroundSize: 'cover',
     },
   }),
-  control: (provided) => ({ ...provided, backgroundColor: '#F1F6F9', border: 'none' }),
+  control: (provided) => ({
+    ...provided,
+    backgroundColor: '#F1F6F9',
+    border: 'none',
+  }),
   singleValue: (provided, { data }) => ({
     ...provided,
     ...inputIcon(data.icon),
@@ -138,10 +142,9 @@ function Search(): JSX.Element {
           className={styles.engineOptions}
         />
         <div className={styles.button}>
-          <Button
-            type="submit"
-            variant="secondary"
-          >Search</Button>
+          <Button type="submit" variant="secondary">
+            Search
+          </Button>
         </div>
       </form>
     </div>
@@ -149,4 +152,5 @@ function Search(): JSX.Element {
 }
 
 export { Search };
+
 export default Search;

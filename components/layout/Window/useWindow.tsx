@@ -13,7 +13,7 @@ function haveIntersection(other: DOMRect, main: DOMRect): boolean {
   );
 }
 
-function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWindowState: Dispatch<SetStateAction<WindowState>>) {
+function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWindowState: Dispatch<SetStateAction<WindowState>>, collisionIsActive: boolean) {
   const [safeState, setSafeState] = useState<WindowState>(windowState);
   const [isCollision, setIsCollision] = useState<boolean>(false);
 
@@ -65,7 +65,7 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
   };
 
   function handleDragStop(_e: any, d: DraggableData) {
-    if (isCollision) {
+    if (collisionIsActive && isCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         position: {
@@ -86,7 +86,7 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
   }
 
   function handleResizeStop(_e: MouseEvent | TouchEvent, _direction: Direction, elRef: any, _delta: any, position: { x: number, y: number }) {
-    if (isCollision) {
+    if (collisionIsActive && isCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         size: safeState.size,

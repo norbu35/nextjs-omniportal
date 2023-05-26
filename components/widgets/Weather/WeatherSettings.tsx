@@ -1,67 +1,27 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
-import styles from './WeatherSettings.module.scss';
+import { Dispatch, SetStateAction } from 'react';
+import WidgetSettings from '@/components/layout/Widgets/WidgetSettings';
 
 interface Props {
   settingsState: WeatherSettingsType;
   setSettingsState: Dispatch<SetStateAction<WeatherSettingsType>>;
 }
 
-export interface WeatherSettingsType {
+export interface CommonSettings {
   fontSize: number;
   fontColor: string;
+}
+
+export interface WeatherSettingsType extends CommonSettings {
+  temperatureUnit: string;
   bgImg: boolean;
 }
 
 function WeatherSettings({ settingsState, setSettingsState }: Props) {
-  const [settings, setSettings] = useState<WeatherSettingsType>(settingsState);
-  const [fontSize, setFontSize] = useState<number>(settings.fontSize);
-  const [isBgImg, setIsBgImg] = useState<boolean>(settings.bgImg);
-
-  useEffect(() => {
-    setSettingsState(settings);
-  }, [settings, setSettingsState]);
-
-  useEffect(() => {
-    setSettings((prevState) => ({
-      ...prevState,
-      fontSize: fontSize,
-    }));
-  }, [fontSize]);
-
-  function handleFontSizeChange(e: ChangeEvent<HTMLInputElement>) {
-    setFontSize(parseInt(e.target.value));
-  }
-
-  function handleBgImgChange(e: ChangeEvent<HTMLInputElement>) {
-    setIsBgImg(e.target.checked);
-  }
-
   return (
-    <div className={styles.container}>
-      <label>
-        Size:
-        <input
-          type="number"
-          className={styles.checkbox}
-          value={fontSize}
-          onChange={handleFontSizeChange}
-        />
-      </label>
-      <label>
-        Show background image?
-        <input
-          type="checkbox"
-          checked={isBgImg}
-          onChange={handleBgImgChange}
-        />
-      </label>
-    </div>
+    <WidgetSettings<WeatherSettingsType>
+      settingsState={settingsState}
+      setSettingsState={setSettingsState}
+    />
   );
 }
 

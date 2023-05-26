@@ -1,14 +1,27 @@
-import { WidgetState } from '@/components/layout/types';
+import WidgetSettings from '@/components/layout/Widgets/WidgetSettings';
 import styles from './ClockSettings.module.scss';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
-  widgetState: WidgetState
+  settingsState: ClockSettingsType;
+  setSettingsState: Dispatch<SetStateAction<ClockSettingsType>>;
 }
 
-function ClockSettings({ widgetState }: Props) {
-  console.log(widgetState);
+export interface CommonSettings {
+  fontSize: number;
+}
+
+export interface ClockSettingsType extends CommonSettings {
+  fontSize: number;
+}
+
+function ClockSettings({ settingsState, setSettingsState }: Props) {
+
   return (
-    <div className={styles.container}></div>
+    <WidgetSettings<ClockSettingsType>
+      settingsState={settingsState}
+      setSettingsState={setSettingsState}
+    />
   );
 }
 

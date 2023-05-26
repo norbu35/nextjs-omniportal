@@ -2,33 +2,34 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Window from 'components/layout/Window/Window';
-import { WidgetStates } from '../types';
+import Settings from './SettingsLayout';
+import WidgetsPanel from './WidgetsPanel';
+import WidgetsSettings from './WidgetsSettings';
 import widgetsMap from './widgetsMap';
+import { AppState } from '../types';
 import styles from './Widgets.module.scss';
 import defaultConfig from '@/data/widgets/config.json';
-import Settings from './SettingsLayout';
-import WidgetSettings from './WidgetSettings';
-import WidgetsPanel from './WidgetsPanel';
+
+const getJSONFromStorage = (key: string, defaultVal: AppState) => {
+  if (globalThis.window) return defaultVal;
+  const stored = localStorage.getItem(key);
+  if (!stored) return defaultVal;
+  return JSON.parse(stored);
+};
+
 
 function Widgets(): JSX.Element {
-  let initialState;
-  let storedState;
-  if (typeof window !== 'undefined') {
-    storedState = localStorage.getItem('portal_state');
-  }
-  if (storedState) {
-    initialState = JSON.parse(storedState);
-  } else {
-    initialState = defaultConfig;
-  }
-  const [state, setState] = useState<WidgetStates>(initialState);
+  const [appState, setAppState] = useState<AppState>(
+    getJSONFromStorage('portal_state', defaultConfig),
+  );
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
+
   const windowRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('portal_state', JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem('portal_state', JSON.stringify(appState));
+  }, [appState]);
 
   function addWindowRef(ref: HTMLDivElement) {
     if (ref && !windowRefs.current.includes(ref)) {
@@ -36,40 +37,64 @@ function Widgets(): JSX.Element {
     }
   }
 
+  function setCollisionIsActive() {
+    setAppState((prevState) => ({
+      ...prevState,
+      global: {
+        ...prevState.global,
+        isCollision: !prevState.global.isCollision,
+      },
+    }));
+  }
+
+  function setIsBorder() {
+    setAppState((prevState) => ({
+      ...prevState,
+      global: {
+        ...prevState.global,
+        isBorder: !prevState.global.isBorder,
+      },
+    }));
+  }
+
   return (
     <section className={styles.container}>
       <div className={styles.widgetsPanel}>
         <WidgetsPanel
-          isUnlocked={isUnlocked}
-          setIsUnlocked={() => setIsUnlocked(!isUnlocked)}
+          lock={[isUnlocked, setIsUnlocked ]}
           setSettingsIsOpen={() => setSettingsIsOpen(!settingsIsOpen)}
         />
       </div>
       {settingsIsOpen && (
         <div className={styles.widgetSettings}>
           <Settings name="Widgets" setIsVisible={setSettingsIsOpen}>
-            <WidgetSettings widgetStates={state} />
+            <WidgetsSettings
+              state={[appState, setAppState]}
+              lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
+              collision={[appState.global.isCollision, setCollisionIsActive]}
+              border={[appState.global.isBorder, setIsBorder]}
+            />
           </Settings>
         </div>
       )}
-      {Object.keys(state).map((key) => {
-        if (state[key].window.isVisible) {
+      {Object.keys(appState.widgets).map((key) => {
+        if (appState.widgets[key].window.isVisible) {
           const Widget = widgetsMap[key as keyof typeof widgetsMap];
           return (
             <Window
               name={key}
-              state={state[key]}
-              setState={setState}
+              widgetState={appState.widgets[key]}
+              setAppState={setAppState}
               ref={addWindowRef}
               windowRefs={windowRefs.current}
               isUnlocked={isUnlocked}
+              collisionIsActive={appState.global.isCollision}
               key={key}
             >
-              <Widget state={state[key]} />
+              <Widget state={appState.widgets[key]} />
             </Window>
           );
         }
-        return null;
       })}
     </section>
   );

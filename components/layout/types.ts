@@ -6,6 +6,14 @@ export interface WidgetState {
   settings: WeatherSettingsType | null;
 }
 
-export interface WidgetStates {
-  [key: string]: WidgetState;
+export interface GlobalState {
+  isCollision: boolean;
+  isBorder: boolean;
+}
+
+export interface AppState {
+  global: GlobalState;
+  widgets: {
+    [key: string]: WidgetState;
+  };
 }

@@ -1,14 +1,16 @@
 import Button from '@/components/composite/Button/Button';
 import styles from './WidgetsPanel.module.scss';
 import { Rnd } from 'react-rnd';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
-  isUnlocked: boolean;
-  setIsUnlocked: () => void;
+  lock: [boolean, Dispatch<SetStateAction<boolean>>] 
   setSettingsIsOpen: () => void;
 }
 
-function WidgetsPanel({ isUnlocked, setIsUnlocked, setSettingsIsOpen }: Props) {
+function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
+  const [isUnlocked, setIsUnlocked] = lock;
+
   return (
     <Rnd
       default={{
@@ -20,6 +22,7 @@ function WidgetsPanel({ isUnlocked, setIsUnlocked, setSettingsIsOpen }: Props) {
       enableResizing={false}
       dragAxis="y"
       style={{
+        zIndex: 10,
         flexDirection: 'column',
         alignItems: 'flex-end',
         gap: '0.5em',
@@ -28,12 +31,13 @@ function WidgetsPanel({ isUnlocked, setIsUnlocked, setSettingsIsOpen }: Props) {
         borderRadius: '15px 0 0 15px',
         padding: '0.5em',
       }}
+      bounds="body"
     >
       <div className={styles.container}>
         <Button type="button" onClick={setSettingsIsOpen} variant="primary">
           Widgets
         </Button>
-        <Button type="button" onClick={setIsUnlocked} variant="primary">
+        <Button type="button" onClick={() => setIsUnlocked} variant="primary">
           {isUnlocked ? 'Lock' : 'Unlock'}
         </Button>
         <Button

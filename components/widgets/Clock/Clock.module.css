@@ -1,6 +1,8 @@
 .container {
-  font-size: 4rem;
   justify-content: center;
   align-items: center;
   display: flex;
+  font-size: 2rem;
+  width: inherit;
+  height: inherit;
 }

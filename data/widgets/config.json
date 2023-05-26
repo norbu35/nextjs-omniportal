@@ -1,58 +1,73 @@
 {
-  "weather": {
-    "window": {
-      "isVisible": true,
-      "position": {
-        "x": 0,
-        "y": 0
+  "global": {
+    "isCollision": false,
+    "isBorder": true
+  },
+  "widgets": {
+    "weather": {
+      "window": {
+        "isVisible": true,
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "size": {
+          "width": 500,
+          "height": 410
+        },
+        "maxWidth": -1,
+        "minWidth": -1,
+        "maxHeight": -1,
+        "minHeight": -1
       },
-      "size": {
-        "width": 500,
-        "height": 410
-      },
-      "maxWidth": -1,
-      "minWidth": -1,
-      "maxHeight": -1,
-      "minHeight": -1
+      "settings": {
+        "fontSize": 16,
+        "fontColor": "white",
+        "bgImg": true,
+        "temperatureUnit": "C"
+      }
     },
-    "settings": {
-      "fontSize": 16,
-      "fontColor": "black",
-      "bgImg": true
-    }
-  },
-  "search": {
-    "window": {
-      "isVisible": true,
-      "position": {
-        "x": 500,
-        "y": 300
+    "search": {
+      "window": {
+        "isVisible": true,
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "size": {
+          "width": 600,
+          "height": 45
+        },
+        "maxWidth": -1,
+        "minWidth": -1,
+        "maxHeight": -1,
+        "minHeight": -1
       },
-      "size": {
-        "width": 600,
-        "height": 45
+      "settings": {
+        "fontSize": 32,
+        "fontColor": "white"
+      }
+    },
+    "clock": {
+      "window": {
+        "isVisible": true,
+        "position": {
+          "x": 750,
+          "y": 200
+        },
+        "size": {
+          "width": 200,
+          "height": 100
+        },
+        "maxWidth": -1,
+        "minWidth": -1,
+        "maxHeight": -1,
+        "minHeight": -1
       },
-      "maxWidth": -1,
-      "minWidth": -1,
-      "maxHeight": -1,
-      "minHeight": -1
-    }
-  },
-  "clock": {
-    "window": {
-      "isVisible": true,
-      "position": {
-        "x": 750,
-        "y": 200
-      },
-      "size": {
-        "width": 200,
-        "height": 100
-      },
-      "maxWidth": -1,
-      "minWidth": -1,
-      "maxHeight": -1,
-      "minHeight": -1
+      "settings": {
+        "fontSize": 32,
+        "fontColor": "white"
+      }
     }
   }
 }

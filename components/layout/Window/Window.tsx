@@ -8,36 +8,41 @@ import React, {
   useState,
 } from 'react';
 import { Rnd } from 'react-rnd';
-
 import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import SettingsLayout from '../Widgets/SettingsLayout';
-
 import { useWindow } from './useWindow';
-import { WidgetState, WidgetStates } from '../../layout/types';
-import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
+import { WidgetState, AppState } from '../../layout/types';
 import { WindowState } from './types';
 import styles from './Window.module.scss';
 import settingsMap from './settingsMap';
+import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
+import { ClockSettingsType } from '@/components/widgets/Clock/ClockSettings';
 
 interface Props {
   name: string;
-  state: WidgetState;
-  setState: Dispatch<SetStateAction<WidgetStates>>;
+  widgetState: WidgetState;
+  setAppState: Dispatch<SetStateAction<AppState>>;
   windowRefs: HTMLDivElement[];
   children: ReactElement;
-  isUnlocked?: boolean;
+  isUnlocked: boolean;
+  collisionIsActive: boolean;
 }
 
-type SettingsType = WeatherSettingsType;
+type SettingsType = WeatherSettingsType | ClockSettingsType;
 
 function Window(
-  { name, state: globalState, setState: setGlobalState, windowRefs, isUnlocked, children }: Props,
+  {
+    name,
+    widgetState,
+    setAppState,
+    windowRefs,
+    isUnlocked,
+    collisionIsActive,
+    children,
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
-  const [widgetState, setWidgetState] = useState<WidgetState>(globalState);
-  const [windowState, setWindowState] = useState<WindowState>(
-    widgetState.window,
-  );
+  const [windowState, setWindowState] = useState<WindowState>(widgetState.window);
   const [settingsState, setSettingsState] = useState<SettingsType>(
     widgetState.settings!,
   );
@@ -45,29 +50,22 @@ function Window(
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
 
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
-    useWindow(windowState, windowRefs, setWindowState);
+    useWindow(windowState, windowRefs, setWindowState, collisionIsActive);
   const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
-    setGlobalState((prevState) => ({
+    setAppState((prevState) => ({
       ...prevState,
-      [name]: widgetState,
+      widgets: {
+        ...prevState.widgets,
+        [name]: {
+          ...prevState.widgets[name],
+          window: windowState,
+          settings: settingsState,
+        },
+      },
     }));
-  }, [widgetState, name, setGlobalState]);
-
-  useEffect(() => {
-    setWidgetState((prevState) => ({
-      ...prevState,
-      window: windowState,
-    }));
-  }, [windowState]);
-
-  useEffect(() => {
-    setWidgetState((prevState) => ({
-      ...prevState,
-      settings: settingsState,
-    }));
-  }, [settingsState]);
+  }, [name, windowState, settingsState, setAppState]);
 
   useEffect(() => {
     setWindowState((prevState) => ({

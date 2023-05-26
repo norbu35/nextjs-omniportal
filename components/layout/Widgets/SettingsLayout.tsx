@@ -15,7 +15,7 @@ const SETTINGS_X = window.innerWidth / 2 - SETTINGS_WIDTH / 2;
 const SETTINGS_Y = window.innerHeight / 2 - SETTINGS_HEIGHT / 2;
 
 function Settings({ name, setIsVisible, children }: Props) {
-  const title = `${name.charAt(0).toUpperCase() + name.slice(1)} > Settings`;
+  const title = `Settings > ${name.charAt(0).toUpperCase() + name.slice(1)}`;
   return (
     <div className={styles.container}>
       <Rnd

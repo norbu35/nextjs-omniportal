@@ -110,6 +110,7 @@ function Weather({ state }: Props) {
           : 'none',
         backgroundPosition: 'center',
         fontSize: (settings!.fontSize / 16).toFixed(3) + 'rem',
+        color: settings!.fontColor,
       }}
     >
       <div className={styles.current}>
