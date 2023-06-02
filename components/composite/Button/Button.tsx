@@ -5,14 +5,19 @@ import styles from './Button.module.scss';
 
 interface Props {
   type: 'button' | 'submit' | 'reset';
-  className?: React.CSSProperties
+  className?: React.CSSProperties;
   onClick?: () => void;
   variant: string;
-  children: ReactNode
+  children: ReactNode;
 }
 
-function Button({ type, className, onClick, variant,  children }: Props): JSX.Element {
-
+function Button({
+  type,
+  className,
+  onClick,
+  variant,
+  children,
+}: Props): JSX.Element {
   return (
     <button
       className={`${className} ${styles.button} ${styles[variant]}`}
@@ -24,5 +29,4 @@ function Button({ type, className, onClick, variant,  children }: Props): JSX.El
   );
 }
 
-export { Button };
 export default Button;

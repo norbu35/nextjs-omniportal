@@ -22,12 +22,14 @@ function Settings({ name, setIsVisible, children }: Props) {
         default={{
           x: SETTINGS_X,
           y: SETTINGS_Y,
-          width: SETTINGS_WIDTH,
-          height: SETTINGS_HEIGHT,
+          width: 'auto',
+          height: 'auto',
         }}
+        minHeight="34px"
         style={{
           zIndex: 1,
           backgroundColor: 'white',
+          borderRadius: '15px 15px 0 0',
         }}
       >
         <TitleBar setIsVisible={setIsVisible}>{title}</TitleBar>
@@ -37,5 +39,4 @@ function Settings({ name, setIsVisible, children }: Props) {
   );
 }
 
-export { Settings };
 export default Settings;

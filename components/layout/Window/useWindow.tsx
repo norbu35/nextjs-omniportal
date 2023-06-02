@@ -2,7 +2,15 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { DraggableData, RndResizeCallback } from 'react-rnd';
 import { WindowState } from './types';
 
-type Direction = 'top' | 'right' | 'bottom' | 'left' | 'topRight' | 'bottomRight' | 'bottomLeft' | 'topLeft';
+type Direction =
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'topRight'
+  | 'bottomRight'
+  | 'bottomLeft'
+  | 'topLeft';
 
 function haveIntersection(other: DOMRect, main: DOMRect): boolean {
   return !(
@@ -13,11 +21,20 @@ function haveIntersection(other: DOMRect, main: DOMRect): boolean {
   );
 }
 
-function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWindowState: Dispatch<SetStateAction<WindowState>>, collisionIsActive: boolean) {
+function useWindow(
+  windowState: WindowState,
+  windowRefs: HTMLDivElement[],
+  setWindowState: Dispatch<SetStateAction<WindowState>>,
+  collisionIsActive: boolean,
+) {
   const [safeState, setSafeState] = useState<WindowState>(windowState);
   const [isCollision, setIsCollision] = useState<boolean>(false);
 
-  function handleOverlap(node: HTMLElement, newPos: { x: number, y: number }, newSize: { width: number, height: number }) {
+  function handleOverlap(
+    node: HTMLElement,
+    newPos: { x: number; y: number },
+    newSize: { width: number; height: number },
+  ) {
     const main = node;
     const targetRect = main.getBoundingClientRect();
     [...windowRefs].some((element) => {
@@ -58,7 +75,13 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
     handleOverlap(node, { x, y }, { width, height });
   }
 
-  const handleResize: RndResizeCallback = (_e, _dir, elementRef, _delta, position) => {
+  const handleResize: RndResizeCallback = (
+    _e,
+    _dir,
+    elementRef,
+    _delta,
+    position,
+  ) => {
     const width = elementRef.clientWidth;
     const height = elementRef.clientHeight;
     handleOverlap(elementRef, position, { width, height });
@@ -85,7 +108,13 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
     setIsCollision(false);
   }
 
-  function handleResizeStop(_e: MouseEvent | TouchEvent, _direction: Direction, elRef: any, _delta: any, position: { x: number, y: number }) {
+  function handleResizeStop(
+    _e: MouseEvent | TouchEvent,
+    _direction: Direction,
+    elRef: any,
+    _delta: any,
+    position: { x: number; y: number },
+  ) {
     if (collisionIsActive && isCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
@@ -107,4 +136,4 @@ function useWindow(windowState: WindowState, windowRefs: HTMLDivElement[], setWi
   return { handleDrag, handleDragStop, handleResize, handleResizeStop };
 }
 
-export { useWindow };
+export default useWindow;

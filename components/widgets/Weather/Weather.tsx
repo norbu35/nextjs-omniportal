@@ -3,21 +3,22 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { WeatherData } from './types';
-
-import { useGeolocation } from '@/hooks/useGeolocation';
-import { useGeocode } from '@/hooks/useGeocode';
-import { useWeatherData } from './useWeatherData';
-
-import { getWeatherIconBg } from './getWeatherIconBg';
-import { renderTab } from './renderTab';
-import { Loader } from './Loader';
-
 import { WidgetState } from '@/components/layout/types';
-import styles from './Weather.module.scss';
+
+import getGeocode from './getGeocode';
+import getLocation from './getLocation';
+import getWeather from './getWeather';
+
+import getWeatherIconBg from './getWeatherIconBg';
+import renderTab from './renderTab';
+import Loader from './Loader';
+
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import '@fontsource/inter/200.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './Weather.module.scss';
 
 interface Props {
   state: WidgetState;
@@ -25,60 +26,41 @@ interface Props {
 
 function Weather({ state }: Props) {
   const { settings } = state;
-  const [error, setError] = useState<Error | null>(null);
-  const [position, setPosition] = useState<GeolocationCoordinates | null>(null);
-  const [geocode, setGeocode] = useState<google.maps.GeocoderResponse | null>(
-    null,
-  );
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [city, setCity] = useState<string>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  const [currentWeatherIcon, setCurrentWeatherIcon] =
-    useState<ReactNode | null>(null);
-  const [currentWeatherBgImg, setCurrentWeatherBgImg] =
-    useState<StaticImageData | null>(null);
+  const [icon, setIcon] = useState<ReactNode | null>(null);
+  const [bgImg, setBgImg] = useState<StaticImageData | null>(null);
 
   const [activeView, setActiveView] = useState<string>('hourly');
   const [forecastIsOpen, setForecastIsOpen] = useState<boolean>(true);
 
-  const { position: geoPosition, error: geoLocationError } = useGeolocation();
-  const { geocodeResult, error: geocodeError } = useGeocode(position);
-  const { data: fetchedWeatherData, error: weatherDataError } =
-    useWeatherData(position);
-
-  useEffect(
-    () => (geoPosition ? setPosition(geoPosition) : setError(geoLocationError)),
-    [geoPosition, geoLocationError],
-  );
-
-  useEffect(
-    () => (geocodeResult ? setGeocode(geocodeResult) : setError(geocodeError)),
-    [geocodeResult, geocodeError],
-  );
-
   useEffect(() => {
-    if (fetchedWeatherData) {
-      setWeatherData(fetchedWeatherData);
-      setError(null);
-      setLoading(false);
-    } else {
-      setError(weatherDataError);
-      setLoading(false);
-    }
-  }, [fetchedWeatherData, weatherDataError]);
+    const getWeatherData = async () => {
+      try {
+        const geoLocation = await getLocation();
+        const coords = geoLocation.coords;
+        const geoCode = await getGeocode(coords);
+        const weatherData = await getWeather(coords);
+        setCity(geoCode.results[9].formatted_address.split(',')[0]);
+        setWeather(weatherData);
+        const { weatherIcon, weatherBgImg } = getWeatherIconBg(
+          weatherData.current_weather.weathercode,
+          true,
+          weatherData.current_weather.time,
+        );
+        setIcon(weatherIcon);
+        if (bgImg) setBgImg(weatherBgImg);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+      }
+    };
 
-  useEffect(() => {
-    if (weatherData) {
-      const { weatherIcon, weatherBgImg } = getWeatherIconBg(
-        weatherData.current_weather.weathercode,
-        true,
-        weatherData.current_weather.time,
-      );
-
-      setCurrentWeatherIcon(weatherIcon);
-      if (weatherBgImg) setCurrentWeatherBgImg(weatherBgImg);
-    }
-  }, [weatherData]);
+    getWeatherData();
+  }, [bgImg]);
 
   function handleSwitchView(viewType: string): void {
     setActiveView(viewType);
@@ -89,13 +71,13 @@ function Weather({ state }: Props) {
   }
 
   const localDate = new Date().toLocaleDateString();
-  const city = geocode?.results[9]?.formatted_address.split(',')[0] ?? '';
 
   if (loading) {
     return <Loader />;
   }
 
   if (error) {
+    console.log(error);
     return <p>{error.message}</p>;
   }
 
@@ -104,8 +86,8 @@ function Weather({ state }: Props) {
       className={styles.container}
       style={{
         backgroundImage: settings!.bgImg
-          ? currentWeatherBgImg
-            ? `url(${currentWeatherBgImg.src})`
+          ? bgImg
+            ? `url(${bgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
         backgroundPosition: 'center',
@@ -120,19 +102,19 @@ function Weather({ state }: Props) {
             <div className={styles.date}>{localDate}</div>
           </div>
           <div className={styles.currentConditions}>
-            {currentWeatherIcon}
+            {icon}
             <div className={styles.conditionDescription}></div>
           </div>
         </div>
         <div className={styles.right}>
           <div className={styles.currentTemp}>
-            {weatherData?.current_weather.temperature}°
+            {weather?.current_weather.temperature}°
           </div>
           <div className={styles.maxTemp}>
-            {weatherData?.daily?.temperature_2m_max[0]}°
+            {weather?.daily?.temperature_2m_max[0]}°
           </div>
           <div className={styles.minTemp}>
-            {weatherData?.daily?.temperature_2m_min[0]}°
+            {weather?.daily?.temperature_2m_min[0]}°
           </div>
           <div className={styles.wind}></div>
         </div>
@@ -177,15 +159,12 @@ function Weather({ state }: Props) {
             </li>
           </ul>
           <div className={styles.tab}>
-            {weatherData && renderTab(activeView, weatherData)}
+            {weather && renderTab(activeView, weather)}
           </div>
         </div>
       )}
       {forecastIsOpen && (
-        <div
-          className={styles.forecastButtonBottom}
-          onClick={toggleForecast}
-        >
+        <div className={styles.forecastButtonBottom} onClick={toggleForecast}>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
       )}
@@ -193,5 +172,4 @@ function Weather({ state }: Props) {
   );
 }
 
-export { Weather };
 export default Weather;

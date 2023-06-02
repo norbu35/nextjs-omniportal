@@ -1,10 +1,9 @@
 import Button from '@/components/composite/Button/Button';
 import styles from './WidgetsPanel.module.scss';
 import { Rnd } from 'react-rnd';
-import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
-  lock: [boolean, Dispatch<SetStateAction<boolean>>] 
+  lock: [boolean, () => void];
   setSettingsIsOpen: () => void;
 }
 
@@ -35,9 +34,9 @@ function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
     >
       <div className={styles.container}>
         <Button type="button" onClick={setSettingsIsOpen} variant="primary">
-          Widgets
+          Settings
         </Button>
-        <Button type="button" onClick={() => setIsUnlocked} variant="primary">
+        <Button type="button" onClick={setIsUnlocked} variant="primary">
           {isUnlocked ? 'Lock' : 'Unlock'}
         </Button>
         <Button
@@ -55,5 +54,4 @@ function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
   );
 }
 
-export { WidgetsPanel };
 export default WidgetsPanel;

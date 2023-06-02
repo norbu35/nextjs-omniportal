@@ -101,14 +101,17 @@ function Search(): JSX.Element {
     e.preventDefault();
 
     let params = new URLSearchParams();
-    if (searchEngine.value === 'google' || searchEngine.value === 'bing') {
-      params.append('q', query);
-    }
-    if (searchEngine.value === 'wikipedia') {
-      params.append('search', query);
-    }
-    if (searchEngine.value === 'youtube') {
-      params.append('search_query', query);
+    switch (searchEngine.value) {
+      case 'google':
+      case 'bing':
+        params.append('q', query);
+        break;
+      case 'wikipedia':
+        params.append('search', query);
+        break;
+      case 'youtube':
+        params.append('search_query', query);
+        break;
     }
 
     window.open(`${searchEngine.url}?${params.toString()}`, '_blank');
@@ -150,7 +153,5 @@ function Search(): JSX.Element {
     </div>
   );
 }
-
-export { Search };
 
 export default Search;

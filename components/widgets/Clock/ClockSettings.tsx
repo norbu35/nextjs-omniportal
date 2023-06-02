@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
 import WidgetSettings from '@/components/layout/Widgets/WidgetSettings';
 import styles from './ClockSettings.module.scss';
-import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   settingsState: ClockSettingsType;
@@ -16,7 +16,6 @@ export interface ClockSettingsType extends CommonSettings {
 }
 
 function ClockSettings({ settingsState, setSettingsState }: Props) {
-
   return (
     <WidgetSettings<ClockSettingsType>
       settingsState={settingsState}
@@ -25,5 +24,4 @@ function ClockSettings({ settingsState, setSettingsState }: Props) {
   );
 }
 
-export { ClockSettings };
 export default ClockSettings;

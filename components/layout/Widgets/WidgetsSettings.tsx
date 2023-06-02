@@ -6,10 +6,8 @@ import makeAnimated from 'react-select/animated';
 import Button from '@/components/composite/Button/Button';
 
 interface Props {
-  state: [AppState, Dispatch<SetStateAction<AppState>>]
-  lock: [boolean, () => void],
-  collision: [boolean, () => void]
-  border: [boolean, () => void]
+  state: [AppState, Dispatch<SetStateAction<AppState>>];
+  lock: [boolean, () => void];
 }
 
 interface BasicOption {
@@ -24,19 +22,37 @@ interface GroupedOption {
   readonly options: readonly BasicOption[];
 }
 
-function WidgetsSettings({
-  state,
-  lock,
-  collision,
-  border,
-}: Props) {
+function WidgetsSettings({ state, lock }: Props) {
   const [appState, setAppState] = state;
   const [isUnlocked, setIsUnlocked] = lock;
-  const [isCollision, setIsCollision] = collision;
-  const [isBorder, setIsBorder] = border;
+
+  let isCollision = appState.global.isCollision;
+  let isBorder = appState.global.isBorder;
+
+  function setIsCollision() {
+    setAppState((prevState) => ({
+      ...prevState,
+      global: {
+        ...prevState.global,
+        isCollision: !prevState.global.isCollision,
+      },
+    }));
+  }
+
+  function setIsBorder() {
+    setAppState((prevState) => ({
+      ...prevState,
+      global: {
+        ...prevState.global,
+        isBorder: !prevState.global.isBorder,
+      },
+    }));
+  }
 
   const animatedComponents = makeAnimated();
-  const basicOptions: readonly BasicOption[] = Object.keys(appState.widgets).map<{
+  const basicOptions: readonly BasicOption[] = Object.keys(
+    appState.widgets,
+  ).map<{
     value: string;
     label: string;
   }>((key) => ({
@@ -49,14 +65,20 @@ function WidgetsSettings({
       options: basicOptions,
     },
   ];
-  
+
   return (
     <div className={styles.container}>
-      <Button type="button" onClick={setIsUnlocked} variant="primary">
-        {isUnlocked ? 'Lock' : 'Unlock'}
-      </Button>
-      <Button type="button" onClick={setIsCollision} variant="primary">{isCollision ? 'Disable collision' : 'Enable collision'}</Button>
-      <Button type="button" onClick={setIsBorder} variant="primary">{isBorder ? 'Hide borders' : 'Show borders'}</Button>
+      <div className={styles.buttons}>
+        <Button type="button" onClick={setIsUnlocked} variant="primary">
+          {isUnlocked ? 'Lock' : 'Unlock'}
+        </Button>
+        <Button type="button" onClick={setIsCollision} variant="primary">
+          {isCollision ? 'Disable collision' : 'Enable collision'}
+        </Button>
+        <Button type="button" onClick={setIsBorder} variant="primary">
+          {isBorder ? 'Hide borders' : 'Show borders'}
+        </Button>
+      </div>
       <Select
         closeMenuOnSelect={false}
         components={animatedComponents}
@@ -86,5 +108,4 @@ function WidgetsSettings({
   );
 }
 
-export { WidgetsSettings };
 export default WidgetsSettings;

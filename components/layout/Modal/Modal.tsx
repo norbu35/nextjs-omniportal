@@ -13,5 +13,4 @@ function Modal({ children }: Props) {
   );
 }
 
-export { Modal };
 export default Modal;

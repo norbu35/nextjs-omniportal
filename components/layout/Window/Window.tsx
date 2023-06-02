@@ -10,7 +10,7 @@ import React, {
 import { Rnd } from 'react-rnd';
 import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import SettingsLayout from '../Widgets/SettingsLayout';
-import { useWindow } from './useWindow';
+import useWindow from './useWindow';
 import { WidgetState, AppState } from '../../layout/types';
 import { WindowState } from './types';
 import styles from './Window.module.scss';
@@ -25,7 +25,8 @@ interface Props {
   windowRefs: HTMLDivElement[];
   children: ReactElement;
   isUnlocked: boolean;
-  collisionIsActive: boolean;
+  isCollision: boolean;
+  isBorder: boolean;
 }
 
 type SettingsType = WeatherSettingsType | ClockSettingsType;
@@ -37,18 +38,21 @@ function Window(
     setAppState,
     windowRefs,
     isUnlocked,
-    collisionIsActive,
+    isCollision,
+    isBorder,
     children,
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
-  const [windowState, setWindowState] = useState<WindowState>(widgetState.window);
+  const [windowState, setWindowState] = useState<WindowState>(
+    widgetState.window,
+  );
   const [settingsState, setSettingsState] = useState<SettingsType>(
     widgetState.settings!,
   );
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
-
+  const collisionIsActive = isCollision;
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
     useWindow(windowState, windowRefs, setWindowState, collisionIsActive);
   const title = name.charAt(0).toUpperCase() + name.slice(1);
@@ -111,7 +115,10 @@ function Window(
           )}
           <div
             className={styles.children}
-            style={{ borderRadius: isUnlocked ? '0 0 15px 15px' : '15px' }}
+            style={{
+              border: isBorder ? '1px solid black' : 'none',
+              borderRadius: isUnlocked ? '0 0 15px 15px' : '15px',
+            }}
           >
             {children}
           </div>

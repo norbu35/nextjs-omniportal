@@ -1,4 +1,4 @@
-import { Spinner } from '@/components/loaders/Spinner/Spinner';
+import Spinner from '@/components/loaders/Spinner/Spinner';
 import styles from './Weather.module.scss';
 
 function Loader(): JSX.Element {
@@ -19,5 +19,4 @@ function Loader(): JSX.Element {
   );
 }
 
-export { Loader };
 export default Loader;

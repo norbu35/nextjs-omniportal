@@ -36,10 +36,11 @@ function getWeatherIconBg(
     case 0:
       weatherIcon = (
         <Image
-          width={isLarge ? (isLarge ? 100 : 50) : 50}
+          width={isLarge ? 100 : 50}
           height={isLarge ? 100 : 50}
           className={styles.weatherIcon}
-          src={`${iconUrl}01${timeOfDay}${size}.png`}
+          src={`${iconUrl}01${timeOfDay}${size}.png`
+          }
           alt="weather icon"
         />
       );
@@ -52,7 +53,8 @@ function getWeatherIconBg(
           width={isLarge ? 100 : 50}
           height={isLarge ? 100 : 50}
           className={styles.weatherIcon}
-          src={`${iconUrl}02${timeOfDay}${size}.png`}
+          src={`${iconUrl}02${timeOfDay}${size}.png`
+          }
           alt="weather icon"
         />
       );
@@ -170,4 +172,4 @@ function getWeatherIconBg(
   return { weatherIcon, weatherBgImg };
 }
 
-export { getWeatherIconBg };
+export default getWeatherIconBg;

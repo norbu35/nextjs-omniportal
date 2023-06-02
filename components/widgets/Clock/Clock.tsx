@@ -57,5 +57,4 @@ function Clock({ state }: Props) {
   );
 }
 
-export { Clock };
 export default Clock;

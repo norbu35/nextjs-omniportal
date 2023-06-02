@@ -8,5 +8,4 @@ const settingsMap = {
   clock: ClockSettings,
 };
 
-export { settingsMap };
 export default settingsMap;

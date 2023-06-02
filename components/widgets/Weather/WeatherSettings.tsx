@@ -25,5 +25,4 @@ function WeatherSettings({ settingsState, setSettingsState }: Props) {
   );
 }
 
-export { WeatherSettings };
 export default WeatherSettings;

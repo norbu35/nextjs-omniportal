@@ -11,4 +11,4 @@ function Spinner(): JSX.Element {
   );
 }
 
-export { Spinner };
+export default Spinner;

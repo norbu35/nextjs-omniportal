@@ -12,4 +12,4 @@ function Navbar(): JSX.Element {
   );
 }
 
-export { Navbar };
+export default Navbar;

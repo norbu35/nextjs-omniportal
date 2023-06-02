@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { WeatherData } from './types';
-
 interface Options {
   latitude: number;
   longitude: number;
@@ -9,25 +6,21 @@ interface Options {
   current_weather: boolean;
 }
 
-interface WeatherDataResult {
-  data: WeatherData | null;
-  error: Error | null;
-} 
-
-function useWeatherData(
-  position: GeolocationCoordinates | null,
-): WeatherDataResult {
-  const [data, setWeatherData] = useState<WeatherData | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
+function getWeather({
+  latitude,
+  longitude,
+}: {
+  latitude: number;
+  longitude: number;
+}) {
+  return new Promise((resolve, reject) => {
     const fetchData = async () => {
       try {
         const url = 'https://api.open-meteo.com/v1/forecast';
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const options = {
-          longitude: position?.longitude.toString(),
-          latitude: position?.latitude.toString(),
+          longitude: longitude.toString(),
+          latitude: latitude.toString(),
           daily: [
             'temperature_2m_max',
             'temperature_2m_min',
@@ -51,19 +44,17 @@ function useWeatherData(
         }
         const response = await fetch(`${url}?${params.toString()}`);
         if (!response.ok) {
-          throw Error('Error fetching weather data from API');
+          reject(Error('Error fetching weather data from API'));
         }
         const fetchedData = await response.json();
-        setWeatherData(fetchedData);
+        resolve(fetchedData);
       } catch (err) {
-        if (err instanceof Error) setError(err);
+        reject(err);
       }
     };
 
     fetchData();
-  }, [position]);
-
-  return { data, error };
+  });
 }
 
-export { useWeatherData };
+export default getWeather;

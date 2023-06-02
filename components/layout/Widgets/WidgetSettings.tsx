@@ -35,6 +35,4 @@ function WidgetSettings<T extends Record<string, any>>({
   );
 }
 
-export { WidgetSettings };
 export default WidgetSettings;
-

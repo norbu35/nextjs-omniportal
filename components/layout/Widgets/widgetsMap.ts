@@ -1,5 +1,5 @@
-import Search  from '@/components/widgets/Search/Search';
-import Weather  from '@/components/widgets/Weather/Weather';
+import Search from '@/components/widgets/Search/Search';
+import Weather from '@/components/widgets/Weather/Weather';
 import Clock from '@/components/widgets/Clock/Clock';
 
 const widgetsMap = {
@@ -8,5 +8,4 @@ const widgetsMap = {
   clock: Clock,
 };
 
-export { widgetsMap };
 export default widgetsMap;

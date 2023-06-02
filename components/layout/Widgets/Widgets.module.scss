@@ -4,6 +4,7 @@
   height: 200vh;
 
   .widgetsPanel {
+    z-index: 10;
     position: fixed;
     right: -2.5em;
     width: 8rem;

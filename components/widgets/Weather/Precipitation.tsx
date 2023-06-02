@@ -88,4 +88,4 @@ function Precipitation({ weatherData }: Props): JSX.Element {
   );
 }
 
-export { Precipitation };
+export default Precipitation;

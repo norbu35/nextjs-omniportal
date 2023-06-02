@@ -1,7 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faGear } from '@fortawesome/free-solid-svg-icons';
-import styles from './TitleBar.module.css';
+import styles from './TitleBar.module.scss';
 
 interface Props {
   setIsVisible: Dispatch<SetStateAction<boolean>>;
@@ -36,17 +36,23 @@ function TitleBarButtons({ closeWindow, toggleSettings }: ButtonsProps) {
   );
 }
 
-function TitleBar({ setIsVisible, setSettingsIsOpen, settingsIsOpen, children }: Props) {
+function TitleBar({
+  setIsVisible,
+  setSettingsIsOpen,
+  settingsIsOpen,
+  children,
+}: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.heading}>{children}</div>
       <TitleBarButtons
         closeWindow={() => setIsVisible(false)}
-        toggleSettings={setSettingsIsOpen ? () => setSettingsIsOpen(!settingsIsOpen) : null}
+        toggleSettings={
+          setSettingsIsOpen ? () => setSettingsIsOpen(!settingsIsOpen) : null
+        }
       />
     </div>
   );
 }
 
-export { TitleBar };
 export default TitleBar;

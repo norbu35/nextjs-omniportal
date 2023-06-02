@@ -1,4 +1,4 @@
-const useGeocode = ({
+const getGeocode = ({
   latitude,
   longitude,
 }: {
@@ -28,4 +28,4 @@ const useGeocode = ({
   });
 };
 
-export default useGeocode;
+export default getGeocode;

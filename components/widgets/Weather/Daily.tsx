@@ -1,5 +1,5 @@
 import { WeatherData } from './types';
-import { getWeatherIconBg } from './getWeatherIconBg';
+import getWeatherIconBg from './getWeatherIconBg';
 import styles from './Tab.module.scss';
 import toIsoString from '@/utils/date/toIsoString';
 
@@ -73,4 +73,4 @@ function Daily({ weatherData }: Props): JSX.Element {
   );
 }
 
-export { Daily };
+export default Daily;

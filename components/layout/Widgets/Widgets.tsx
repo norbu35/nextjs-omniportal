@@ -17,7 +17,6 @@ const getJSONFromStorage = (key: string, defaultVal: AppState) => {
   return JSON.parse(stored);
 };
 
-
 function Widgets(): JSX.Element {
   const [appState, setAppState] = useState<AppState>(
     getJSONFromStorage('portal_state', defaultConfig),
@@ -37,31 +36,11 @@ function Widgets(): JSX.Element {
     }
   }
 
-  function setCollisionIsActive() {
-    setAppState((prevState) => ({
-      ...prevState,
-      global: {
-        ...prevState.global,
-        isCollision: !prevState.global.isCollision,
-      },
-    }));
-  }
-
-  function setIsBorder() {
-    setAppState((prevState) => ({
-      ...prevState,
-      global: {
-        ...prevState.global,
-        isBorder: !prevState.global.isBorder,
-      },
-    }));
-  }
-
   return (
     <section className={styles.container}>
       <div className={styles.widgetsPanel}>
         <WidgetsPanel
-          lock={[isUnlocked, setIsUnlocked ]}
+          lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
           setSettingsIsOpen={() => setSettingsIsOpen(!settingsIsOpen)}
         />
       </div>
@@ -71,8 +50,6 @@ function Widgets(): JSX.Element {
             <WidgetsSettings
               state={[appState, setAppState]}
               lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
-              collision={[appState.global.isCollision, setCollisionIsActive]}
-              border={[appState.global.isBorder, setIsBorder]}
             />
           </Settings>
         </div>
@@ -85,10 +62,11 @@ function Widgets(): JSX.Element {
               name={key}
               widgetState={appState.widgets[key]}
               setAppState={setAppState}
-              ref={addWindowRef}
-              windowRefs={windowRefs.current}
               isUnlocked={isUnlocked}
-              collisionIsActive={appState.global.isCollision}
+              isCollision={appState.global.isCollision}
+              isBorder={appState.global.isBorder}
+              windowRefs={windowRefs.current}
+              ref={addWindowRef}
               key={key}
             >
               <Widget state={appState.widgets[key]} />
@@ -100,5 +78,4 @@ function Widgets(): JSX.Element {
   );
 }
 
-export { Widgets };
 export default Widgets;

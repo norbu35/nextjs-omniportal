@@ -1,6 +1,6 @@
 import { WeatherData } from './types';
 import styles from './Tab.module.scss';
-import { getWeatherIconBg } from './getWeatherIconBg';
+import getWeatherIconBg from './getWeatherIconBg';
 import toIsoString from '../../../utils/date/toIsoString';
 
 interface Props {
@@ -80,4 +80,4 @@ function Hourly({ weatherData }: Props): JSX.Element {
   );
 }
 
-export { Hourly };
+export default Hourly;

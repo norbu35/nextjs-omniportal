@@ -1,3 +1,5 @@
+@import "../../../theme/main.scss";
+
 .container {
   position: absolute;
   top: -2em;
@@ -6,7 +8,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  background-color: darkblue;
+  background-color: $fg-primary;
   opacity: 50%;
   color: white;
   height: 2em;

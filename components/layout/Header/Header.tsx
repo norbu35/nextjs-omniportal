@@ -1,6 +1,6 @@
 'use client';
 
-import { Navbar } from '@/components/composite/Navbar/Navbar';
+import Navbar from '@/components/composite/Navbar/Navbar';
 import styles from './Header.module.scss';
 import { Rnd } from 'react-rnd';
 
