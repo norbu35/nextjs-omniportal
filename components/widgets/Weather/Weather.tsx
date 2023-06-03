@@ -30,37 +30,33 @@ function Weather({ state }: Props) {
   const [city, setCity] = useState<string>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-
-  const [icon, setIcon] = useState<ReactNode | null>(null);
-  const [bgImg, setBgImg] = useState<StaticImageData | null>(null);
-
   const [activeView, setActiveView] = useState<string>('hourly');
   const [forecastIsOpen, setForecastIsOpen] = useState<boolean>(true);
 
   useEffect(() => {
-    const getWeatherData = async () => {
+    const fetchData = async () => {
       try {
         const geoLocation = await getLocation();
         const coords = geoLocation.coords;
-        const geoCode = await getGeocode(coords);
         const weatherData = await getWeather(coords);
-        setCity(geoCode.results[9].formatted_address.split(',')[0]);
         setWeather(weatherData);
-        const { weatherIcon, weatherBgImg } = getWeatherIconBg(
-          weatherData.current_weather.weathercode,
-          true,
-          weatherData.current_weather.time,
-        );
-        setIcon(weatherIcon);
-        if (bgImg) setBgImg(weatherBgImg);
+        const geoCode = await getGeocode(coords);
+        setCity(geoCode.results[9].formatted_address.split(',')[0]);
         setLoading(false);
       } catch (err) {
         setError(err);
       }
     };
 
-    getWeatherData();
-  }, [bgImg]);
+    fetchData();
+  }, []);
+
+  const { weatherIcon: currentWeatherIcon, weatherBgImg: currentWeatherBgImg } =
+    getWeatherIconBg(
+      weather?.current_weather.weathercode,
+      true,
+      weather?.current_weather.time,
+    );
 
   function handleSwitchView(viewType: string): void {
     setActiveView(viewType);
@@ -77,7 +73,6 @@ function Weather({ state }: Props) {
   }
 
   if (error) {
-    console.log(error);
     return <p>{error.message}</p>;
   }
 
@@ -86,8 +81,8 @@ function Weather({ state }: Props) {
       className={styles.container}
       style={{
         backgroundImage: settings!.bgImg
-          ? bgImg
-            ? `url(${bgImg.src})`
+          ? currentWeatherBgImg
+            ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
         backgroundPosition: 'center',
@@ -102,7 +97,7 @@ function Weather({ state }: Props) {
             <div className={styles.date}>{localDate}</div>
           </div>
           <div className={styles.currentConditions}>
-            {icon}
+            {currentWeatherIcon}
             <div className={styles.conditionDescription}></div>
           </div>
         </div>
