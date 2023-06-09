@@ -1,3 +1,5 @@
+import { WeatherData } from './types';
+
 interface Options {
   latitude: number;
   longitude: number;
@@ -12,7 +14,7 @@ function getWeather({
 }: {
   latitude: number;
   longitude: number;
-}) {
+}): Promise<WeatherData> {
   return new Promise((resolve, reject) => {
     const fetchData = async () => {
       try {

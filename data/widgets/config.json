@@ -21,10 +21,26 @@
         "minHeight": -1
       },
       "settings": {
-        "fontSize": 16,
-        "fontColor": "white",
-        "bgImg": true,
-        "temperatureUnit": "C"
+        "fontSize": {
+          "label": "Font Size",
+          "type": "range",
+          "value": 16
+        },
+        "fontColor": {
+          "label": "Font Color",
+          "type": "color",
+          "value": [0, 0, 0]
+        },
+        "bgImg": {
+          "label": "Show Background Image",
+          "type": "checkbox",
+          "value": true
+        },
+        "temperatureUnit": {
+          "label": "Temperature Unit",
+          "type": "select",
+          "value": "C"
+        }
       }
     },
     "search": {

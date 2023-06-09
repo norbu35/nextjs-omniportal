@@ -1,4 +1,11 @@
 .container {
+  flex-direction: column;
+  display: flex;
   height: inherit;
   width: inherit;
+
+  .setting {
+    flex-direction: column;
+    display: flex;
+  }
 }

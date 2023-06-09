@@ -145,7 +145,7 @@ function Search(): JSX.Element {
           className={styles.engineOptions}
         />
         <div className={styles.button}>
-          <Button type="submit" variant="secondary">
+          <Button type="submit" variant="primary">
             Search
           </Button>
         </div>

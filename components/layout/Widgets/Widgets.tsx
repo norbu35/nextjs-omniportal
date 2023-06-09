@@ -11,7 +11,6 @@ import styles from './Widgets.module.scss';
 import defaultConfig from '@/data/widgets/config.json';
 
 const getJSONFromStorage = (key: string, defaultVal: AppState) => {
-  if (globalThis.window) return defaultVal;
   const stored = localStorage.getItem(key);
   if (!stored) return defaultVal;
   return JSON.parse(stored);
@@ -19,15 +18,14 @@ const getJSONFromStorage = (key: string, defaultVal: AppState) => {
 
 function Widgets(): JSX.Element {
   const [appState, setAppState] = useState<AppState>(
-    getJSONFromStorage('portal_state', defaultConfig),
+    getJSONFromStorage('portalState', defaultConfig),
   );
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
-
   const windowRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('portal_state', JSON.stringify(appState));
+    localStorage.setItem('portalState', JSON.stringify(appState));
   }, [appState]);
 
   function addWindowRef(ref: HTMLDivElement) {

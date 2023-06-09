@@ -7,13 +7,29 @@ interface Props {
 }
 
 export interface CommonSettings {
-  fontSize: number;
-  fontColor: string;
+  fontSize: {
+    name: string;
+    type: string;
+    value: number;
+  };
+  fontColor: {
+    name: string;
+    type: string;
+    value: [number, number, number];
+  };
 }
 
 export interface WeatherSettingsType extends CommonSettings {
-  temperatureUnit: string;
-  bgImg: boolean;
+  temperatureUnit: {
+    name: string;
+    type: string;
+    value: 'C' | 'F';
+  };
+  bgImg: {
+    name: string;
+    type: string;
+    value: boolean;
+  };
 }
 
 function WeatherSettings({ settingsState, setSettingsState }: Props) {

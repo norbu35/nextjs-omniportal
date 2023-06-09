@@ -4,7 +4,7 @@ const getGeocode = ({
 }: {
   latitude: number;
   longitude: number;
-}) => {
+}): Promise<google.maps.GeocoderResponse> => {
   return new Promise((resolve, reject) => {
     if (!latitude || !longitude) reject(new Error('Incorrect GPS coordinates'));
 
