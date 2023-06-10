@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import styles from './WidgetSettings.module.scss';
 
 interface WidgetSettingsProps<T extends Record<string, any>> {
@@ -6,25 +12,35 @@ interface WidgetSettingsProps<T extends Record<string, any>> {
   setSettingsState: Dispatch<SetStateAction<T>>;
 }
 
+interface Setting {
+  label: string;
+  type: string;
+  value: SettingValue;
+}
+type SettingValue = number | string | TemperatureUnit;
+type TemperatureUnit = 'C' | 'F';
+
 function WidgetSettings<T extends Record<string, any>>({
   settingsState,
   setSettingsState,
 }: WidgetSettingsProps<T>) {
-  function handleChange<K extends keyof T>(key: K, value: T[K]) {
-    setSettingsState((prevState) => ({
-      ...prevState,
-      [key]: value,
-    }));
-  }
-
-  function SettingElement({ setting }) {
+  function SettingElement({
+    setting,
+    settingKey,
+  }: {
+    setting: Setting;
+    settingKey: keyof T;
+  }) {
     const { label, type, value } = setting;
-    const [valueState, setValueState] = useState<number>(value);
-    let element;
+    const [valueState, setValueState] = useState<SettingValue>(value);
+
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+      setValueState(parseInt(e.target.value));
+    }
 
     switch (type) {
       case 'range':
-        element = (
+        return (
           <label>
             {label}
             <input
@@ -32,21 +48,19 @@ function WidgetSettings<T extends Record<string, any>>({
               min={8}
               max={42}
               value={valueState}
-              onChange={(e) => setValueState(parseInt(e.target.value))}
+              onChange={(e) => handleChange(e)}
             />
           </label>
         );
-        break;
       case 'checkbox':
-        element = (
+        return (
           <label>
             {label}
             <input type={type} value={value} />
           </label>
         );
-        break;
       case 'select':
-        element = (
+        return (
           <label>
             {label}
             <select>
@@ -55,15 +69,19 @@ function WidgetSettings<T extends Record<string, any>>({
             </select>
           </label>
         );
-        break;
     }
-    return element;
   }
 
   return (
     <div className={styles.container}>
       {Object.keys(settingsState).map((key) => {
-        return <SettingElement setting={settingsState[key]} key={key} />;
+        return (
+          <SettingElement
+            setting={settingsState[key]}
+            settingKey={key}
+            key={key}
+          />
+        );
       })}
     </div>
   );

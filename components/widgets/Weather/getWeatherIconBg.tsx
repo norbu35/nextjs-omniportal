@@ -15,6 +15,16 @@ interface WeatherIconBgImg {
   weatherBgImg: StaticImageData | undefined;
 }
 
+interface WeatherMappings {
+  [key: number]: {
+    icon: string;
+    img?: {
+      d: StaticImageData;
+      n: StaticImageData;
+    };
+  };
+}
+
 function getWeatherIconBg(
   weatherCode: number,
   isLarge: boolean,
@@ -23,151 +33,60 @@ function getWeatherIconBg(
   if (!weatherCode) {
     return { weatherIcon: null, weatherBgImg: undefined };
   }
+  const hourOfDay = parseInt(time.split('T')[1].split(':')[0]);
+  const timeOfDay = hourOfDay > 20 || hourOfDay < 6 ? 'n' : 'd';
+  const iconSize = isLarge ? '@2x' : '';
 
-  const hour = parseInt(time.split('T')[1].split(':')[0]);
-  const timeOfDay = hour > 20 || hour < 6 ? 'n' : 'd';
-  const iconUrl = 'https://openweathermap.org/img/wn/';
-  const size = isLarge ? '@2x' : '';
-  let weatherBgImg;
-  let weatherIcon;
-
-  switch (weatherCode) {
+  const weatherMappings: WeatherMappings = {
     // Clear
-    case 0:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}01${timeOfDay}${size}.png`
-          }
-          alt="weather icon"
-        />
-      );
-      weatherBgImg = timeOfDay === 'd' ? clearDay : clearNight;
-      break;
+    0: {
+      icon: '01',
+      img: { d: clearDay, n: clearNight },
+    },
     // Mainly clear
-    case 1:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}02${timeOfDay}${size}.png`
-          }
-          alt="weather icon"
-        />
-      );
-      weatherBgImg = timeOfDay === 'd' ? mainlyClearDay : mainlyClearNight;
-      break;
+    1: { icon: '02', img: { d: mainlyClearDay, n: mainlyClearNight } },
     // Partly cloudy
-    case 2:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}03${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      weatherBgImg = timeOfDay === 'd' ? partlyCloudyDay : partlyCloudyNight;
-      break;
+    2: { icon: '03', img: { d: partlyCloudyDay, n: partlyCloudyNight } },
     // Overcast
-    case 3:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}04${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      weatherBgImg = timeOfDay === 'd' ? overcastDay : overcastNight;
-      break;
+    3: { icon: '04', img: { d: overcastDay, n: overcastNight } },
     // Rain showers: slight, moderate, violent
-    case 80:
-    case 81:
-    case 82:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}09${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      break;
+    80: { icon: '09' },
+    81: { icon: '09' },
+    82: { icon: '09' },
     // Rain: slight, moderate, violent
-    case 61:
-    case 63:
-    case 65:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}10${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      break;
+    61: { icon: '10' },
+    62: { icon: '10' },
+    63: { icon: '10' },
     // Snow
-    case 85:
-    case 86:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}13${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
+    85: { icon: '13' },
+    86: { icon: '13' },
     // Thunderstorm
-    case 95:
-    case 96:
-    case 99:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}11${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
+    95: { icon: '11' },
+    96: { icon: '11' },
+    99: { icon: '11' },
     // Snow fall: Slight, moderate, heavy, snow grains
-    case 71:
-    case 73:
-    case 75:
-    case 77:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}11${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      break;
+    71: { icon: '11' },
+    73: { icon: '11' },
+    75: { icon: '11' },
+    77: { icon: '11' },
     // Fog and rime fog
-    case 45:
-    case 48:
-      weatherIcon = (
-        <Image
-          width={isLarge ? 100 : 50}
-          height={isLarge ? 100 : 50}
-          className={styles.weatherIcon}
-          src={`${iconUrl}50${timeOfDay}${size}.png`}
-          alt="weather icon"
-        />
-      );
-      break;
-  }
+    45: { icon: '50' },
+    48: { icon: '50' },
+  };
+
+  const weatherMapping = weatherMappings[weatherCode];
+  const iconCode = weatherMapping.icon;
+  const weatherBgImg = weatherMapping.img[timeOfDay];
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}${timeOfDay}${iconSize}.png`;
+  const weatherIcon = (
+    <Image
+      width={isLarge ? 100 : 50}
+      height={isLarge ? 100 : 50}
+      className={styles.weatherIcon}
+      src={iconUrl}
+      alt="weather icon"
+    />
+  );
 
   return { weatherIcon, weatherBgImg };
 }

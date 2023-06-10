@@ -96,8 +96,8 @@ function Window(
           minWidth={windowState.minWidth}
           maxHeight={windowState.maxHeight}
           minHeight={windowState.minHeight}
-          disableDragging={isUnlocked ? false : true}
-          enableResizing={isUnlocked ? true : false}
+          disableDragging={!isUnlocked}
+          enableResizing={isUnlocked}
           onDrag={handleDrag}
           onDragStop={handleDragStop}
           onResize={handleResize}
