@@ -32,7 +32,7 @@ function WidgetSettings<T extends Record<string, any>>({
       e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     ) {
       let newValue: number | string;
-      if (e.target.value === 'checkbox') {
+      if (e.target.type === 'checkbox') {
         newValue = valueState ? '' : 'true';
       } else {
         newValue = e.target.value;

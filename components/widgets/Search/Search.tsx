@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import { StaticImageData } from 'next/image';
 
