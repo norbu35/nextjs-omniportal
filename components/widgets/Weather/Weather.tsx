@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState, useEffect, ReactNode } from 'react';
+import { StaticImageData } from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { WeatherData } from './types';
@@ -18,7 +19,6 @@ import Loader from './Loader';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import '@fontsource/inter/200.css';
 import styles from './Weather.module.scss';
-import { StaticImageData } from 'next/image';
 
 interface Props {
   state: WidgetState;
@@ -88,14 +88,14 @@ function Weather({ state }: Props) {
     <div
       className={styles.container}
       style={{
-        backgroundImage: settings!.bgImg
+        backgroundImage: settings!.bgImg.value
           ? currentWeatherBgImg
             ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
         backgroundPosition: 'center',
-        fontSize: (settings!.fontSize / 16).toFixed(3) + 'rem',
-        color: settings!.fontColor,
+        fontSize: (settings!.fontSize.value / 16).toFixed(3) + 'rem',
+        color: settings!.fontColor.value,
       }}
     >
       <div className={styles.current}>

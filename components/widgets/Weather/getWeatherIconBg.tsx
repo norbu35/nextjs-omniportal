@@ -75,8 +75,10 @@ function getWeatherIconBg(
   };
 
   const weatherMapping = weatherMappings[weatherCode];
+  const weatherBgImg = weatherMapping.img
+    ? weatherMapping.img[timeOfDay]
+    : clearDay;
   const iconCode = weatherMapping.icon;
-  const weatherBgImg = weatherMapping.img[timeOfDay];
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}${timeOfDay}${iconSize}.png`;
   const weatherIcon = (
     <Image

@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import { StaticImageData } from 'next/image';
 
@@ -13,6 +13,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './Search.module.scss';
 import Button from '@/components/composite/Button/Button';
+import { WidgetState } from '@/components/layout/types';
+
+interface Props {
+  state: WidgetState;
+}
 
 interface SearchEngine {
   readonly value: string;
@@ -42,7 +47,7 @@ const searchEngines: SearchEngine[] = [
   },
   {
     value: 'youtube',
-    label: 'Youtube',
+    label: 'YouTube',
     icon: iconYoutube,
     url: 'https://www.youtube.com/results',
   },
@@ -91,8 +96,13 @@ const optionStyles: StylesConfig<SearchEngine> = {
   }),
 };
 
-function Search(): JSX.Element {
-  const [defaultSearchEngine] = useState<SearchEngine>(searchEngines[0]);
+function Search({ state }: Props): JSX.Element {
+  const { settings } = state;
+  const [defaultSearchEngine] = useState<SearchEngine>(
+    searchEngines.find(
+      (engine) => settings.defaultSearchEngine.value === engine.label,
+    ) ?? searchEngines[0],
+  );
   const [searchEngine, setSearchEngine] =
     useState<SearchEngine>(defaultSearchEngine);
   const [query, setQuery] = useState<string>('');

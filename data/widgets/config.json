@@ -22,24 +22,28 @@
       },
       "settings": {
         "fontSize": {
-          "label": "Font Size",
-          "type": "range",
+          "label": "Font size",
+          "type": "number",
           "value": 16
         },
         "fontColor": {
-          "label": "Font Color",
+          "label": "Font color",
           "type": "color",
-          "value": [0, 0, 0]
+          "value": "#fff"
         },
         "bgImg": {
-          "label": "Show Background Image",
+          "label": "Show background image",
           "type": "checkbox",
-          "value": true
+          "value": "true"
         },
         "temperatureUnit": {
           "label": "Temperature Unit",
           "type": "select",
-          "value": "C"
+          "value": "C",
+          "options": [
+            "C",
+            "F"
+          ]
         }
       }
     },
@@ -60,8 +64,26 @@
         "minHeight": -1
       },
       "settings": {
-        "fontSize": 32,
-        "fontColor": "white"
+        "fontSize": {
+          "label": "Font size",
+          "type": "number",
+          "value": 16
+        },
+        "fontColor": {
+          "label": "Font color",
+          "type": "color",
+          "value": "#fff"
+        },
+        "defaultSearchEngine": {
+          "label": "Default Search Engine",
+          "type": "select",
+          "value": "Google",
+          "options": [
+            "Google",
+            "Bing",
+            "YouTube"
+          ]
+        }
       }
     },
     "clock": {
@@ -81,8 +103,16 @@
         "minHeight": -1
       },
       "settings": {
-        "fontSize": 32,
-        "fontColor": "white"
+        "fontSize": {
+          "label": "Font size",
+          "type": "number",
+          "value": 32
+        },
+        "fontColor": {
+          "label": "Font color",
+          "type": "color",
+          "value": "#000"
+        }
       }
     }
   }

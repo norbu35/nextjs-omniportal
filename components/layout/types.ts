@@ -1,9 +1,9 @@
 import { WindowState } from '@/components/layout/Window/types';
-import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
+import { SettingsTypes } from './Window/settingsMap';
 
 export interface WidgetState {
   window: WindowState;
-  settings: WeatherSettingsType | null;
+  settings: SettingsTypes;
 }
 
 export interface GlobalState {

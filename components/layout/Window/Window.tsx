@@ -15,8 +15,6 @@ import { WidgetState, AppState } from '../../layout/types';
 import { WindowState } from './types';
 import styles from './Window.module.scss';
 import settingsMap from './settingsMap';
-import { WeatherSettingsType } from '@/components/widgets/Weather/WeatherSettings';
-import { ClockSettingsType } from '@/components/widgets/Clock/ClockSettings';
 
 interface Props {
   name: string;
@@ -28,8 +26,6 @@ interface Props {
   isCollision: boolean;
   isBorder: boolean;
 }
-
-type SettingsType = WeatherSettingsType | ClockSettingsType;
 
 function Window(
   {
@@ -47,9 +43,7 @@ function Window(
   const [windowState, setWindowState] = useState<WindowState>(
     widgetState.window,
   );
-  const [settingsState, setSettingsState] = useState<SettingsType>(
-    widgetState.settings!,
-  );
+  const [settingsState, setSettingsState] = useState(widgetState.settings!);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
   const collisionIsActive = isCollision;

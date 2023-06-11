@@ -1,13 +1,8 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { Color, ColorResult, SketchPicker } from 'react-color';
 import styles from './WidgetSettings.module.scss';
 
-interface WidgetSettingsProps<T extends Record<string, any>> {
+interface WidgetSettingsProps<T> {
   settingsState: T;
   setSettingsState: Dispatch<SetStateAction<T>>;
 }
@@ -15,10 +10,9 @@ interface WidgetSettingsProps<T extends Record<string, any>> {
 interface Setting {
   label: string;
   type: string;
-  value: SettingValue;
+  value: number | string;
+  options?: string[];
 }
-type SettingValue = number | string | TemperatureUnit;
-type TemperatureUnit = 'C' | 'F';
 
 function WidgetSettings<T extends Record<string, any>>({
   settingsState,
@@ -32,43 +26,93 @@ function WidgetSettings<T extends Record<string, any>>({
     settingKey: keyof T;
   }) {
     const { label, type, value } = setting;
-    const [valueState, setValueState] = useState<SettingValue>(value);
+    const [valueState, setValueState] = useState(value);
 
-    function handleChange(e: ChangeEvent<HTMLInputElement>) {
-      setValueState(parseInt(e.target.value));
+    function handleChange(
+      e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    ) {
+      let newValue: number | string;
+      if (e.target.value === 'checkbox') {
+        newValue = valueState ? '' : 'true';
+      } else {
+        newValue = e.target.value;
+      }
+      setValueState(newValue);
+      setSettingsState((prevState) => ({
+        ...prevState,
+        [settingKey]: {
+          ...prevState[settingKey],
+          value: newValue,
+        },
+      }));
+    }
+
+    function handleColorChange(
+      color: ColorResult,
+      _: ChangeEvent<HTMLInputElement>,
+    ) {
+      setValueState(color.hex);
+      setSettingsState((prevState) => ({
+        ...prevState,
+        [settingKey]: {
+          ...prevState[settingKey],
+          value: color.hex,
+        },
+      }));
     }
 
     switch (type) {
-      case 'range':
+      case 'number':
         return (
-          <label>
+          <label htmlFor={label}>
             {label}
             <input
+              id={label}
               type={type}
-              min={8}
-              max={42}
               value={valueState}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </label>
         );
       case 'checkbox':
         return (
-          <label>
+          <label htmlFor={label}>
             {label}
-            <input type={type} value={value} />
+            <input
+              id={label}
+              type={type}
+              checked={valueState === 'true'}
+              onChange={handleChange}
+            />
           </label>
         );
       case 'select':
         return (
-          <label>
+          <label htmlFor={label}>
             {label}
-            <select>
-              <option value="C">C</option>
-              <option value="F">F</option>
+            <select id={label} value={valueState} onChange={handleChange}>
+              {setting.options!.map((option) => {
+                return (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                );
+              })}
             </select>
           </label>
         );
+      case 'color':
+        return (
+          <label htmlFor={label}>
+            {label}
+            <SketchPicker
+              color={valueState as Color}
+              onChangeComplete={handleColorChange}
+            />
+          </label>
+        );
+      default:
+        return <></>;
     }
   }
 
@@ -77,8 +121,8 @@ function WidgetSettings<T extends Record<string, any>>({
       {Object.keys(settingsState).map((key) => {
         return (
           <SettingElement
-            setting={settingsState[key]}
-            settingKey={key}
+            setting={settingsState[key as keyof T]}
+            settingKey={key as keyof T}
             key={key}
           />
         );

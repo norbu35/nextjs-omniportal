@@ -9,11 +9,10 @@ interface Props {
 
 export interface CommonSettings {
   fontSize: number;
+  fontColor: string;
 }
 
-export interface ClockSettingsType extends CommonSettings {
-  fontSize: number;
-}
+export interface ClockSettingsType extends CommonSettings {}
 
 function ClockSettings({ settingsState, setSettingsState }: Props) {
   return (

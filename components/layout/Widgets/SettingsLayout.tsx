@@ -1,4 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
+
 import { Rnd } from 'react-rnd';
 import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import styles from './SettingsLayout.module.scss';
@@ -13,6 +14,7 @@ const SETTINGS_WIDTH = 500;
 const SETTINGS_HEIGHT = 300;
 const SETTINGS_X = window.innerWidth / 2 - SETTINGS_WIDTH / 2;
 const SETTINGS_Y = window.innerHeight / 2 - SETTINGS_HEIGHT / 2;
+console.log(window.innerWidth, window.innerHeight);
 
 function Settings({ name, setIsVisible, children }: Props) {
   const title = `Settings > ${name.charAt(0).toUpperCase() + name.slice(1)}`;
@@ -25,12 +27,12 @@ function Settings({ name, setIsVisible, children }: Props) {
           width: 'auto',
           height: 'auto',
         }}
-        minHeight="34px"
         style={{
           zIndex: 1,
           backgroundColor: 'white',
           borderRadius: '15px 15px 0 0',
         }}
+        enableResizing={false}
       >
         <TitleBar setIsVisible={setIsVisible}>{title}</TitleBar>
         {children}

@@ -1,12 +1,23 @@
-import { WidgetState } from '@/components/layout/types';
-import styles from './SearchSettings.module.scss';
+import { Dispatch, SetStateAction } from 'react';
+import { CommonSettings } from '../types';
+import WidgetSettings from '@/components/layout/Widgets/WidgetSettings';
 
 interface Props {
-  widgetState: WidgetState;
+  settingsState: SearchSettingsType;
+  setSettingsState: Dispatch<SetStateAction<SearchSettingsType>>;
 }
-function SearchSettings({ widgetState }: Props) {
-  console.log(widgetState);
-  return <div className={styles.container}></div>;
+
+export interface SearchSettingsType extends CommonSettings {
+  defaultSearchEngine: string;
+}
+
+function SearchSettings({ settingsState, setSettingsState }: Props) {
+  return (
+    <WidgetSettings<SearchSettingsType>
+      settingsState={settingsState}
+      setSettingsState={setSettingsState}
+    />
+  );
 }
 
 export default SearchSettings;

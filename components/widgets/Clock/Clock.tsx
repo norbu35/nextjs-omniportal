@@ -45,7 +45,8 @@ function Clock({ state }: Props) {
     <div
       className={styles.container}
       style={{
-        fontSize: (settings!.fontSize / 16).toFixed(3) + 'em',
+        fontSize: (settings.fontSize.value / 16).toFixed(3) + 'em',
+        color: settings.fontColor.value,
       }}
     >
       <div className={styles.hour}>{hour}</div>
