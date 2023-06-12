@@ -14,7 +14,6 @@ const SETTINGS_WIDTH = 500;
 const SETTINGS_HEIGHT = 300;
 const SETTINGS_X = window.innerWidth / 2 - SETTINGS_WIDTH / 2;
 const SETTINGS_Y = window.innerHeight / 2 - SETTINGS_HEIGHT / 2;
-console.log(window.innerWidth, window.innerHeight);
 
 function Settings({ name, setIsVisible, children }: Props) {
   const title = `Settings > ${name.charAt(0).toUpperCase() + name.slice(1)}`;
