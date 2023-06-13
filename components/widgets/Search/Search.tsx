@@ -4,10 +4,7 @@ import { FormEvent, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import { StaticImageData } from 'next/image';
 
-import iconGoogle from '/public/widgets/Search/icon-google.png';
-import iconBing from '/public/widgets/Search/icon-bing.png';
-import iconWikipedia from '/public/widgets/Search/icon-wikipedia.png';
-import iconYoutube from '/public/widgets/Search/icon-youtube.png';
+import { SearchEngine, searchEngines } from './searchEngines';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -18,40 +15,6 @@ import { WidgetState } from '@/components/layout/types';
 interface Props {
   state: WidgetState;
 }
-
-interface SearchEngine {
-  readonly value: string;
-  readonly label: string;
-  readonly icon: StaticImageData;
-  readonly url: string;
-}
-
-const searchEngines: SearchEngine[] = [
-  {
-    value: 'google',
-    label: 'Google',
-    icon: iconGoogle,
-    url: 'https://www.google.com/search',
-  },
-  {
-    value: 'bing',
-    label: 'Bing',
-    icon: iconBing,
-    url: 'https://www.bing.com/search',
-  },
-  {
-    value: 'wikipedia',
-    label: 'Wikipedia',
-    icon: iconWikipedia,
-    url: 'https://en.wikipedia.org/w/index.php',
-  },
-  {
-    value: 'youtube',
-    label: 'YouTube',
-    icon: iconYoutube,
-    url: 'https://www.youtube.com/results',
-  },
-];
 
 function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
   return {
