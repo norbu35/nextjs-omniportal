@@ -1,37 +1,30 @@
 import WidgetSettings from '../Widgets/WidgetSettings';
 
+type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;
+
+interface SettingValue {
+  name: string;
+  type: string;
+  value: number | string | boolean;
+  options?: string[];
+}
+
 interface CommonSettings {
-  fontSize: {
-    name: string;
-    type: string;
-    value: number;
-  };
-  fontColor: {
-    name: string;
-    type: string;
-    value: string;
-  };
+  fontSize: SettingValue;
+  fontColor: SettingValue;
 }
 
 interface WeatherSettings extends CommonSettings {
-  temperatureUnit: {
-    name: string;
-    type: string;
-    value: 'C' | 'F';
-  };
-  bgImg: {
-    name: string;
-    type: string;
-    value: boolean;
-  };
+  temperatureUnit: SettingValue;
+  bgImg: SettingValue;
 }
 
 interface SearchSettings extends CommonSettings {
-  defaultSearchEngine: string;
+  defaultSearchEngine: SettingValue;
 }
 
 interface ClockSettings extends CommonSettings {
-  hours: '24' | '12';
+  hours: SettingValue;
 }
 
 const settingsMap = {
@@ -40,4 +33,5 @@ const settingsMap = {
   clock: WidgetSettings<ClockSettings>,
 };
 
-export default settingsMap;
+export { settingsMap };
+export type { WeatherSettings, SearchSettings, ClockSettings, SettingsTypes };

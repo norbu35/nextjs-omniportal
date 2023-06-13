@@ -12,6 +12,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './Search.module.scss';
 import Button from '@/components/composite/Button/Button';
 import { WidgetState } from '@/components/layout/types';
+import { SearchSettings } from '@/components/layout/Window/settingsMap';
 
 interface Props {
   state: WidgetState;
@@ -62,11 +63,11 @@ const optionStyles: StylesConfig<SearchEngine> = {
 
 function Search({ state }: Props): JSX.Element {
   const { settings } = state;
-  const [defaultSearchEngine] = useState<SearchEngine>(
+  const defaultEngine =
     searchEngines.find(
       (engine) => settings.defaultSearchEngine.value === engine.label,
-    ) ?? searchEngines[0],
-  );
+    ) || searchEngines[0];
+  const [defaultSearchEngine] = useState<SearchEngine>(defaultEngine);
   const [searchEngine, setSearchEngine] =
     useState<SearchEngine>(defaultSearchEngine);
   const [query, setQuery] = useState<string>('');

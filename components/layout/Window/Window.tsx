@@ -14,7 +14,7 @@ import useWindow from './useWindow';
 import { WidgetState, AppState } from '../../layout/types';
 import { WindowState } from './types';
 import styles from './Window.module.scss';
-import settingsMap from './settingsMap';
+import { settingsMap } from './settingsMap';
 
 interface Props {
   name: string;
@@ -43,6 +43,7 @@ function Window(
   const [windowState, setWindowState] = useState<WindowState>(
     widgetState.window,
   );
+
   const [settingsState, setSettingsState] = useState(widgetState.settings!);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
