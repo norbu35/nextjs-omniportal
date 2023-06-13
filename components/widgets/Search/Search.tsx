@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
+import DOMPurify from 'dompurify';
 import { StaticImageData } from 'next/image';
 
 import { SearchEngine, searchEngines } from './searchEngines';
@@ -73,21 +74,16 @@ function Search({ state }: Props): JSX.Element {
   function handleSearch(e: FormEvent): void {
     e.preventDefault();
 
-    let params = new URLSearchParams();
-    switch (searchEngine.value) {
-      case 'google':
-      case 'bing':
-        params.append('q', query);
-        break;
-      case 'wikipedia':
-        params.append('search', query);
-        break;
-      case 'youtube':
-        params.append('search_query', query);
-        break;
-    }
+    const sanitizedQuery = DOMPurify.sanitize(query);
+    const params = new URLSearchParams({
+      [searchEngine.searchParam]: sanitizedQuery,
+    });
 
-    window.open(`${searchEngine.url}?${params.toString()}`, '_blank');
+    window.open(
+      `${searchEngine.url}?${params.toString()}`,
+      '_blank',
+      'noopener noreferrer',
+    );
   }
 
   function handleSearchEngineChange(option: any): void {

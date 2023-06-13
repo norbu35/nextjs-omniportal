@@ -10,6 +10,7 @@ interface SearchEngine {
   readonly label: string;
   readonly icon: StaticImageData;
   readonly url: string;
+  readonly searchParam: string;
 }
 
 const searchEngines: SearchEngine[] = [
@@ -18,24 +19,28 @@ const searchEngines: SearchEngine[] = [
     label: 'Google',
     icon: iconGoogle,
     url: 'https://www.google.com/search',
+    searchParam: 'q',
   },
   {
     value: 'bing',
     label: 'Bing',
     icon: iconBing,
     url: 'https://www.bing.com/search',
+    searchParam: 'q',
   },
   {
     value: 'wikipedia',
     label: 'Wikipedia',
     icon: iconWikipedia,
     url: 'https://en.wikipedia.org/w/index.php',
+    searchParam: 'search',
   },
   {
     value: 'youtube',
     label: 'YouTube',
     icon: iconYoutube,
     url: 'https://www.youtube.com/results',
+    searchParam: 'search_query',
   },
 ];
 

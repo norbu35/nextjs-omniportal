@@ -41,6 +41,9 @@ dependencies:
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
+  dompurify:
+    specifier: ^3.0.3
+    version: 3.0.3
   eslint:
     specifier: 8.38.0
     version: 8.38.0
@@ -1548,6 +1551,10 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.5
       csstype: 3.1.2
+    dev: false
+
+  /dompurify@3.0.3:
+    resolution: {integrity: sha512-axQ9zieHLnAnHh0sfAamKYiqXMJAVwu+LM/alQ7WDagoWessyWvMSFyW65CqF3owufNu8HBcE4cM2Vflu7YWcQ==}
     dev: false
 
   /electron-to-chromium@1.4.427:
