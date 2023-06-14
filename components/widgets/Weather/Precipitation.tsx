@@ -63,7 +63,7 @@ function Precipitation({ weatherData }: Props): JSX.Element {
     labels,
     datasets: [
       {
-        label: 'Probability',
+        label: 'Probability (%)',
         data: daily.time.map(
           (_, index) => daily.precipitation_probability_mean[index],
         ),

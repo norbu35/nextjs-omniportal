@@ -12,7 +12,6 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './Search.module.scss';
 import Button from '@/components/composite/Button/Button';
 import { WidgetState } from '@/components/layout/types';
-import { SearchSettings } from '@/components/layout/Window/settingsMap';
 
 interface Props {
   state: WidgetState;

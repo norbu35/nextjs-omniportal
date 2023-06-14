@@ -88,14 +88,14 @@ function Weather({ state }: Props) {
     <div
       className={styles.container}
       style={{
-        backgroundImage: settings!.bgImg.value
+        backgroundImage: settings.bgImg.value
           ? currentWeatherBgImg
             ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"
           : 'none',
         backgroundPosition: 'center',
-        fontSize: (settings!.fontSize.value / 16).toFixed(3) + 'rem',
-        color: settings!.fontColor.value,
+        fontSize: (settings.fontSize.value / 16).toFixed(3) + 'rem',
+        color: settings.fontColor.value,
       }}
     >
       <div className={styles.current}>
