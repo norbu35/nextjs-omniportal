@@ -12,7 +12,6 @@ import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import SettingsLayout from '../Widgets/SettingsLayout';
 import useWindow from './useWindow';
 import { WidgetState, AppState } from '../../layout/types';
-import { WindowState } from './types';
 import styles from './Window.module.scss';
 import { settingsMap } from './settingsMap';
 
@@ -40,11 +39,9 @@ function Window(
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
-  const [windowState, setWindowState] = useState<WindowState>(
-    widgetState.window,
-  );
+  const [windowState, setWindowState] = useState(widgetState.window);
 
-  const [settingsState, setSettingsState] = useState(widgetState.settings!);
+  const [settingsState, setSettingsState] = useState(widgetState.settings);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
   const collisionIsActive = isCollision;
