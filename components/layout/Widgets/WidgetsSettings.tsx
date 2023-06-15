@@ -4,6 +4,7 @@ import styles from './WidgetsSettings.module.scss';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from '@/components/composite/Button/Button';
+import capitalize from '@/utils/string/capitalize';
 
 interface Props {
   state: [AppState, Dispatch<SetStateAction<AppState>>];
@@ -57,7 +58,7 @@ function WidgetsSettings({ state, lock }: Props) {
     label: string;
   }>((key) => ({
     value: key,
-    label: `${key.charAt(0).toUpperCase()}${key.slice(1)}`,
+    label: capitalize(key),
   }));
   const groupedOptions: readonly GroupedOption[] = [
     {

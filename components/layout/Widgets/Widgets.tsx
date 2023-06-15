@@ -54,10 +54,11 @@ function Widgets(): JSX.Element {
       {Object.keys(appState.widgets).map((key) => {
         if (appState.widgets[key].window.isVisible) {
           const Widget = widgetsMap[key as keyof typeof widgetsMap];
+          const widgetState = appState.widgets[key];
           return (
             <Window
               name={key}
-              widgetState={appState.widgets[key]}
+              widgetState={widgetState}
               setAppState={setAppState}
               isUnlocked={isUnlocked}
               isCollision={appState.global.isCollision}

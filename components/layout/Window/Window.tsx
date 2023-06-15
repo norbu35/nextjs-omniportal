@@ -14,10 +14,11 @@ import useWindow from './useWindow';
 import { WidgetState, AppState } from '../../layout/types';
 import styles from './Window.module.scss';
 import { SettingsTypes, settingsMap } from './settingsMap';
+import capitalize from '@/utils/string/capitalize';
 
-interface Props {
+interface Props<T> {
   name: string;
-  widgetState: WidgetState<SettingsTypes>;
+  widgetState: WidgetState<T>;
   setAppState: Dispatch<SetStateAction<AppState>>;
   windowRefs: HTMLDivElement[];
   children: ReactElement;
@@ -26,7 +27,7 @@ interface Props {
   isBorder: boolean;
 }
 
-function Window(
+function Window<T extends SettingsTypes>(
   {
     name,
     widgetState,
@@ -36,7 +37,7 @@ function Window(
     isCollision,
     isBorder,
     children,
-  }: Props,
+  }: Props<T>,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
   const [windowState, setWindowState] = useState(widgetState.window);
@@ -69,7 +70,6 @@ function Window(
   }, [isVisible]);
 
   const SettingsComponent = settingsMap[name as keyof typeof settingsMap];
-  const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <>
@@ -101,7 +101,7 @@ function Window(
               setSettingsIsOpen={setSettingsIsOpen}
               settingsIsOpen={settingsIsOpen}
             >
-              {title}
+              {capitalize(name)}
             </TitleBar>
           )}
           <div

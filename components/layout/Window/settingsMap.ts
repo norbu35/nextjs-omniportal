@@ -13,7 +13,7 @@ interface CommonSettings {
 }
 
 interface WeatherSettings extends CommonSettings {
-  temperatureUnit: SettingValue<string>;
+  temperatureUnit: SettingValue<'C' | 'F'>;
   bgImg: SettingValue<string>;
 }
 
@@ -27,7 +27,7 @@ interface ClockSettings extends CommonSettings {
 
 type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;
 
-const settingsMap: Record<string, React.ComponentType<any>> = {
+const settingsMap = {
   weather: WidgetSettings<WeatherSettings>,
   search: WidgetSettings<SearchSettings>,
   clock: WidgetSettings<ClockSettings>,

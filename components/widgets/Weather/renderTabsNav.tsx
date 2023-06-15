@@ -1,3 +1,4 @@
+import capitalize from '@/utils/string/capitalize';
 import styles from './Weather.module.scss';
 
 interface Props {
@@ -12,7 +13,6 @@ function TabsNav({ activeTab, handleSwitchTab: handleSwitchView }: Props) {
   return (
     <ul className={styles.tabsNav}>
       {tabs.map((tab) => {
-        const title = `${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
         return (
           <li
             className={
@@ -23,7 +23,7 @@ function TabsNav({ activeTab, handleSwitchTab: handleSwitchView }: Props) {
             onClick={() => handleSwitchView(tab as TabType)}
             key={tab}
           >
-            {title}
+            {capitalize(tab)}
           </li>
         );
       })}

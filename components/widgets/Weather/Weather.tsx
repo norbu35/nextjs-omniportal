@@ -41,7 +41,10 @@ function Weather({ state }: Props) {
       try {
         const geoLocation: GeolocationPosition = await getLocation();
         const coords = geoLocation.coords;
-        const weatherData = await getWeather(coords);
+        const weatherData = await getWeather(
+          coords,
+          settings.temperatureUnit.value,
+        );
         setWeather(weatherData);
         const geoCode = await getGeocode(coords);
         setCity(geoCode.results[9].formatted_address.split(',')[0]);
@@ -54,7 +57,7 @@ function Weather({ state }: Props) {
     };
 
     fetchData();
-  }, []);
+  }, [settings.temperatureUnit.value]);
 
   let currentWeatherIcon: ReactNode;
   let currentWeatherBgImg: StaticImageData | undefined;

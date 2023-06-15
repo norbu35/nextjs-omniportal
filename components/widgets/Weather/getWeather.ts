@@ -3,18 +3,22 @@ import { WeatherData } from './types';
 interface Options {
   latitude: number;
   longitude: number;
+  temperature_unit: 'C' | 'F';
   daily: string[];
   timezone: string;
   current_weather: boolean;
 }
 
-function getWeather({
-  latitude,
-  longitude,
-}: {
-  latitude: number;
-  longitude: number;
-}): Promise<WeatherData> {
+function getWeather(
+  {
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  },
+  unit: 'C' | 'F',
+): Promise<WeatherData> {
   return new Promise((resolve, reject) => {
     const fetchData = async () => {
       try {
@@ -23,6 +27,7 @@ function getWeather({
         const options = {
           longitude: longitude.toString(),
           latitude: latitude.toString(),
+          temperature_unit: unit === 'F' ? 'fahrenheit' : 'celsius',
           daily: [
             'temperature_2m_max',
             'temperature_2m_min',

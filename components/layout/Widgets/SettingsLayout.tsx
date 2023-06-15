@@ -3,6 +3,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Rnd } from 'react-rnd';
 import TitleBar from '@/components/composite/TitleBar/TitleBar';
 import styles from './SettingsLayout.module.scss';
+import capitalize from '@/utils/string/capitalize';
 
 interface Props {
   name: string;
@@ -16,7 +17,6 @@ const SETTINGS_X = window.innerWidth / 2 - SETTINGS_WIDTH / 2;
 const SETTINGS_Y = window.innerHeight / 2 - SETTINGS_HEIGHT / 2;
 
 function Settings({ name, setIsVisible, children }: Props) {
-  const title = `Settings > ${name.charAt(0).toUpperCase() + name.slice(1)}`;
   return (
     <div className={styles.container}>
       <Rnd
@@ -33,7 +33,7 @@ function Settings({ name, setIsVisible, children }: Props) {
         }}
         enableResizing={false}
       >
-        <TitleBar setIsVisible={setIsVisible}>{title}</TitleBar>
+        <TitleBar setIsVisible={setIsVisible}>{capitalize(name)}</TitleBar>
         {children}
       </Rnd>
     </div>
