@@ -31,7 +31,7 @@ interface BannerSettings {
 
 type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;
 
-const settingsMap = {
+const settingsMap: Record<string, React.ComponentType<any>> = {
   weather: WidgetSettings<WeatherSettings>,
   search: WidgetSettings<SearchSettings>,
   clock: WidgetSettings<ClockSettings>,

@@ -1,9 +1,9 @@
 import { WindowState } from '@/components/layout/Window/types';
 import { SettingsTypes } from './Window/settingsMap';
 
-export interface WidgetState<SettingsTypes> {
+export interface WidgetState<T extends SettingsTypes> {
   window: WindowState;
-  settings: SettingsTypes;
+  settings: T;
 }
 
 export interface GlobalState {
