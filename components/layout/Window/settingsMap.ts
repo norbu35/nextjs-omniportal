@@ -1,7 +1,7 @@
 import WidgetSettings from '../Widgets/WidgetSettings';
 
 interface SettingValue<T> {
-  name: string;
+  label: string;
   type: string;
   value: T;
   options?: string[];
