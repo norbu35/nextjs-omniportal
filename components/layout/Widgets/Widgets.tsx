@@ -15,7 +15,6 @@ const getStateFromStorage = (key: string, defaultVal: AppState) => {
   if (!stored) return defaultVal;
   return JSON.parse(stored);
 };
-
 function Widgets(): JSX.Element {
   const [appState, setAppState] = useState(
     getStateFromStorage('portalState', defaultConfig),

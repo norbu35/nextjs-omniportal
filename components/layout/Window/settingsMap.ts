@@ -12,28 +12,26 @@ interface CommonSettings {
   fontColor: SettingValue<string>;
 }
 
-interface Weather extends CommonSettings {
+interface WeatherSettings extends CommonSettings {
   temperatureUnit: SettingValue<string>;
   bgImg: SettingValue<string>;
 }
 
-interface Search extends CommonSettings {
+interface SearchSettings extends CommonSettings {
   defaultSearchEngine: SettingValue<string>;
 }
 
-interface Clock extends CommonSettings {
+interface ClockSettings extends CommonSettings {
   hours: SettingValue<string>;
 }
 
-const settingsMap = {
-  weather: WidgetSettings<Weather>,
-  search: WidgetSettings<Search>,
-  clock: WidgetSettings<Clock>,
+type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;
+
+const settingsMap: Record<string, React.ComponentType<any>> = {
+  weather: WidgetSettings<WeatherSettings>,
+  search: WidgetSettings<SearchSettings>,
+  clock: WidgetSettings<ClockSettings>,
 };
 
 export { settingsMap };
-export type {
-  Weather as WeatherType,
-  Search as SearchType,
-  Clock as ClockType,
-};
+export type { WeatherSettings, SearchSettings, ClockSettings, SettingsTypes };

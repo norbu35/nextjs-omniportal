@@ -13,11 +13,11 @@ import SettingsLayout from '../Widgets/SettingsLayout';
 import useWindow from './useWindow';
 import { WidgetState, AppState } from '../../layout/types';
 import styles from './Window.module.scss';
-import { settingsMap } from './settingsMap';
+import { SettingsTypes, settingsMap } from './settingsMap';
 
 interface Props {
   name: string;
-  widgetState: WidgetState;
+  widgetState: WidgetState<SettingsTypes>;
   setAppState: Dispatch<SetStateAction<AppState>>;
   windowRefs: HTMLDivElement[];
   children: ReactElement;

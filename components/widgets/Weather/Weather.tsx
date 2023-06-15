@@ -68,15 +68,13 @@ function Weather({ state }: Props) {
     currentWeatherBgImg = weatherBgImg;
   }
 
-  function handleSwitchView(viewType: TabType): void {
+  function handleSwitchTab(viewType: TabType): void {
     setActiveTab(viewType);
   }
 
   function toggleForecast() {
     setForecastIsOpen(!forecastIsOpen);
   }
-
-  const localDate = new Date().toLocaleDateString();
 
   if (loading) {
     return <Loader />;
@@ -85,6 +83,8 @@ function Weather({ state }: Props) {
   if (error) {
     return <p>{error.message}</p>;
   }
+
+  const localDate = new Date().toLocaleDateString();
 
   return (
     <div
@@ -130,17 +130,17 @@ function Weather({ state }: Props) {
         </div>
       )}
       {forecastIsOpen && (
-        <div className={styles.forecast}>
-          <TabsNav activeView={activeTab} handleSwitchView={handleSwitchView} />
-          <div className={styles.tab}>
-            {weather && renderTab(activeTab, weather)}
+        <>
+          <div className={styles.forecast}>
+            <TabsNav activeTab={activeTab} handleSwitchTab={handleSwitchTab} />
+            <div className={styles.tab}>
+              {weather && renderTab(activeTab, weather)}
+            </div>
           </div>
-        </div>
-      )}
-      {forecastIsOpen && (
-        <div className={styles.forecastButtonBottom} onClick={toggleForecast}>
-          <FontAwesomeIcon icon={faAngleDown} />
-        </div>
+          <div className={styles.forecastButtonBottom} onClick={toggleForecast}>
+            <FontAwesomeIcon icon={faAngleDown} />
+          </div>
+        </>
       )}
     </div>
   );

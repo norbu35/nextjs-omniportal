@@ -2,13 +2,13 @@ import styles from './Weather.module.scss';
 
 interface Props {
   activeTab: TabType;
-  handleSwitchView: (tab: TabType) => void;
+  handleSwitchTab: (tab: TabType) => void;
 }
 
 const tabs = ['hourly', 'daily', 'precipitation'] as const;
 type TabType = (typeof tabs)[number];
 
-function TabsNav({ activeTab, handleSwitchView }: Props) {
+function TabsNav({ activeTab, handleSwitchTab: handleSwitchView }: Props) {
   return (
     <ul className={styles.tabsNav}>
       {tabs.map((tab) => {
