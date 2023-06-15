@@ -5,6 +5,8 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import TabsNav, { TabType } from './renderTabsNav';
+
 import { WeatherData } from './types';
 import { WidgetState } from '@/components/layout/types';
 
@@ -30,7 +32,7 @@ function Weather({ state }: Props) {
   const [city, setCity] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [activeView, setActiveView] = useState<string>('hourly');
+  const [activeTab, setActiveTab] = useState<TabType>('hourly');
   const [forecastIsOpen, setForecastIsOpen] = useState<boolean>(true);
 
   useEffect(() => {
@@ -66,8 +68,8 @@ function Weather({ state }: Props) {
     currentWeatherBgImg = weatherBgImg;
   }
 
-  function handleSwitchView(viewType: string): void {
-    setActiveView(viewType);
+  function handleSwitchView(viewType: TabType): void {
+    setActiveTab(viewType);
   }
 
   function toggleForecast() {
@@ -129,40 +131,9 @@ function Weather({ state }: Props) {
       )}
       {forecastIsOpen && (
         <div className={styles.forecast}>
-          <ul className={styles.tabsNav}>
-            <li
-              className={
-                activeView === 'hourly'
-                  ? `${styles.tabActive} ${styles.tabButton}`
-                  : `${styles.tabButton}`
-              }
-              onClick={() => handleSwitchView('hourly')}
-            >
-              Hourly
-            </li>
-            <li
-              className={
-                activeView === 'daily'
-                  ? `${styles.tabActive} ${styles.tabButton}`
-                  : `${styles.tabButton}`
-              }
-              onClick={() => handleSwitchView('daily')}
-            >
-              Daily
-            </li>
-            <li
-              className={
-                activeView === 'precipitation'
-                  ? `${styles.tabActive} ${styles.tabButton}`
-                  : `${styles.tabButton}`
-              }
-              onClick={() => handleSwitchView('precipitation')}
-            >
-              Precipitation
-            </li>
-          </ul>
+          <TabsNav activeView={activeTab} handleSwitchView={handleSwitchView} />
           <div className={styles.tab}>
-            {weather && renderTab(activeView, weather)}
+            {weather && renderTab(activeTab, weather)}
           </div>
         </div>
       )}

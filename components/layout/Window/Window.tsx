@@ -40,14 +40,12 @@ function Window(
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
   const [windowState, setWindowState] = useState(widgetState.window);
-
   const [settingsState, setSettingsState] = useState(widgetState.settings);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
   const collisionIsActive = isCollision;
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
     useWindow(windowState, windowRefs, setWindowState, collisionIsActive);
-  const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
     setAppState((prevState) => ({
@@ -71,6 +69,7 @@ function Window(
   }, [isVisible]);
 
   const SettingsComponent = settingsMap[name as keyof typeof settingsMap];
+  const title = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <>

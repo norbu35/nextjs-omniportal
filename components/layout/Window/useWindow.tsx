@@ -47,9 +47,6 @@ function useWindow(
           targetRect,
         )
       ) {
-        // console.log('is collision');
-        // console.log('safestate', safeState.position);
-        // console.log('position', newPos);
         setIsCollision(true);
         return true;
       }

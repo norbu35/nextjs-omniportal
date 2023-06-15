@@ -17,7 +17,7 @@ const getStateFromStorage = (key: string, defaultVal: AppState) => {
 };
 
 function Widgets(): JSX.Element {
-  const [appState, setAppState] = useState<AppState>(
+  const [appState, setAppState] = useState(
     getStateFromStorage('portalState', defaultConfig),
   );
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
