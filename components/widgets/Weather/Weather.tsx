@@ -21,9 +21,10 @@ import Loader from './Loader';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import '@fontsource/inter/200.css';
 import styles from './Weather.module.scss';
+import { WeatherSettings } from '@/components/layout/Window/settingsMap';
 
 interface Props {
-  state: WidgetState;
+  state: WidgetState<WeatherSettings>;
 }
 
 function Weather({ state }: Props) {

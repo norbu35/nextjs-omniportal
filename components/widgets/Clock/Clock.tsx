@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import styles from './Clock.module.css';
 import { WidgetState } from '@/components/layout/types';
-import { SettingsTypes } from '@/components/layout/Window/settingsMap';
+import {
+  ClockSettings,
+} from '@/components/layout/Window/settingsMap';
 
 interface Props {
-  state: WidgetState<SettingsTypes>;
+  state: WidgetState<ClockSettings>;
 }
 
 function Clock({ state }: Props) {
