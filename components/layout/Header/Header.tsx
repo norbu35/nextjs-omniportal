@@ -21,7 +21,7 @@ function Header() {
         alignItems: 'center',
         justifyContent: 'space-between',
         display: 'flex',
-        borderRadius: '0 0 15px 15px',
+        borderRadius: '0 0 1rem 1rem',
         padding: '0 2rem',
         color: 'white',
       }}

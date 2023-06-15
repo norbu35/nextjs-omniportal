@@ -3,7 +3,7 @@ import { WeatherData } from './types';
 interface Options {
   latitude: number;
   longitude: number;
-  temperature_unit: 'C' | 'F';
+  temperature_unit: string;
   daily: string[];
   timezone: string;
   current_weather: boolean;
@@ -17,7 +17,7 @@ function getWeather(
     latitude: number;
     longitude: number;
   },
-  unit: 'C' | 'F',
+  unit: string,
 ): Promise<WeatherData> {
   return new Promise((resolve, reject) => {
     const fetchData = async () => {

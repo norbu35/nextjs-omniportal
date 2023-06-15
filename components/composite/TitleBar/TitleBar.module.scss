@@ -3,13 +3,12 @@
 .container {
   position: absolute;
   top: -2em;
-  border-radius: 15px 15px 0 0;
+  border-radius: 1rem 1rem 0 0;
   border: 1px solid #212a3e;
   justify-content: center;
   align-items: center;
   display: flex;
   background-color: $fg-primary;
-  opacity: 50%;
   color: white;
   height: 2em;
   width: 100%;

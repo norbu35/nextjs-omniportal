@@ -25,10 +25,10 @@ function useWindow(
   windowState: WindowState,
   windowRefs: HTMLDivElement[],
   setWindowState: Dispatch<SetStateAction<WindowState>>,
-  collisionIsActive: boolean,
+  collisionIsEnabled: boolean,
 ) {
   const [safeState, setSafeState] = useState<WindowState>(windowState);
-  const [isCollision, setIsCollision] = useState<boolean>(false);
+  const [enableCollision, setEnableCollision] = useState<boolean>(false);
 
   function handleOverlap(
     node: HTMLElement,
@@ -47,7 +47,7 @@ function useWindow(
           targetRect,
         )
       ) {
-        setIsCollision(true);
+        setEnableCollision(true);
         return true;
       }
       setSafeState((prevState: WindowState) => ({
@@ -61,7 +61,7 @@ function useWindow(
           height: newSize.height,
         },
       }));
-      setIsCollision(false);
+      setEnableCollision(false);
     });
   }
 
@@ -85,7 +85,7 @@ function useWindow(
   };
 
   function handleDragStop(_e: any, d: DraggableData) {
-    if (collisionIsActive && isCollision) {
+    if (collisionIsEnabled && enableCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         position: {
@@ -102,7 +102,7 @@ function useWindow(
         },
       }));
     }
-    setIsCollision(false);
+    setEnableCollision(false);
   }
 
   function handleResizeStop(
@@ -112,7 +112,7 @@ function useWindow(
     _delta: any,
     position: { x: number; y: number },
   ) {
-    if (collisionIsActive && isCollision) {
+    if (collisionIsEnabled && enableCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         size: safeState.size,

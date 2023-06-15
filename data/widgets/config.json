@@ -1,7 +1,7 @@
 {
   "global": {
-    "isCollision": false,
-    "isBorder": true
+    "enableCollision": false,
+    "displayBorder": false
   },
   "widgets": {
     "weather": {
@@ -9,11 +9,11 @@
         "isVisible": true,
         "position": {
           "x": 0,
-          "y": 0
+          "y": 50
         },
         "size": {
           "width": 500,
-          "height": 410
+          "height": 420
         },
         "maxWidth": -1,
         "minWidth": -1,
@@ -32,15 +32,18 @@
           "value": "#fff"
         },
         "bgImg": {
-          "label": "Show background image",
+          "label": "Background image",
           "type": "checkbox",
           "value": "true"
         },
         "temperatureUnit": {
-          "label": "Temperature Unit",
+          "label": "Temperature unit",
           "type": "select",
           "value": "C",
-          "options": ["C", "F"]
+          "options": [
+            "C",
+            "F"
+          ]
         }
       }
     },
@@ -49,11 +52,11 @@
         "isVisible": true,
         "position": {
           "x": 500,
-          "y": 300
+          "y": 500
         },
         "size": {
           "width": 600,
-          "height": 45
+          "height": 42
         },
         "maxWidth": -1,
         "minWidth": -1,
@@ -75,7 +78,11 @@
           "label": "Default Search Engine",
           "type": "select",
           "value": "Google",
-          "options": ["Google", "Bing", "YouTube"]
+          "options": [
+            "Google",
+            "Bing",
+            "YouTube"
+          ]
         }
       }
     },
@@ -110,7 +117,10 @@
           "label": "Format",
           "type": "select",
           "value": "24h",
-          "options": ["24h", "12h"]
+          "options": [
+            "24h",
+            "12h"
+          ]
         }
       }
     }

@@ -29,11 +29,13 @@ function Settings({ name, setIsVisible, children }: Props) {
         style={{
           zIndex: 1,
           backgroundColor: 'white',
-          borderRadius: '15px 15px 0 0',
+          borderRadius: '0 0 1rem 1rem',
         }}
         enableResizing={false}
       >
-        <TitleBar setIsVisible={setIsVisible}>{capitalize(name)}</TitleBar>
+        <TitleBar setIsVisible={setIsVisible}>
+          Settings &gt; {capitalize(name)}
+        </TitleBar>
         {children}
       </Rnd>
     </div>

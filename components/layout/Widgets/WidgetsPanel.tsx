@@ -27,7 +27,7 @@ function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
         gap: '0.5em',
         display: 'flex',
         marginLeft: '2em',
-        borderRadius: '15px 0 0 15px',
+        borderRadius: '1rem 0 0 1rem',
         padding: '0.5em',
       }}
       bounds="body"

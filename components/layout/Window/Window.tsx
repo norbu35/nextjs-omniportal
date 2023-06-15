@@ -16,37 +16,37 @@ import styles from './Window.module.scss';
 import { SettingsTypes, settingsMap } from './settingsMap';
 import capitalize from '@/utils/string/capitalize';
 
-interface Props<T> {
+interface Props {
   name: string;
-  widgetState: WidgetState<T>;
+  widgetState: WidgetState<SettingsTypes>;
   setAppState: Dispatch<SetStateAction<AppState>>;
   windowRefs: HTMLDivElement[];
   children: ReactElement;
   isUnlocked: boolean;
-  isCollision: boolean;
-  isBorder: boolean;
+  enableCollision: boolean;
+  displayBorder: boolean;
 }
 
-function Window<T extends SettingsTypes>(
+function Window(
   {
     name,
     widgetState,
     setAppState,
     windowRefs,
     isUnlocked,
-    isCollision,
-    isBorder,
+    enableCollision,
+    displayBorder,
     children,
-  }: Props<T>,
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
   const [windowState, setWindowState] = useState(widgetState.window);
   const [settingsState, setSettingsState] = useState(widgetState.settings);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
-  const collisionIsActive = isCollision;
+  const collisionIsEnabled = enableCollision;
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
-    useWindow(windowState, windowRefs, setWindowState, collisionIsActive);
+    useWindow(windowState, windowRefs, setWindowState, collisionIsEnabled);
 
   useEffect(() => {
     setAppState((prevState) => ({
@@ -107,8 +107,8 @@ function Window<T extends SettingsTypes>(
           <div
             className={styles.children}
             style={{
-              border: isBorder ? '1px solid black' : 'none',
-              borderRadius: isUnlocked ? '0 0 15px 15px' : '15px',
+              border: displayBorder ? '1px solid black' : 'none',
+              borderRadius: isUnlocked ? '0 0 1rem 1rem' : '1rem',
             }}
           >
             {children}

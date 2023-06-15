@@ -7,8 +7,8 @@ export interface WidgetState<SettingsTypes> {
 }
 
 export interface GlobalState {
-  isCollision: boolean;
-  isBorder: boolean;
+  enableCollision: boolean;
+  displayBorder: boolean;
 }
 
 export interface AppState {

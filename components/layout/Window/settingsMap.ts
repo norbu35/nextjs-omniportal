@@ -13,7 +13,7 @@ interface CommonSettings {
 }
 
 interface WeatherSettings extends CommonSettings {
-  temperatureUnit: SettingValue<'C' | 'F'>;
+  temperatureUnit: SettingValue<string>;
   bgImg: SettingValue<string>;
 }
 
@@ -25,6 +25,10 @@ interface ClockSettings extends CommonSettings {
   hours: SettingValue<string>;
 }
 
+interface BannerSettings {
+  bgImg: SettingValue<string>;
+}
+
 type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;
 
 const settingsMap = {
@@ -34,4 +38,10 @@ const settingsMap = {
 };
 
 export { settingsMap };
-export type { WeatherSettings, SearchSettings, ClockSettings, SettingsTypes };
+export type {
+  WeatherSettings,
+  SearchSettings,
+  ClockSettings,
+  BannerSettings,
+  SettingsTypes,
+};

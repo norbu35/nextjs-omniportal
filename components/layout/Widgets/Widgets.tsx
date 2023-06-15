@@ -9,6 +9,7 @@ import widgetsMap from './widgetsMap';
 import { AppState } from '../types';
 import styles from './Widgets.module.scss';
 import defaultConfig from '@/data/widgets/config.json';
+import defaultImg from '/public/widgets/Banner/banner.jpg';
 
 const getStateFromStorage = (key: string, defaultVal: AppState) => {
   const stored = localStorage.getItem(key);
@@ -21,6 +22,7 @@ function Widgets(): JSX.Element {
   );
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
+  const [background] = useState(defaultImg);
   const windowRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -34,7 +36,10 @@ function Widgets(): JSX.Element {
   }
 
   return (
-    <section className={styles.container}>
+    <section
+      className={styles.container}
+      style={{ background: `url(${background.src})` }}
+    >
       <div className={styles.widgetsPanel}>
         <WidgetsPanel
           lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
@@ -61,8 +66,8 @@ function Widgets(): JSX.Element {
               widgetState={widgetState}
               setAppState={setAppState}
               isUnlocked={isUnlocked}
-              isCollision={appState.global.isCollision}
-              isBorder={appState.global.isBorder}
+              enableCollision={appState.global.enableCollision}
+              displayBorder={appState.global.displayBorder}
               windowRefs={windowRefs.current}
               ref={addWindowRef}
               key={key}

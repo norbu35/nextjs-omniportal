@@ -12,9 +12,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './Search.module.scss';
 import Button from '@/components/composite/Button/Button';
 import { WidgetState } from '@/components/layout/types';
-import {
-  SearchSettings,
-} from '@/components/layout/Window/settingsMap';
+import { SearchSettings } from '@/components/layout/Window/settingsMap';
 
 interface Props {
   state: WidgetState<SearchSettings>;
@@ -108,6 +106,7 @@ function Search({ state }: Props): JSX.Element {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          style={{ color: settings.fontColor.value }}
         />
         <Select
           defaultValue={defaultSearchEngine}

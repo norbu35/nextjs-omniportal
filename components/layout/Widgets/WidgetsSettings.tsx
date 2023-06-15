@@ -27,25 +27,25 @@ function WidgetsSettings({ state, lock }: Props) {
   const [appState, setAppState] = state;
   const [isUnlocked, setIsUnlocked] = lock;
 
-  let isCollision = appState.global.isCollision;
-  let isBorder = appState.global.isBorder;
+  let enableCollision = appState.global.enableCollision;
+  let displayBorder = appState.global.displayBorder;
 
   function setIsCollision() {
     setAppState((prevState) => ({
       ...prevState,
       global: {
         ...prevState.global,
-        isCollision: !prevState.global.isCollision,
+        enableCollision: !prevState.global.enableCollision,
       },
     }));
   }
 
-  function setIsBorder() {
+  function setDisplayBorder() {
     setAppState((prevState) => ({
       ...prevState,
       global: {
         ...prevState.global,
-        isBorder: !prevState.global.isBorder,
+        displayBorder: !prevState.global.displayBorder,
       },
     }));
   }
@@ -74,10 +74,10 @@ function WidgetsSettings({ state, lock }: Props) {
           {isUnlocked ? 'Lock' : 'Unlock'}
         </Button>
         <Button type="button" onClick={setIsCollision} variant="primary">
-          {isCollision ? 'Disable collision' : 'Enable collision'}
+          {enableCollision ? 'Disable collision' : 'Enable collision'}
         </Button>
-        <Button type="button" onClick={setIsBorder} variant="primary">
-          {isBorder ? 'Hide borders' : 'Show borders'}
+        <Button type="button" onClick={setDisplayBorder} variant="primary">
+          {displayBorder ? 'Hide borders' : 'Show borders'}
         </Button>
       </div>
       <Select
