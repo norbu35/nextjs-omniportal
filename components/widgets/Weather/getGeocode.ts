@@ -9,7 +9,7 @@ const getGeocode = ({
     if (!latitude || !longitude) reject(new Error('Incorrect GPS coordinates'));
 
     const fetchGeocode = async () => {
-      const apiKey = process.env.MAPS_API;
+      const apiKey = process.env.NEXT_PUBLIC_MAPS_API;
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
       try {
