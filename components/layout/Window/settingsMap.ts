@@ -18,7 +18,9 @@ interface WeatherSettings extends CommonSettings {
 }
 
 interface SearchSettings extends CommonSettings {
-  borderColor: SettingValue<string>;
+  backgroundColor: SettingValue<string>;
+  accentColor: SettingValue<string>;
+  optionsColor: SettingValue<string>;
   defaultSearchEngine: SettingValue<string>;
 }
 

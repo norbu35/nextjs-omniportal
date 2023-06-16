@@ -34,7 +34,7 @@ function Weather({ state }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [activeTab, setActiveTab] = useState<TabType>('hourly');
-  const [forecastIsOpen, setForecastIsOpen] = useState<boolean>(true);
+  const [displayForecast, setDisplayForecast] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +57,7 @@ function Weather({ state }: Props) {
     };
 
     fetchData();
-  }, [settings.temperatureUnit.value]);
+  });
 
   let currentWeatherIcon: ReactNode;
   let currentWeatherBgImg: StaticImageData | undefined;
@@ -77,7 +77,7 @@ function Weather({ state }: Props) {
   }
 
   function toggleForecast() {
-    setForecastIsOpen(!forecastIsOpen);
+    setDisplayForecast(!displayForecast);
   }
 
   if (loading) {
@@ -128,12 +128,12 @@ function Weather({ state }: Props) {
           <div className={styles.wind}></div>
         </div>
       </div>
-      {forecastIsOpen || (
+      {displayForecast || (
         <div className={styles.forecastButtonTop} onClick={toggleForecast}>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
       )}
-      {forecastIsOpen && (
+      {displayForecast && (
         <>
           <div className={styles.forecast}>
             <TabsNav activeTab={activeTab} handleSwitchTab={handleSwitchTab} />

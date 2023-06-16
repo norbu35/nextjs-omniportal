@@ -40,10 +40,7 @@
           "label": "Temperature unit",
           "type": "select",
           "value": "C",
-          "options": [
-            "C",
-            "F"
-          ]
+          "options": ["C", "F"]
         }
       }
     },
@@ -74,8 +71,18 @@
           "type": "color",
           "value": "#fff"
         },
-        "borderColor": {
-          "label": "Border color",
+        "backgroundColor": {
+          "label": "Background color",
+          "type": "color",
+          "value": "none"
+        },
+        "accentColor": {
+          "label": "Accent color",
+          "type": "color",
+          "value": "#fff"
+        },
+        "optionsColor": {
+          "label": "Options color",
           "type": "color",
           "value": "#fff"
         },
@@ -83,11 +90,7 @@
           "label": "Default Search Engine",
           "type": "select",
           "value": "Google",
-          "options": [
-            "Google",
-            "Bing",
-            "YouTube"
-          ]
+          "options": ["Google", "Bing", "YouTube"]
         }
       }
     },
@@ -122,10 +125,7 @@
           "label": "Format",
           "type": "select",
           "value": "24h",
-          "options": [
-            "24h",
-            "12h"
-          ]
+          "options": ["24h", "12h"]
         }
       }
     }

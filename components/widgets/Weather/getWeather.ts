@@ -53,6 +53,11 @@ function getWeather(
         if (!response.ok) {
           reject(Error('Error fetching weather data from API'));
         }
+        const fetchedData = await response.json();
+        if (fetchedData.error_message) {
+          reject(Error(fetchedData.error_message));
+        }
+        resolve(fetchedData);
       } catch (err) {
         reject(err);
       }

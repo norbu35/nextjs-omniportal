@@ -34,33 +34,6 @@ function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
   };
 }
 
-const optionStyles: StylesConfig<SearchEngine> = {
-  option: (provided, { data }) => ({
-    ...provided,
-    alignItems: 'center',
-    display: 'flex',
-    padding: '0.35em',
-
-    ':before': {
-      content: '""',
-      marginRight: '0.35em',
-      width: '1.25em',
-      height: '1.25em',
-      backgroundImage: `url(${data.icon.src})`,
-      backgroundSize: 'cover',
-    },
-  }),
-  control: (provided) => ({
-    ...provided,
-    backgroundColor: '#F1F6F9',
-    border: 'none',
-  }),
-  singleValue: (provided, { data }) => ({
-    ...provided,
-    ...inputIcon(data.icon),
-  }),
-};
-
 function Search({ state }: Props): JSX.Element {
   const { settings } = state;
   const defaultEngine =
@@ -71,6 +44,33 @@ function Search({ state }: Props): JSX.Element {
   const [searchEngine, setSearchEngine] =
     useState<SearchEngine>(defaultSearchEngine);
   const [query, setQuery] = useState<string>('');
+
+  const optionStyles: StylesConfig<SearchEngine> = {
+    option: (provided, { data }) => ({
+      ...provided,
+      alignItems: 'center',
+      display: 'flex',
+      padding: '0.35em',
+
+      ':before': {
+        content: '""',
+        marginRight: '0.35em',
+        width: '1.25em',
+        height: '1.25em',
+        backgroundImage: `url(${data.icon.src})`,
+        backgroundSize: 'cover',
+      },
+    }),
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: settings.optionsColor.value,
+      border: 'none',
+    }),
+    singleValue: (provided, { data }) => ({
+      ...provided,
+      ...inputIcon(data.icon),
+    }),
+  };
 
   function handleSearch(e: FormEvent): void {
     e.preventDefault();
@@ -94,15 +94,20 @@ function Search({ state }: Props): JSX.Element {
   }
 
   return (
-    <div
-      className={styles.container}
-      style={{ borderColor: `${settings.borderColor.value}` }}
-    >
-      <form className={styles.searchBarContainer} onSubmit={handleSearch}>
+    <div className={styles.container}>
+      <form
+        className={styles.searchBarContainer}
+        onSubmit={handleSearch}
+        style={{
+          borderColor: settings.accentColor.value,
+          background: settings.backgroundColor.value,
+        }}
+      >
         <FontAwesomeIcon
           className={styles.icon}
           icon={faMagnifyingGlass}
           size="xs"
+          style={{ color: `${settings.accentColor.value}` }}
         />
         <input
           className={styles.input}
