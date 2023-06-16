@@ -8,8 +8,8 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 0,
-          "y": 50
+          "x": 60,
+          "y": 1200
         },
         "size": {
           "width": 500,
@@ -51,8 +51,8 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 500,
-          "y": 500
+          "x": 550,
+          "y": 560
         },
         "size": {
           "width": 600,
@@ -90,8 +90,8 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 750,
-          "y": 200
+          "x": 735,
+          "y": 275
         },
         "size": {
           "width": 200,
