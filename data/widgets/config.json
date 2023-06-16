@@ -8,8 +8,8 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 60,
-          "y": 1200
+          "x": 1200,
+          "y": 60
         },
         "size": {
           "width": 500,
@@ -74,6 +74,11 @@
           "type": "color",
           "value": "#fff"
         },
+        "borderColor": {
+          "label": "Border color",
+          "type": "color",
+          "value": "#fff"
+        },
         "defaultSearchEngine": {
           "label": "Default Search Engine",
           "type": "select",
@@ -111,7 +116,7 @@
         "fontColor": {
           "label": "Font color",
           "type": "color",
-          "value": "#000"
+          "value": "#fff"
         },
         "hours": {
           "label": "Format",

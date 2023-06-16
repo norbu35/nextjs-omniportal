@@ -94,7 +94,10 @@ function Search({ state }: Props): JSX.Element {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ borderColor: `${settings.borderColor.value}` }}
+    >
       <form className={styles.searchBarContainer} onSubmit={handleSearch}>
         <FontAwesomeIcon
           className={styles.icon}
