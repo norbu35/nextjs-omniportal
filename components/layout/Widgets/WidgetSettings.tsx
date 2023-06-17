@@ -25,7 +25,7 @@ function WidgetSettings<T extends Record<string, any>>({
     setting: Setting;
     settingKey: keyof T;
   }) {
-    const { label, type, value } = setting;
+    const { label, type, value, options } = setting;
     const [valueState, setValueState] = useState(value);
     const [displayColorPicker, setDisplayColorPicker] =
       useState<boolean>(false);
@@ -63,80 +63,64 @@ function WidgetSettings<T extends Record<string, any>>({
       }));
     }
 
-    switch (type) {
-      case 'number':
-        return (
-          <label className={styles.setting} htmlFor={label}>
-            <div className={styles.label}>{label}</div>
-            <input
-              className={styles.input}
-              id={label}
-              type={type}
-              value={valueState}
-              onChange={handleChange}
-            />
-          </label>
-        );
-      case 'checkbox':
-        return (
-          <label className={styles.setting} htmlFor={label}>
-            <div className={styles.label}>{label}</div>
-            <input
-              className={styles.input}
-              id={label}
-              type={type}
-              checked={valueState === 'true'}
-              onChange={handleChange}
-            />
-          </label>
-        );
-      case 'select':
-        return (
-          <label className={styles.setting} htmlFor={label}>
-            <div className={styles.label}>{label}</div>
-            <div>
-              <select
-                className={styles.input}
-                id={label}
-                value={valueState}
-                onChange={handleChange}
-              >
-                {setting.options!.map((option) => {
-                  return (
-                    <option value={option} key={option}>
-                      {option}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </label>
-        );
-      case 'color':
-        return (
-          <label className={styles.setting} htmlFor={label}>
-            <div className={styles.label}>{label}</div>
-            <div className={styles.input}>
-              {displayColorPicker ? (
-                <div className={styles.colorPicker}>
-                  <SketchPicker
-                    color={valueState as Color}
-                    onChange={handleColorChange}
-                  />
-                </div>
-              ) : (
-                <div
-                  className={styles.button}
-                  style={{ background: valueState }}
-                  onClick={() => setDisplayColorPicker(!displayColorPicker)}
-                />
-              )}
-            </div>
-          </label>
-        );
-      default:
-        return <></>;
-    }
+    const inputMap: Record<string, JSX.Element> = {
+      number: (
+        <input
+          className={styles.input}
+          id={label}
+          type="number"
+          value={valueState}
+          onChange={handleChange}
+        />
+      ),
+      checkbox: (
+        <input
+          className={styles.input}
+          id={label}
+          type="input"
+          checked={valueState === 'true'}
+          onChange={handleChange}
+        />
+      ),
+      select: (
+        <select
+          className={styles.input}
+          id={label}
+          value={valueState}
+          onChange={handleChange}
+        >
+          {options &&
+            options.map((option) => {
+              return (
+                <option value={option} key={option}>
+                  {option}
+                </option>
+              );
+            })}
+        </select>
+      ),
+      color: displayColorPicker ? (
+        <div className={styles.colorPicker}>
+          <SketchPicker
+            color={valueState as Color}
+            onChange={handleColorChange}
+          />
+        </div>
+      ) : (
+        <div
+          className={styles.button}
+          style={{ background: valueState }}
+          onClick={() => setDisplayColorPicker(!displayColorPicker)}
+        />
+      ),
+    };
+
+    return (
+      <label className={styles.setting}>
+        <div className={styles.label}>{label}</div>
+        <div className={styles.input}>{inputMap[type]}</div>
+      </label>
+    );
   }
 
   return (
