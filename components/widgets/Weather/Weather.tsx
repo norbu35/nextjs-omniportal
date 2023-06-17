@@ -94,7 +94,7 @@ function Weather({ state }: Props) {
     <div
       className={styles.container}
       style={{
-        backgroundImage: settings.bgImg.value
+        backgroundImage: settings.backgroundImage.value
           ? currentWeatherBgImg
             ? `url(${currentWeatherBgImg.src})`
             : "url('/widgets/Weather/clear-day.jpg')"

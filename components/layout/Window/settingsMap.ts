@@ -14,7 +14,7 @@ interface CommonSettings {
 
 interface WeatherSettings extends CommonSettings {
   temperatureUnit: SettingValue<string>;
-  bgImg: SettingValue<string>;
+  backgroundImage: SettingValue<string>;
 }
 
 interface SearchSettings extends CommonSettings {
@@ -29,7 +29,7 @@ interface ClockSettings extends CommonSettings {
 }
 
 interface BannerSettings {
-  bgImg: SettingValue<string>;
+  backgroundImage: SettingValue<string>;
 }
 
 type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings;

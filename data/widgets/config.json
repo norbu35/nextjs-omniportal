@@ -31,7 +31,7 @@
           "type": "color",
           "value": "#fff"
         },
-        "bgImg": {
+        "backgroundImage": {
           "label": "Background image",
           "type": "checkbox",
           "value": "true"
@@ -40,7 +40,10 @@
           "label": "Temperature unit",
           "type": "select",
           "value": "C",
-          "options": ["C", "F"]
+          "options": [
+            "C",
+            "F"
+          ]
         }
       }
     },
@@ -90,7 +93,11 @@
           "label": "Default Search Engine",
           "type": "select",
           "value": "Google",
-          "options": ["Google", "Bing", "YouTube"]
+          "options": [
+            "Google",
+            "Bing",
+            "YouTube"
+          ]
         }
       }
     },
@@ -125,7 +132,10 @@
           "label": "Format",
           "type": "select",
           "value": "24h",
-          "options": ["24h", "12h"]
+          "options": [
+            "24h",
+            "12h"
+          ]
         }
       }
     }

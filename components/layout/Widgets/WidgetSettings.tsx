@@ -77,7 +77,7 @@ function WidgetSettings<T extends Record<string, any>>({
         <input
           className={styles.input}
           id={label}
-          type="input"
+          type="checkbox"
           checked={valueState === 'true'}
           onChange={handleChange}
         />
