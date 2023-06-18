@@ -58,6 +58,8 @@
     preferences, and customize the portal layout based on their interests and
     preferences.
 
+16. Developer cheat sheets
+
 Remember to prioritize user experience, maintain an up-to-date and reliable
 content database, and regularly update the website to reflect the changing
 needs and trends of users.
