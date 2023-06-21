@@ -23,7 +23,7 @@ interface Props {
   windowRefs: HTMLDivElement[];
   children: ReactElement;
   isUnlocked: boolean;
-  enableCollision: boolean;
+  isCollisionEnabled: boolean;
   displayBorder: boolean;
 }
 
@@ -34,7 +34,7 @@ function Window(
     setAppState,
     windowRefs,
     isUnlocked,
-    enableCollision,
+    isCollisionEnabled,
     displayBorder,
     children,
   }: Props,
@@ -43,8 +43,8 @@ function Window(
   const [windowState, setWindowState] = useState(widgetState.window);
   const [settingsState, setSettingsState] = useState(widgetState.settings);
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
-  const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
-  const collisionIsEnabled = enableCollision;
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
+  const collisionIsEnabled = isCollisionEnabled;
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
     useWindow(windowState, windowRefs, setWindowState, collisionIsEnabled);
 
@@ -98,8 +98,8 @@ function Window(
           {isUnlocked && (
             <TitleBar
               setIsVisible={setIsVisible}
-              setSettingsIsOpen={setSettingsIsOpen}
-              settingsIsOpen={settingsIsOpen}
+              setSettingsIsOpen={setIsSettingsOpen}
+              settingsIsOpen={isSettingsOpen}
             >
               {capitalize(name)}
             </TitleBar>
@@ -115,8 +115,8 @@ function Window(
           </div>
         </Rnd>
       </div>
-      {settingsIsOpen && (
-        <SettingsLayout name={name} setIsVisible={setSettingsIsOpen}>
+      {isSettingsOpen && (
+        <SettingsLayout name={name} setIsVisible={setIsSettingsOpen}>
           <SettingsComponent
             settingsState={settingsState}
             setSettingsState={setSettingsState}

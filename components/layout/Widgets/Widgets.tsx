@@ -21,7 +21,7 @@ function Widgets(): JSX.Element {
     getStateFromStorage('portalState', defaultConfig),
   );
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
-  const [settingsIsOpen, setSettingsIsOpen] = useState<boolean>(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [background] = useState(defaultImg);
   const windowRefs = useRef<HTMLDivElement[]>([]);
 
@@ -43,12 +43,12 @@ function Widgets(): JSX.Element {
       <div className={styles.widgetsPanel}>
         <WidgetsPanel
           lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
-          setSettingsIsOpen={() => setSettingsIsOpen(!settingsIsOpen)}
+          setSettingsIsOpen={() => setIsSettingsOpen(!isSettingsOpen)}
         />
       </div>
-      {settingsIsOpen && (
+      {isSettingsOpen && (
         <div className={styles.widgetSettings}>
-          <Settings name="Widgets" setIsVisible={setSettingsIsOpen}>
+          <Settings name="Widgets" setIsVisible={setIsSettingsOpen}>
             <WidgetsSettings
               state={[appState, setAppState]}
               lock={[isUnlocked, () => setIsUnlocked(!isUnlocked)]}
@@ -66,7 +66,7 @@ function Widgets(): JSX.Element {
               widgetState={widgetState}
               setAppState={setAppState}
               isUnlocked={isUnlocked}
-              enableCollision={appState.global.enableCollision}
+              isCollisionEnabled={appState.global.enableCollision}
               displayBorder={appState.global.displayBorder}
               windowRefs={windowRefs.current}
               ref={addWindowRef}

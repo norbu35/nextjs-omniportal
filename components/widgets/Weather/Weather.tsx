@@ -72,8 +72,8 @@ function Weather({ state }: Props) {
     currentWeatherBgImg = weatherBgImg;
   }
 
-  function handleSwitchTab(viewType: TabType): void {
-    setActiveTab(viewType);
+  function handleSwitchTab(tab: TabType): void {
+    setActiveTab(tab);
   }
 
   function toggleForecast() {

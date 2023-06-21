@@ -27,8 +27,7 @@ function WidgetSettings<T extends Record<string, any>>({
   }) {
     const { label, type, value, options } = setting;
     const [valueState, setValueState] = useState(value);
-    const [displayColorPicker, setDisplayColorPicker] =
-      useState<boolean>(false);
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
 
     function handleChange(
       e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -99,7 +98,7 @@ function WidgetSettings<T extends Record<string, any>>({
             })}
         </select>
       ),
-      color: displayColorPicker ? (
+      color: isColorPickerOpen ? (
         <div className={styles.colorPicker}>
           <SketchPicker
             color={valueState as Color}
@@ -110,7 +109,7 @@ function WidgetSettings<T extends Record<string, any>>({
         <div
           className={styles.button}
           style={{ background: valueState }}
-          onClick={() => setDisplayColorPicker(!displayColorPicker)}
+          onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
         />
       ),
     };

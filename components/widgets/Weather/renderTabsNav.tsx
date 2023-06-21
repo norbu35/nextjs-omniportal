@@ -9,7 +9,7 @@ interface Props {
 const tabs = ['hourly', 'daily', 'precipitation'] as const;
 type TabType = (typeof tabs)[number];
 
-function TabsNav({ activeTab, handleSwitchTab: handleSwitchView }: Props) {
+function TabsNav({ activeTab, handleSwitchTab }: Props) {
   return (
     <ul className={styles.tabsNav}>
       {tabs.map((tab) => {
@@ -20,7 +20,7 @@ function TabsNav({ activeTab, handleSwitchTab: handleSwitchView }: Props) {
                 ? `${styles.tabActive} ${styles.tabButton}`
                 : `${styles.tabButton}`
             }
-            onClick={() => handleSwitchView(tab as TabType)}
+            onClick={() => handleSwitchTab(tab as TabType)}
             key={tab}
           >
             {capitalize(tab)}
