@@ -95,6 +95,9 @@ dependencies:
   tailwindcss:
     specifier: 3.3.1
     version: 3.3.1(postcss@8.4.22)
+  toml:
+    specifier: ^3.0.0
+    version: 3.0.0
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -3866,6 +3869,10 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+
+  /toml@3.0.0:
+    resolution: {integrity: sha512-y/mWCZinnvxjTKYhJ+pYxwD0mRLVvOtdS2Awbgxln6iEnt4rk0yBxeSBHkGJcPucRiG0e55mwWp+g/05rsrd6w==}
+    dev: false
 
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}

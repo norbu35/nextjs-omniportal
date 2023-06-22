@@ -8,8 +8,8 @@ import WidgetsSettings from './WidgetsSettings';
 import widgetsMap from './widgetsMap';
 import { AppState } from '../types';
 import styles from './Widgets.module.scss';
-import defaultConfig from '@/data/widgets/config.json';
 import defaultImg from '/public/widgets/Banner/banner.jpg';
+import defaultConfig from '@/data/widgets/config.json';
 
 const getStateFromStorage = (key: string, defaultVal: AppState) => {
   const stored = localStorage.getItem(key);
