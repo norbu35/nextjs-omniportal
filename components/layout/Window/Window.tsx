@@ -42,6 +42,10 @@ function Window(
 ): JSX.Element {
   const [windowState, setWindowState] = useState(widgetState.window);
   const [settingsState, setSettingsState] = useState(widgetState.settings);
+  const [dimensions, setDimensions] = useState({
+    height: window.innerWidth,
+    width: window.innerWidth,
+  });
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const collisionIsEnabled = isCollisionEnabled;
@@ -68,15 +72,29 @@ function Window(
       isVisible: isVisible,
     }));
   }, [isVisible]);
+  
+  useEffect(() => {
+    function resizeListener() {
+      setDimensions({
+        width: window.innerHeight,
+        height: window.innerHeight,
+      });
+    }
+    
+    window.addEventListener('resize', resizeListener);
+
+    return () => window.removeEventListener('resize', resizeListener);
+  }, []);
 
   const SettingsComponent = settingsMap[name as keyof typeof settingsMap];
-
+  const initialX = window.innerWidth / 2 - windowState.size.width / 2;
+  console.log('rendered');
   return (
     <>
       <div className={styles.container} ref={ref}>
         <Rnd
           position={{
-            x: windowState.position.x,
+            x: windowState.position.x || initialX, 
             y: windowState.position.y,
           }}
           size={{
@@ -120,6 +138,7 @@ function Window(
           <SettingsComponent
             settingsState={settingsState}
             setSettingsState={setSettingsState}
+            setWindowState={setWindowState}
           />
         </SettingsLayout>
       )}

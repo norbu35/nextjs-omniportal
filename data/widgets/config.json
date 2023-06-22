@@ -40,10 +40,7 @@
           "label": "Temperature unit",
           "type": "select",
           "value": "C",
-          "options": [
-            "C",
-            "F"
-          ]
+          "options": ["C", "F"]
         }
       }
     },
@@ -51,7 +48,7 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 550,
+          "x": 0,
           "y": 560
         },
         "size": {
@@ -93,11 +90,7 @@
           "label": "Default Search Engine",
           "type": "select",
           "value": "Google",
-          "options": [
-            "Google",
-            "Bing",
-            "YouTube"
-          ]
+          "options": ["Google", "Bing", "YouTube"]
         }
       }
     },
@@ -105,8 +98,8 @@
       "window": {
         "isVisible": true,
         "position": {
-          "x": 735,
-          "y": 275
+          "x": 0,
+          "y": 0
         },
         "size": {
           "width": 200,
@@ -132,10 +125,7 @@
           "label": "Format",
           "type": "select",
           "value": "24h",
-          "options": [
-            "24h",
-            "12h"
-          ]
+          "options": ["24h", "12h"]
         }
       }
     }

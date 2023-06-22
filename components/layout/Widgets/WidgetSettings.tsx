@@ -1,10 +1,13 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { Color, ColorResult, SketchPicker } from 'react-color';
 import styles from './WidgetSettings.module.scss';
+import Button from '@/components/composite/Button/Button';
+import { WindowState } from '../Window/types';
 
 interface WidgetSettingsProps<T> {
   settingsState: T;
   setSettingsState: Dispatch<SetStateAction<T>>;
+  setWindowState: Dispatch<SetStateAction<WindowState>>;
 }
 
 interface Setting {
@@ -17,7 +20,19 @@ interface Setting {
 function WidgetSettings<T extends Record<string, any>>({
   settingsState,
   setSettingsState,
+  setWindowState,
 }: WidgetSettingsProps<T>) {
+
+  function handleCenter() {
+    setWindowState((prevState) => ({
+      ...prevState,
+      position: {
+        ...prevState.position,
+        x: 0,
+      },
+    }));
+  }
+
   function SettingElement({
     setting,
     settingKey,
@@ -47,6 +62,7 @@ function WidgetSettings<T extends Record<string, any>>({
         },
       }));
     }
+
 
     function handleColorChange(
       color: ColorResult,
@@ -133,6 +149,7 @@ function WidgetSettings<T extends Record<string, any>>({
           />
         );
       })}
+      <Button type="button" variant="primary" onClick={handleCenter}>Center X</Button>
     </div>
   );
 }
