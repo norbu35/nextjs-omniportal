@@ -42,7 +42,7 @@ function Window(
 ): JSX.Element {
   const [windowState, setWindowState] = useState(widgetState.window);
   const [settingsState, setSettingsState] = useState(widgetState.settings);
-  const [dimensions, setDimensions] = useState({
+  const [, setDimensions] = useState({
     height: window.innerWidth,
     width: window.innerWidth,
   });
