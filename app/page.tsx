@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable import/no-extraneous-dependencies */
-import { SessionProvider, useSession } from 'next-auth/react';
+import { SessionProvider } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import '@fontsource/inter';
 
