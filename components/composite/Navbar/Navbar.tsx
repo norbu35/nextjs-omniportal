@@ -10,7 +10,7 @@ function Navbar(): JSX.Element {
         <li>News</li>
         <li>Community</li>
         <li>Help</li>
-        {session ? null : <li><Link href="/api/auth/signin/">Log in</Link></li>}
+        {session ? null : <li className={styles.link}><Link href="/api/auth/signin/">Log in</Link></li>}
         {session && <li className={styles.link} onClick={() => signOut()}>Log out</li>}
       </ul>
     </nav>
