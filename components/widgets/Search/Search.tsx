@@ -25,8 +25,8 @@ function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
 
     ':before': {
       content: '""',
-      marginRight: 5,
-      width: 20,
+      marginRight: 10,
+      width: 30,
       height: 20,
       backgroundSize: 'cover',
       backgroundImage: `url(${icon.src})`,
@@ -54,17 +54,22 @@ function Search({ state }: Props): JSX.Element {
 
       ':before': {
         content: '""',
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
         marginRight: '0.35em',
-        width: '1.25em',
-        height: '1.25em',
+        width: '1.25rem',
+        height: '1.25rem',
         backgroundImage: `url(${data.icon.src})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
       },
     }),
     control: (provided) => ({
       ...provided,
       backgroundColor: settings.optionsColor.value,
       border: 'none',
+      display: 'flex',
     }),
     singleValue: (provided, { data }) => ({
       ...provided,

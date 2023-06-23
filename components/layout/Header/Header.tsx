@@ -3,6 +3,7 @@
 import Navbar from '@/components/composite/Navbar/Navbar';
 import styles from './Header.module.scss';
 import { Rnd } from 'react-rnd';
+import { SessionProvider } from 'next-auth/react';
 
 function Header() {
   return (
@@ -26,12 +27,14 @@ function Header() {
         color: 'white',
       }}
     >
-      <header className={styles.container}>
-        <div className={styles.innerContainer}>
-          <div className={styles.banner}>OmniPortal</div>
-          <Navbar />
-        </div>
-      </header>
+      <SessionProvider>
+        <header className={styles.container}>
+          <div className={styles.innerContainer}>
+            <div className={styles.banner}>OmniPortal</div>
+            <Navbar />
+          </div>
+        </header>
+      </SessionProvider>
     </Rnd>
   );
 }

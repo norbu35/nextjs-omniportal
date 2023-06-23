@@ -48,9 +48,8 @@ function Window(
   });
   const [isVisible, setIsVisible] = useState<boolean>(windowState.isVisible);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
-  const collisionIsEnabled = isCollisionEnabled;
   const { handleDrag, handleDragStop, handleResize, handleResizeStop } =
-    useWindow(windowState, windowRefs, setWindowState, collisionIsEnabled);
+    useWindow(windowState, windowRefs, setWindowState, isCollisionEnabled);
 
   useEffect(() => {
     setAppState((prevState) => ({
@@ -101,10 +100,10 @@ function Window(
             width: windowState.size.width,
             height: windowState.size.height,
           }}
-          maxWidth={windowState.maxWidth}
-          minWidth={windowState.minWidth}
-          maxHeight={windowState.maxHeight}
-          minHeight={windowState.minHeight}
+          maxWidth={windowState.size.maxWidth}
+          minWidth={windowState.size.minWidth}
+          maxHeight={windowState.size.maxHeight}
+          minHeight={windowState.size.minHeight}
           disableDragging={!isUnlocked}
           enableResizing={isUnlocked}
           onDrag={handleDrag}

@@ -7,9 +7,9 @@ export interface WindowState {
   size: {
     width: number;
     height: number;
+    maxWidth: number | string;
+    minWidth: number | string;
+    maxHeight: number | string;
+    minHeight: number | string;
   };
-  maxWidth: number | string;
-  minWidth: number | string;
-  maxHeight: number | string;
-  minHeight: number | string;
 }

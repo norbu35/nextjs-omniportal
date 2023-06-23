@@ -30,6 +30,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.4.1",
     "next": "13.4.4",
+    "next-auth": "^4.22.1",
     "normalize.css": "^8.0.1",
     "postcss": "8.4.22",
     "postcss-flexbugs-fixes": "^5.0.2",

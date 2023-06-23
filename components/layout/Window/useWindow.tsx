@@ -25,7 +25,7 @@ function useWindow(
   windowState: WindowState,
   windowRefs: HTMLDivElement[],
   setWindowState: Dispatch<SetStateAction<WindowState>>,
-  collisionIsEnabled: boolean,
+  isCollisionEnabled: boolean,
 ) {
   const [safeState, setSafeState] = useState<WindowState>(windowState);
   const [enableCollision, setEnableCollision] = useState<boolean>(false);
@@ -85,7 +85,7 @@ function useWindow(
   };
 
   function handleDragStop(_e: any, d: DraggableData) {
-    if (collisionIsEnabled && enableCollision) {
+    if (isCollisionEnabled && enableCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         position: {
@@ -112,7 +112,7 @@ function useWindow(
     _delta: any,
     position: { x: number; y: number },
   ) {
-    if (collisionIsEnabled && enableCollision) {
+    if (isCollisionEnabled && enableCollision) {
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         size: safeState.size,

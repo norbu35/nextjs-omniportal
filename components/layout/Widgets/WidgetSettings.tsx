@@ -149,7 +149,7 @@ function WidgetSettings<T extends Record<string, any>>({
           />
         );
       })}
-      <Button type="button" variant="primary" onClick={handleCenter}>Center X</Button>
+      <Button type="button" variant="primary" onClick={handleCenter}>Center x</Button>
     </div>
   );
 }
