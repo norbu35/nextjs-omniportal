@@ -57,6 +57,7 @@ function useWindow(
           y: newPos.y,
         },
         size: {
+          ...prevState.size,
           width: newSize.width,
           height: newSize.height,
         },
