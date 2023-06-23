@@ -27,6 +27,7 @@ function Motd({ state }: Props) {
   }, []);
 
   return (
+
     <div className={styles.container} style={{ color: settings.fontColor.value, fontSize: settings.fontSize.value }}>
       {session && (
         <div className={styles.greeting}>
