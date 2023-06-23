@@ -123,6 +123,7 @@ function useWindow(
       setWindowState((prevState: WindowState) => ({
         ...prevState,
         size: {
+          ...prevState.size,
           width: parseInt(elRef.style.width),
           height: parseInt(elRef.style.height),
         },
