@@ -1,8 +1,8 @@
 'use client';
 /* eslint-disable import/no-extraneous-dependencies */
+import { SessionProvider, useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import '@fontsource/inter';
-import { SessionProvider } from 'next-auth/react';
 
 import 'normalize.css/normalize.css';
 const Widgets = dynamic(() => import('../components/layout/Widgets/Widgets'), {
