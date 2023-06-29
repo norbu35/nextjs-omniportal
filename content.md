@@ -60,6 +60,8 @@
 
 16. Developer cheat sheets
 
+17. Make the search bar fuzzyfind on all search engines, include history and autocompletion
+
 Remember to prioritize user experience, maintain an up-to-date and reliable
 content database, and regularly update the website to reflect the changing
 needs and trends of users.
