@@ -31,13 +31,19 @@ interface ClockSettings extends CommonSettings {
 interface MotdSettings extends CommonSettings {
   messages: string[];
 }
-type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings | MotdSettings;
+
+interface StorageSettings extends CommonSettings {
+
+}
+
+type SettingsTypes = WeatherSettings | SearchSettings | ClockSettings | MotdSettings | StorageSettings;
 
 const settingsMap: Record<string, React.ComponentType<any>> = {
   weather: WidgetSettings<WeatherSettings>,
   search: WidgetSettings<SearchSettings>,
   clock: WidgetSettings<ClockSettings>,
   motd: WidgetSettings<MotdSettings>,
+  storage: WidgetSettings<StorageSettings>,
 };
 
 export { settingsMap };
@@ -46,5 +52,6 @@ export type {
   SearchSettings,
   ClockSettings,
   MotdSettings,
+  StorageSettings,
   SettingsTypes,
 };

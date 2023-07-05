@@ -40,7 +40,10 @@
           "label": "Temperature unit",
           "type": "select",
           "value": "C",
-          "options": ["C", "F"]
+          "options": [
+            "C",
+            "F"
+          ]
         }
       }
     },
@@ -90,7 +93,11 @@
           "label": "Default Search Engine",
           "type": "select",
           "value": "Google",
-          "options": ["Google", "Bing", "YouTube"]
+          "options": [
+            "Google",
+            "Bing",
+            "YouTube"
+          ]
         }
       }
     },
@@ -125,7 +132,10 @@
           "label": "Format",
           "type": "select",
           "value": "24h",
-          "options": ["24h", "12h"]
+          "options": [
+            "24h",
+            "12h"
+          ]
         }
       }
     },
@@ -157,6 +167,35 @@
           "value": "#fff"
         },
         "messages": []
+      }
+    },
+    "storage": {
+      "window": {
+        "isVisible": false,
+        "position": {
+          "x": 0,
+          "y": 100
+        },
+        "size": {
+          "width": 400,
+          "height": -1,
+          "maxWidth": -1,
+          "minWidth": -1,
+          "maxHeight": -1,
+          "minHeight": -1
+        }
+      },
+      "settings": {
+        "fontSize": {
+          "label": "Font size",
+          "type": "number",
+          "value": 24
+        },
+        "fontColor": {
+          "label": "Font color",
+          "type": "color",
+          "value": "#fff"
+        }
       }
     }
   }

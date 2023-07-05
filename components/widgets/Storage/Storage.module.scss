@@ -1,0 +1,12 @@
+.container {
+  height: 100%;
+  background: white;
+
+  .fileList {
+    margin: 0;
+
+    .listItem {
+      list-style-type: none;
+    }
+  }
+}

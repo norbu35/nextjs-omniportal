@@ -126,6 +126,7 @@ function Window(
             style={{
               border: displayBorder ? '1px solid black' : 'none',
               borderRadius: isUnlocked ? '0 0 1rem 1rem' : '1rem',
+              overflow: 'hidden',
             }}
           >
             {children}
