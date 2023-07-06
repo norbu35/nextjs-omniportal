@@ -36,7 +36,7 @@ function DropZone({ children }: Props): JSX.Element {
     if (files && files.length > 0) {
       const existingFiles = fileData.fileList.map((f: File) => f.name);
       files = files.filter((f) => !existingFiles.includes(f.name));
-      fileDispatch({ type: 'add_file_to_list', files });
+      fileDispatch({ type: 'add_file', files });
       fileDispatch({ type: 'set_inDropZone', inDropZone: false });
     }
   };

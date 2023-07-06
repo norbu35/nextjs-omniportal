@@ -23,11 +23,10 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
     if (e.target.files) {
       files = [...e.target.files];
     }
-
     if (files && files.length > 0) {
       const existingFiles = fileData.fileList.map((f: File) => f.name);
       files = files.filter((f) => !existingFiles.includes(f.name));
-      dispatchFile({ type: 'add_file_to_list', files });
+      dispatchFile({ type: 'add_file', files });
     }
   }
 
@@ -49,15 +48,34 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
               multiple
               onChange={handleFileSelect}
             />
-            {fileData.fileList && (
+          </label>
+          {fileData.fileList.length > 0 && (
+            <>
               <ul className={styles.fileList}>
                 Selected files:
-                {fileData.fileList.map((f) => (
-                  <li className={styles.listItem} key={f.name}>{f.name}</li>
+                {fileData.fileList.map((file) => (
+                  <div key={file.name}>
+                    <li className={styles.listItem}>{file.name}</li>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatchFile({ type: 'remove_file', file })
+                      }
+                      key={file.name}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 ))}
               </ul>
-            )}
-          </label>
+              <button
+                type="button"
+                onClick={() => dispatchFile({ type: 'clear_list' })}
+              >
+                Clear selection
+              </button>
+            </>
+          )}
         </DropZone>
       </div>
     </div>

@@ -5,14 +5,11 @@
 
   .upload {
     justify-content: center;
-    align-items: center;
     display: flex;
     margin-top: 1rem;
-    border: 1px solid red;
-
-    * {
-      cursor: pointer;
-    }
+    min-height: 6rem;
+    border: 1px dashed black;
+    cursor: pointer;
   }
 
   .fileList {
@@ -25,6 +22,7 @@
   }
 
   .fileInput {
+    height: 100%;
     visibility: hidden;
   }
 }
