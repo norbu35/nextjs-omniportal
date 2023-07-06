@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es2015",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,9 +25,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@comps": ["./components/"],
-      "@theme": ["./theme/main.scss"]
+      "@/*": [
+        "./*"
+      ],
+      "@comps": [
+        "./components/"
+      ],
+      "@theme": [
+        "./theme/main.scss"
+      ]
     }
   },
   "include": [
@@ -35,5 +45,7 @@
     "tailwind.config.js",
     "/app/app/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

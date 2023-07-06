@@ -1,12 +1,30 @@
 .container {
   height: 100%;
   background: white;
+  padding: 1rem;
+
+  .upload {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 1rem;
+    border: 1px solid red;
+
+    * {
+      cursor: pointer;
+    }
+  }
 
   .fileList {
     margin: 0;
+    padding: 0;
 
     .listItem {
       list-style-type: none;
     }
+  }
+
+  .fileInput {
+    visibility: hidden;
   }
 }
