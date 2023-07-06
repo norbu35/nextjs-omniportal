@@ -17,6 +17,7 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
   if (!session)
     return <div style={{ textAlign: 'center' }}>Login to use Storage</div>;
   const { settings } = initialState;
+  console.log(settings);
 
   function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     let files;
