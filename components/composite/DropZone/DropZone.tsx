@@ -43,7 +43,6 @@ function DropZone({ children }: Props): JSX.Element {
 
   return (
     <div
-      style={{ height: '100%' }}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
