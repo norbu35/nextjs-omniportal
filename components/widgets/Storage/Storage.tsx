@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import DropZone from '@/components/composite/DropZone/DropZone';
 import { StorageSettings } from '@/components/layout/Window/settingsMap';
@@ -12,68 +12,72 @@ interface Props {
 
 function Storage({ state: initialState }: Props): JSX.Element | null {
   const [fileData, dispatchFile] = useContext(FileSelectionContext);
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const { data: session } = useSession();
 
   if (!session)
     return <div style={{ textAlign: 'center' }}>Login to use Storage</div>;
+
   const { settings } = initialState;
   console.log(settings);
 
   function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     let files;
+
     if (e.target.files) {
       files = [...e.target.files];
     }
+
     if (files && files.length > 0) {
       const existingFiles = fileData.fileList.map((f: File) => f.name);
       files = files.filter((f) => !existingFiles.includes(f.name));
+
       dispatchFile({ type: 'add_file', files });
+      setUploadStatus(null);
     }
   }
 
   async function handleUpload(e: FormEvent) {
     e.preventDefault();
-    try {
-      const keys: string[] = [];
-      for (const file of fileData.fileList) {
-        keys.push(file.name);
-      }
-      const requestBody = { keys };
 
-      const response = await fetch('/api/getUrl', {
+    try {
+      const keys = fileData.fileList.map((file) => file.name);
+      const requestBody = { keys };
+      const response = await fetch('/api/files/upload/getUrl', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
       }).then((res) => res.json());
-
+      
       for (const url of response.urls) {
         const data = fileData.fileList.find((file) => file.name === url.key);
+
         try {
           const res = await fetch(url.url, {
             method: 'PUT',
             headers: {
-              'Content-Length': new Blob([data]).size.toString(),
+              'Content-Length': new Blob([data!]).size.toString(),
             },
             body: data,
           });
           if (res.ok) {
-            const responseBody = await res.text();
-            console.log(responseBody);
+            dispatchFile({ type: 'clear_list' });
+            setUploadStatus('Upload successful');
           } else {
             throw new Error('Request failed');
           }
         } catch (err) {
+          setUploadStatus('Error ocurred');
           console.error(err);
         }
       }
     } catch (err) {
+      setUploadStatus('Error ocurred');
       console.log(err);
     }
   }
-
-  console.log(fileData);
 
   return (
     <div className={styles.container}>
@@ -95,6 +99,7 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
                 onChange={handleFileSelect}
               />
             </label>
+            {uploadStatus}
             {fileData.fileList.length > 0 && (
               <>
                 <ul className={styles.fileList}>
