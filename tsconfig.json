@@ -27,12 +27,6 @@
     "paths": {
       "@/*": [
         "./*"
-      ],
-      "@comps": [
-        "./components/"
-      ],
-      "@theme": [
-        "./theme/main.scss"
       ]
     }
   },

@@ -1,9 +1,9 @@
 'use client';
 
+import { SessionProvider } from 'next-auth/react';
+import { Rnd } from 'react-rnd';
 import Navbar from '@/components/composite/Navbar/Navbar';
 import styles from './Header.module.scss';
-import { Rnd } from 'react-rnd';
-import { SessionProvider } from 'next-auth/react';
 
 function Header() {
   return (

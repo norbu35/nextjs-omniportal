@@ -64,18 +64,18 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
           });
           if (res.ok) {
             dispatchFile({ type: 'clear_list' });
-            setUploadStatus('Upload successful');
+            setUploadStatus('Upload successful.');
           } else {
-            throw new Error('Request failed');
+            throw new Error('HTTP request failed.');
           }
         } catch (err) {
-          setUploadStatus('Error ocurred');
+          setUploadStatus('Error ocurred while uploading.');
           console.error(err);
         }
       }
     } catch (err) {
-      setUploadStatus('Error ocurred');
-      console.log(err);
+      setUploadStatus('Error ocurred while processing files.');
+      console.error(err);
     }
   }
 

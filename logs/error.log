@@ -1,0 +1,21 @@
+undefined: error -> PrismaClientValidationError: 
+Invalid `prisma.user.upsert()` invocation in
+/home/norbu/workspace/projects/portal/prisma/seed.ts:6:34
+
+  3 import { now } from 'next-auth/client/_utils';
+  4 
+  5 async function main() {
+→ 6   const user = await prisma.user.upsert({
+        where: {
+          email: "norbu.erdene@gmail.com"
+        },
+        update: {},
+        create: {
+          name: "Admin",
+          email: "norbu.erdene@gmail.com",
+          emailVerified: "1689413407"
+                         ~~~~~~~~~~~~
+        }
+      })
+
+Invalid value for argument `emailVerified`: input contains invalid characters. Expected ISO-8601 DateTime.

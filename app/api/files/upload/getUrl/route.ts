@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { logger } from '@/utils/logging/logger';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import {
   getSignedUrl,
@@ -28,7 +29,7 @@ async function handler(req: NextRequest) {
       urls.push({ key, url: clientUrl });
     }
   } catch (err) {
-    console.error(err);
+    logger.error({ message: err, level: 'error' });
   }
 
   return NextResponse.json({ urls });

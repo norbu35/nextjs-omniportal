@@ -87,7 +87,6 @@ function Window(
 
   const SettingsComponent = settingsMap[name as keyof typeof settingsMap];
   const initialX = window.innerWidth / 2 - windowState.size.width / 2;
-  console.log('rendered');
   return (
     <>
       <div className={styles.container} ref={ref}>
