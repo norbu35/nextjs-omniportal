@@ -1,17 +1,29 @@
-import  prisma  from './client';
+import bcryptjs from 'bcryptjs';
 import { logger } from '../utils/logging/logger';
+import prisma from './client';
 
 async function main() {
-  const user = await prisma.user.upsert({
-    where: { email: 'norbu.erdene@gmail.com' },
-    update: {},
-    create: {
-      name: 'Admin',
-      email: 'norbu.erdene@gmail.com',
-    },
-  });
+  const PASSWORD = 'secret';
 
-  logger.info({ message: 'User created: ' + JSON.stringify(user), level: 'info' });
+  try {
+    const hash = await bcryptjs.hash(PASSWORD, 10);
+    const user = await prisma.user.upsert({
+      where: { email: 'norbu.erdene@gmail.com' },
+      update: {},
+      create: {
+        name: 'Admin',
+        email: 'norbu.erdene@gmail.com',
+        password: hash,
+      },
+    });
+
+    logger.info({
+      message: 'User created: ' + JSON.stringify(user),
+      level: 'info',
+    });
+  } catch (err) {
+    logger.error({ message: 'Error creating user: ' + err, level: 'error' });
+  }
 }
 
 main()

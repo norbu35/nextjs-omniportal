@@ -1,15 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import NextAuth from 'next-auth';
-import { Adapter } from 'next-auth/adapters';
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import bcryptjs from 'bcryptjs';
 import GithubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { Adapter } from 'next-auth/adapters';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/prisma/client';
 
 const handler = NextAuth({
   adapter: PrismaAdapter(prisma) as Adapter<boolean>,
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID!,
@@ -24,14 +28,41 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET!,
     }),
     CredentialsProvider({
+      id: 'credentials',
       name: 'password',
       credentials: {
-        username: { label: 'Email', type: 'text', placeholder: 'jdoe@example.com' },
-        password: { label: 'Password', type: 'password', placeholder: 'hunter2' },
+        email: {
+          label: 'Email',
+          type: 'email',
+          placeholder: 'jdoe@example.com',
+        },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: 'hunter2',
+        },
       },
-      async authorize(credentials, req) {
-        console.log('credentials ', credentials, '\nreq', req);
-        return { id: '1', name: 'Admin', email: 'admin@admin.com' };
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
+
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
+
+        if (
+          !user ||
+          !(await bcryptjs.compare(credentials.password, user.password!))
+        ) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+        };
       },
     }),
   ],
