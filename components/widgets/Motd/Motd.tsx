@@ -8,7 +8,7 @@ interface Props {
   state: WidgetState<MotdSettings>
 }
 
-function Motd({ state }: Props) {
+export default function Motd({ state }: Props) {
   const { settings } = state;
   const [greeting, setGreeting] = useState<string | null>('Hello');
   const { data: session } = useSession();
@@ -36,5 +36,3 @@ function Motd({ state }: Props) {
     </div>
   );
 }
-
-export default Motd;

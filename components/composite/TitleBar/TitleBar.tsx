@@ -36,7 +36,7 @@ function TitleBarButtons({ closeWindow, toggleSettings }: ButtonsProps) {
   );
 }
 
-function TitleBar({
+export default function TitleBar({
   setIsVisible,
   setSettingsIsOpen,
   settingsIsOpen,
@@ -54,5 +54,3 @@ function TitleBar({
     </div>
   );
 }
-
-export default TitleBar;

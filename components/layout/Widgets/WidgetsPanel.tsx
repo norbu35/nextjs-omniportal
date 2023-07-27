@@ -7,7 +7,7 @@ interface Props {
   setSettingsIsOpen: () => void;
 }
 
-function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
+export default function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
   const [isUnlocked, setIsUnlocked] = lock;
 
   return (
@@ -53,5 +53,3 @@ function WidgetsPanel({ lock, setSettingsIsOpen }: Props) {
     </Rnd>
   );
 }
-
-export default WidgetsPanel;

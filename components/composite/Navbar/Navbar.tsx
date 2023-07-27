@@ -2,7 +2,7 @@ import  Link  from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import styles from './Navbar.module.scss';
 
-function Navbar(): JSX.Element {
+export default function Navbar(): JSX.Element {
   const { data: session } = useSession();
   return (
     <nav className={styles.container}>
@@ -16,5 +16,3 @@ function Navbar(): JSX.Element {
     </nav>
   );
 }
-
-export default Navbar;

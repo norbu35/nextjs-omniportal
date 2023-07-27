@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import bcryptjs from 'bcryptjs';
 import GithubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
@@ -9,7 +9,7 @@ import { Adapter } from 'next-auth/adapters';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/prisma/client';
 
-const handler = NextAuth({
+const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter<boolean>,
   session: {
     strategy: 'jwt',
@@ -66,6 +66,9 @@ const handler = NextAuth({
       },
     }),
   ],
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST, authOptions };
+

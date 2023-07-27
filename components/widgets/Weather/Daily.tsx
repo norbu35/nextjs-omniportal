@@ -30,7 +30,7 @@ function TemperatureCell({ temp }: { temp: number }): JSX.Element {
   return <td className={styles.data}>{temp}°</td>;
 }
 
-function Daily({ weatherData }: Props): JSX.Element {
+export default function Daily({ weatherData }: Props): JSX.Element {
   const { daily } = weatherData;
   const dailyTemps = daily.time.map<[Date, number, number, number]>(
     (day, index) => [
@@ -72,5 +72,3 @@ function Daily({ weatherData }: Props): JSX.Element {
     </div>
   );
 }
-
-export default Daily;

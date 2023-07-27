@@ -34,7 +34,7 @@ function PrecipitationCell({ precip }: { precip: number }) {
   return <td className={styles.data}>{precip}%</td>;
 }
 
-function Hourly({ weatherData }: Props): JSX.Element {
+export default function Hourly({ weatherData }: Props): JSX.Element {
   const { hourly } = weatherData;
   const currentDate = new Date();
   const hourlyTemps = hourly.time
@@ -79,5 +79,3 @@ function Hourly({ weatherData }: Props): JSX.Element {
     </div>
   );
 }
-
-export default Hourly;

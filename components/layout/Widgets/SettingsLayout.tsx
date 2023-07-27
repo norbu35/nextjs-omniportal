@@ -16,7 +16,7 @@ const SETTINGS_HEIGHT = 300;
 const SETTINGS_X = window.innerWidth / 2 - SETTINGS_WIDTH / 2;
 const SETTINGS_Y = window.innerHeight / 2 - SETTINGS_HEIGHT / 2;
 
-function Settings({ name, setIsVisible, children }: Props) {
+export default function Settings({ name, setIsVisible, children }: Props) {
   return (
     <div className={styles.container}>
       <Rnd
@@ -41,5 +41,3 @@ function Settings({ name, setIsVisible, children }: Props) {
     </div>
   );
 }
-
-export default Settings;

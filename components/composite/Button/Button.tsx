@@ -11,7 +11,7 @@ interface Props {
   children: ReactNode;
 }
 
-function Button({
+export default function Button({
   type,
   className,
   onClick,
@@ -28,5 +28,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

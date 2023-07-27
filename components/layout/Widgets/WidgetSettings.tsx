@@ -17,7 +17,7 @@ interface Setting {
   options?: string[];
 }
 
-function WidgetSettings<T extends Record<string, any>>({
+export default function WidgetSettings<T extends Record<string, any>>({
   settingsState,
   setSettingsState,
   setWindowState,
@@ -153,5 +153,3 @@ function WidgetSettings<T extends Record<string, any>>({
     </div>
   );
 }
-
-export default WidgetSettings;

@@ -30,38 +30,40 @@
    reviews, TV show recommendations, celebrity news, music charts, and event
    listings. Include links to streaming platforms or ticketing services.
 
-9. Travel Information: Offer travel resources such as flight and hotel search
-   engines, destination guides, travel tips, visa requirements, and currency
-   converters. Include user reviews and ratings for hotels and attractions.
+9. Health and Wellness: Include articles and resources on health, fitness,
+   nutrition, and well-being. Provide access to symptom checkers, medication
+   information, and directories of doctors and healthcare facilities.
 
-10. Health and Wellness: Include articles and resources on health, fitness,
-    nutrition, and well-being. Provide access to symptom checkers, medication
-    information, and directories of doctors and healthcare facilities.
-
-11. Online Tools: Incorporate a variety of online tools and utilities, such as
+10. Online Tools: Incorporate a variety of online tools and utilities, such as
     a calculator, unit converter, language translator, calendar, note-taking
     application, and file-sharing service.
 
-12. Educational Resources: Provide access to online courses, tutorials, and
+11. Educational Resources: Provide access to online courses, tutorials, and
     educational materials across different subjects. Include language learning
     resources, academic databases, and skill development platforms.
 
-13. Job Search: Offer job listings from various sources, allowing users to
+12. Job Search: Offer job listings from various sources, allowing users to
     search and apply for jobs directly from the portal. Provide features like
     resume building, job alerts, and career advice articles.
 
-14. Community Forums: Create discussion forums where users can interact, ask
+13. Community Forums: Create discussion forums where users can interact, ask
     questions, and share knowledge on various topics of interest. Moderation
     features should be implemented to ensure a safe and respectful environment.
 
-15. Personalization Options: Allow users to create personalized profiles, save
+14. Personalization Options: Allow users to create personalized profiles, save
     preferences, and customize the portal layout based on their interests and
     preferences.
 
-16. Developer cheat sheets
+# Widgets
 
-17. Make the search bar fuzzyfind on all search engines, include history and autocompletion
-
-Remember to prioritize user experience, maintain an up-to-date and reliable
-content database, and regularly update the website to reflect the changing
-needs and trends of users.
+1. Weather
+2. Search bar
+   - select search engine based on keyword in search string instead of selection by menu
+3. Clock
+   - Pomodoro
+   - Timer
+4. File bin
+5. Todo
+6. Journal
+7. Dev cheat sheets
+8. Wallpaper picker

@@ -1,11 +1,10 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
 import { Rnd } from 'react-rnd';
 import Navbar from '@/components/composite/Navbar/Navbar';
 import styles from './Header.module.scss';
 
-function Header() {
+export default function Header() {
   return (
     <Rnd
       default={{
@@ -27,16 +26,12 @@ function Header() {
         color: 'white',
       }}
     >
-      <SessionProvider>
         <header className={styles.container}>
           <div className={styles.innerContainer}>
             <div className={styles.banner}>OmniPortal</div>
             <Navbar />
           </div>
         </header>
-      </SessionProvider>
     </Rnd>
   );
 }
-
-export default Header;

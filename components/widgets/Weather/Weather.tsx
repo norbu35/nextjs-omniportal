@@ -27,7 +27,7 @@ interface Props {
   state: WidgetState<WeatherSettings>;
 }
 
-function Weather({ state }: Props) {
+export default function Weather({ state }: Props) {
   const { settings } = state;
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [city, setCity] = useState<string | null>(null);
@@ -149,5 +149,3 @@ function Weather({ state }: Props) {
     </div>
   );
 }
-
-export default Weather;

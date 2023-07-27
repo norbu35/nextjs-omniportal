@@ -10,7 +10,7 @@ interface Props {
   state: WidgetState<StorageSettings>;
 }
 
-function Storage({ state: initialState }: Props): JSX.Element | null {
+export default function Storage({ state: initialState }: Props): JSX.Element | null {
   const [fileData, dispatchFile] = useContext(FileSelectionContext);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const { data: session } = useSession();
@@ -134,5 +134,3 @@ function Storage({ state: initialState }: Props): JSX.Element | null {
     </div>
   );
 }
-
-export default Storage;

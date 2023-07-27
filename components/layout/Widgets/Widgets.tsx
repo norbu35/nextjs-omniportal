@@ -5,7 +5,7 @@ import Window from 'components/layout/Window/Window';
 import Settings from './SettingsLayout';
 import WidgetsPanel from './WidgetsPanel';
 import WidgetsSettings from './WidgetsSettings';
-import widgetsMap from './widgetsMap';
+import { widgetsMap } from './widgetsMap';
 import { AppState } from '../types';
 import styles from './Widgets.module.scss';
 import defaultImg from '/public/widgets/Banner/banner.jpg';
@@ -16,7 +16,8 @@ const getStateFromStorage = (key: string, defaultVal: AppState) => {
   if (!stored) return defaultVal;
   return JSON.parse(stored);
 };
-function Widgets(): JSX.Element {
+
+export default function Widgets(): JSX.Element {
   const [appState, setAppState] = useState(
     getStateFromStorage('portalState', defaultConfig),
   );
@@ -80,5 +81,3 @@ function Widgets(): JSX.Element {
     </section>
   );
 }
-
-export default Widgets;

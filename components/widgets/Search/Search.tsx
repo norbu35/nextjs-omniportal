@@ -34,7 +34,7 @@ function inputIcon(icon: StaticImageData): CSSObjectWithLabel {
   };
 }
 
-function Search({ state }: Props): JSX.Element {
+export default function Search({ state }: Props): JSX.Element {
   const { settings } = state;
   const defaultEngine =
     searchEngines.find(
@@ -137,5 +137,3 @@ function Search({ state }: Props): JSX.Element {
     </div>
   );
 }
-
-export default Search;

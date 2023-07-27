@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '@/components/layout/Header/Header';
+import  SessionProviderWrapper  from 'components/wrappers/SessionProviderWrapper';
 import './globals.scss';
 
 export const metadata = {
@@ -12,12 +13,13 @@ export default function RootLayout({
 }: {
   children: React.ReactElement;
 }) {
-
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <SessionProviderWrapper>
+          <Header />
+          {children}
+        </SessionProviderWrapper>
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ interface Props {
   state: WidgetState<ClockSettings>;
 }
 
-function Clock({ state }: Props) {
+export default function Clock({ state }: Props) {
   const { settings } = state;
   const [time, setTime] = useState<string | null>(null);
 
@@ -44,5 +44,3 @@ function Clock({ state }: Props) {
     </div>
   );
 }
-
-export default Clock;

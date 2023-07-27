@@ -23,7 +23,7 @@ interface GroupedOption {
   readonly options: readonly BasicOption[];
 }
 
-function WidgetsSettings({ state, lock }: Props) {
+export default function WidgetsSettings({ state, lock }: Props) {
   const [appState, setAppState] = state;
   const [isUnlocked, setIsUnlocked] = lock;
 
@@ -108,5 +108,3 @@ function WidgetsSettings({ state, lock }: Props) {
     </div>
   );
 }
-
-export default WidgetsSettings;

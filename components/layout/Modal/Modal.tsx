@@ -5,12 +5,10 @@ interface Props {
   children: ReactNode;
 }
 
-function Modal({ children }: Props) {
+export default function Modal({ children }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>{children}</div>
     </div>
   );
 }
-
-export default Modal;

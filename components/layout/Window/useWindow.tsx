@@ -21,7 +21,7 @@ function haveIntersection(other: DOMRect, main: DOMRect): boolean {
   );
 }
 
-function useWindow(
+export default function useWindow(
   windowState: WindowState,
   windowRefs: HTMLDivElement[],
   setWindowState: Dispatch<SetStateAction<WindowState>>,
@@ -134,5 +134,3 @@ function useWindow(
 
   return { handleDrag, handleDragStop, handleResize, handleResizeStop };
 }
-
-export default useWindow;

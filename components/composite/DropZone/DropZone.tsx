@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode
 }
 
-function DropZone({ children }: Props): JSX.Element {
+export default function DropZone({ children }: Props): JSX.Element {
   const [fileData, fileDispatch] = useContext(FileSelectionContext);
 
   const handleDragEnter = (e: DragEvent) => {
@@ -52,5 +52,3 @@ function DropZone({ children }: Props): JSX.Element {
     </div>
   );
 }
-
-export default DropZone;

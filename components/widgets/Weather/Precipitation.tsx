@@ -14,7 +14,7 @@ interface Props {
   weatherData: WeatherData;
 }
 
-function Precipitation({ weatherData }: Props): JSX.Element {
+export default function Precipitation({ weatherData }: Props): JSX.Element {
   const { daily } = weatherData;
 
   ChartJS.register(CategoryScale, LinearScale, BarElement, Legend);
@@ -87,5 +87,3 @@ function Precipitation({ weatherData }: Props): JSX.Element {
     </>
   );
 }
-
-export default Precipitation;
