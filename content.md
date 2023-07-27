@@ -58,7 +58,7 @@
 
 1. Weather
 2. Search bar
-   - select search engine based on keyword in search string instead of selection by menu
+   - Select search engine based on keyword in search string instead of selection by menu
 3. Clock
    - Pomodoro
    - Timer
