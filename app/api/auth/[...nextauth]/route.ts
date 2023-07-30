@@ -1,18 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import NextAuth, { AuthOptions } from 'next-auth';
-import bcryptjs from 'bcryptjs';
-import GithubProvider from 'next-auth/providers/github';
-import FacebookProvider from 'next-auth/providers/facebook';
-import GoogleProvider from 'next-auth/providers/google';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { Adapter } from 'next-auth/adapters';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import prisma from '@/prisma/client';
+import NextAuth, { AuthOptions } from "next-auth";
+import bcryptjs from "bcryptjs";
+import GithubProvider from "next-auth/providers/github";
+import FacebookProvider from "next-auth/providers/facebook";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { Adapter } from "next-auth/adapters";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/prisma/client";
 
 const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma) as Adapter<boolean>,
+  adapter: PrismaAdapter(prisma) as Adapter,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   providers: [
     GoogleProvider({
@@ -28,18 +28,18 @@ const authOptions: AuthOptions = {
       clientSecret: process.env.GITHUB_SECRET!,
     }),
     CredentialsProvider({
-      id: 'credentials',
-      name: 'password',
+      id: "credentials",
+      name: "password",
       credentials: {
         email: {
-          label: 'Email',
-          type: 'email',
-          placeholder: 'jdoe@example.com',
+          label: "Email",
+          type: "email",
+          placeholder: "jdoe@example.com",
         },
         password: {
-          label: 'Password',
-          type: 'password',
-          placeholder: 'hunter2',
+          label: "Password",
+          type: "password",
+          placeholder: "hunter2",
         },
       },
       async authorize(credentials) {
@@ -71,4 +71,3 @@ const authOptions: AuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST, authOptions };
-

@@ -28,9 +28,9 @@ export default function Motd({ state }: Props) {
 
   return (
     <div className={styles.container} style={{ color: settings.fontColor.value, fontSize: settings.fontSize.value }}>
-      {session && (
+      {session && session.user && (
         <div className={styles.greeting}>
-          {greeting}, {session!.user!.name}
+          {greeting}, {session.user.name}
         </div>
       )}
     </div>
