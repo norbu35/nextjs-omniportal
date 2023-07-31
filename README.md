@@ -43,14 +43,14 @@ By having a moderated and domestically tailored information aggregator website, 
 
 ### Project Goals and Objectives
 
-The goal of the website is to function as the starting point for Mongolians when they go on the web. As of now, many people use Google
+The goal of the website is to function as the starting point for mongolians when they go on the web. As of now, many people use Google
 as the start page for their browser. Whenever they need to find some information, they need to make a Google search on the whole of the Internet.
 This presents a couple of problems:
 
 - The user doesn't always know how to prompt their search. They might be looking for a shop but don't know the name of it, and so can't make a
   Google search by the name of the shop. When they try to search for a description of the shop, they might not be technically adept to make an
   efficient query.
-- Even if they have an idea of what to query, there is a language issue. Many Mongolians mix cyrillic and romanized Mongolian. Mostly Google
+- Even if they have an idea of what to query, there is a language issue. Many mongolians mix cyrillic and romanized Mongolian. Mostly Google
   does a good job of converting romanized Mongolian, but it is not optimal and may not return accurate results.
 - Many domestic websites don't implement SEO best practices, so Google may not be efficient.
 - Much of the Open Graph information may be out of date.
@@ -58,11 +58,11 @@ This presents a couple of problems:
 As Mongolia is a small country, Mongolian users usually look for a limited number of types of information. As the information to be aggregated is
 of manageable size, it will be possible and more efficient to aggregate all the information on one 'starting point of the web'. There are plenty of
 international such Portal Websites, for example Yahoo.com and MSN.com, although these sites are on english and are not accessible for the majority of
-Mongolians.
+mongolians.
 
 ### Target Audience Analysis
 
-The main target of audience will be the less technically adept, older Mongolians with no or limited English who have difficulty navigating the Internet.
+The main target of audience will be the less technically adept, older mongolians with no or limited English who have difficulty navigating the Internet.
 Although websites to find information is plenty on the Internet, almost all of them are in English, so having a one stop site with all the essential
 information will help the users who are not able to utilize these other websites.
 
