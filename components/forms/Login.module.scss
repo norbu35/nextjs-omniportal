@@ -1,0 +1,48 @@
+@import "/theme/main.scss";
+
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.innerContainer {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid lightgrey;
+  border-radius: 1rem;
+  width: 20rem;
+
+  .authProviders {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    display: flex;
+    padding: 1rem 0;
+    width: 17rem;
+
+    .providerButton {
+      align-items: center;
+      gap: 1rem;
+      display: flex;
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      background-color: darkgrey;
+      color: white;
+    }
+  }
+
+  .divider {
+    width: 17rem;
+  }
+
+  .dividerText {
+    position: relative;
+    top: -1.15rem;
+    width: 3rem;
+    background-color: $bg-primary;
+    text-align: center;
+  }
+}

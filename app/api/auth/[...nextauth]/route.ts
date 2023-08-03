@@ -11,6 +11,9 @@ import prisma from "@/prisma/client";
 
 const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
+  pages: {
+    signIn: "/login",
+  },
   session: {
     strategy: "jwt",
   },
@@ -42,6 +45,7 @@ const authOptions: AuthOptions = {
           placeholder: "hunter2",
         },
       },
+
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
