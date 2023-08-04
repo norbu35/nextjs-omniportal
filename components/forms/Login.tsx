@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import styles from './Login.module.scss';
 
 export default function Login() {
-  const [email, setEmail] = useState<string>(null);
-  const [password, setPassword] = useState<string>(null);
+  // const [email, setEmail] = useState<string | null>(null);
+  // const [password, setPassword] = useState<string | null>(null);
 
   return (
     <div className={styles.container}>
