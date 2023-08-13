@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 // import { useState } from 'react';
 import styles from './Login.module.scss';
 
@@ -22,7 +24,7 @@ export default function Login() {
         <div className={styles.divider}>OR</div>
         <div className={styles.authProviders}>
           <div className={styles.providerButton}>
-            <img
+            <Image
               className={styles.providerIcon}
               src="https://authjs.dev/img/providers/facebook.svg"
               alt="login service icon"
@@ -30,7 +32,7 @@ export default function Login() {
             <div className="providerName">Continue with Facebook</div>
           </div>
           <div className={styles.providerButton}>
-            <img
+            <Image
               className={styles.providerIcon}
               src="https://authjs.dev/img/providers/google.svg"
               alt="login service icon"
@@ -38,7 +40,7 @@ export default function Login() {
             <div className="providerName">Continue with Google</div>
           </div>
           <div className={styles.providerButton}>
-            <img
+            <Image
               className={styles.providerIcon}
               src="https://authjs.dev/img/providers/github.svg"
               alt="login service icon"
