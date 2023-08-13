@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/legacy/image";
 import clearDay from '/public/widgets/Weather/clear-day.jpg';
 import clearNight from '/public/widgets/Weather/clear-night.jpg';
 import mainlyClearDay from '/public/widgets/Weather/mainly-clear-day.jpg';

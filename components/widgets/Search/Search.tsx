@@ -3,7 +3,7 @@
 import { FormEvent, useState } from 'react';
 import Select, { CSSObjectWithLabel, StylesConfig } from 'react-select';
 import DOMPurify from 'dompurify';
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from "next/legacy/image";
 
 import { SearchEngine, searchEngines } from './searchEngines';
 
