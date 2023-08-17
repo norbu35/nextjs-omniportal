@@ -1,5 +1,5 @@
+@use "/styles/themes/main.scss";
 @import "normalize.css";
-@import "../theme/main.scss";
 
 :root * {
   // border: 1px solid red;
@@ -7,6 +7,6 @@
 }
 
 body {
-  background-color: $bg-primary;
+  background-color: main.$bg-primary;
   font-family: "Inter";
 }

@@ -1,11 +1,11 @@
-@import "../../../theme/main.scss";
+@use "/styles/themes/main.scss";
 
 .button {
   border-radius: 5px;
   border-style: none;
   width: 5rem;
   height: 2.5rem;
-  background-color: $fg-primary;
+  background-color: main.$fg-primary;
   color: white;
 }
 

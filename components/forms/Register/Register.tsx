@@ -1,7 +1,9 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
 import { ChangeEvent, useState } from 'react';
+import { signIn } from 'next-auth/react';
+import styles from './Register.module.scss';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterForm() {
   let [loading, setLoading] = useState(false);
@@ -43,54 +45,52 @@ export default function RegisterForm() {
     setFormValues({ ...formValues, [name]: value });
   }
 
+  const router = useRouter();
+
   return (
-    <form
-      onSubmit={onSubmit}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: 500,
-        rowGap: 10,
-      }}
-    >
-      <label htmlFor="name">Name</label>
+    <form className={styles.container} onSubmit={onSubmit}>
+      <label className={styles.label} htmlFor="name">
+        Name
+      </label>
       <input
+        className={styles.input}
         required
         type="text"
         name="name"
         value={formValues.name}
         onChange={handleChange}
-        style={{ padding: '1rem' }}
       />
-      <label htmlFor="email">Email</label>
+      <label className={styles.label} htmlFor="email">
+        Email
+      </label>
       <input
+        className={styles.input}
         required
         type="email"
         name="email"
         value={formValues.email}
         onChange={handleChange}
-        style={{ padding: '1rem' }}
       />
-      <label htmlFor="password">Password</label>
+      <label className={styles.label} htmlFor="password">
+        Password
+      </label>
       <input
+        className={styles.input}
         required
         type="password"
         name="password"
         value={formValues.password}
         onChange={handleChange}
-        style={{ padding: '1rem' }}
       />
-      <button
-        style={{
-          backgroundColor: `${loading ? '#ccc' : '#3446eb'}`,
-          color: '#fff',
-          padding: '1rem',
-          cursor: 'pointer',
-        }}
-        disabled={loading}
-      >
-        {loading ? 'loading...' : 'Register'}
+      <button className={styles.submitButton} disabled={loading} type="submit">
+        {loading ? 'Signing up...' : 'Sign Up'}
       </button>
+      <div className={styles.subtext} onClick={() => router.push('/login')}>
+        <span>Already a member?</span>
+        <a href="/login" className={styles.link}>
+          Sign In
+        </a>
+      </div>
     </form>
   );
 }

@@ -1,0 +1,51 @@
+.container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid lightgrey;
+  border-radius: 1rem;
+  width: 20rem;
+  padding: 1.5rem;
+
+  .label {
+    width: 100%;
+    text-align: left;
+  }
+
+  .input {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+    height: 2.5rem;
+    background-color: white;
+  }
+
+  .submitButton {
+    margin-top: 1rem;
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+
+  .subtext {
+    align-items: center;
+    flex-direction: column;
+    gap: 0.25rem;
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: grey;
+    cursor: pointer;
+
+    .link {
+      color: grey;
+    }
+  }
+}
