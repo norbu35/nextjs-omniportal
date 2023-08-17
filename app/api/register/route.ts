@@ -1,6 +1,6 @@
-import prisma from "@/prisma/client";
-import { hash } from "bcryptjs";
-import { NextResponse } from "next/server";
+import prisma from '@/prisma/client';
+import { hash } from 'bcryptjs';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -9,13 +9,13 @@ export async function POST(req: Request) {
       email: string;
       password: string;
     };
-    const hashed_password = await hash(password, 12);
+    const hashedPassword = await hash(password, 12);
 
     const user = await prisma.user.create({
       data: {
         name,
         email: email.toLowerCase(),
-        password: hashed_password,
+        password: hashedPassword,
       },
     });
 
@@ -28,10 +28,10 @@ export async function POST(req: Request) {
   } catch (error: any) {
     return new NextResponse(
       JSON.stringify({
-        status: "error",
+        status: 'error',
         message: error.message,
       }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
