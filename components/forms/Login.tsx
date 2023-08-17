@@ -16,7 +16,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/profile';
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();

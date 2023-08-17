@@ -19,8 +19,10 @@
     .banner {
       align-items: center;
       display: flex;
+      cursor: pointer;
     }
   }
+
   &:hover {
     top: 0;
   }

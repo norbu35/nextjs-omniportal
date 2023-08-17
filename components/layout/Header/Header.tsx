@@ -3,8 +3,10 @@
 import { Rnd } from 'react-rnd';
 import Navbar from '@/components/composite/Navbar/Navbar';
 import styles from './Header.module.scss';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+  const router = useRouter();
   return (
     <Rnd
       default={{
@@ -28,7 +30,7 @@ export default function Header() {
     >
         <header className={styles.container}>
           <div className={styles.innerContainer}>
-            <div className={styles.banner}>OmniPortal</div>
+            <div className={styles.banner} onClick={() => router.push('/')}>OmniPortal</div>
             <Navbar />
           </div>
         </header>
