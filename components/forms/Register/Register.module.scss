@@ -7,7 +7,7 @@
   border: 1px solid lightgrey;
   border-radius: 1rem;
   width: 20rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 1rem;
 
   .label {
     margin-bottom: -0.5em;
@@ -48,7 +48,6 @@
     gap: 0.25rem;
     display: flex;
     width: 100%;
-    margin-top: 1rem;
     font-size: 0.8rem;
     color: grey;
     cursor: pointer;
