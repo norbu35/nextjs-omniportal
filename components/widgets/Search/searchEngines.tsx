@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/legacy/image";
+import { StaticImageData } from 'next/legacy/image';
 
 import iconGoogle from '/public/widgets/Search/icon-google.png';
 import iconBing from '/public/widgets/Search/icon-bing.png';

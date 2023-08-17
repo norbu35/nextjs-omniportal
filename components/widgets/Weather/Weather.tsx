@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect, ReactNode } from 'react';
-import { StaticImageData } from "next/legacy/image";
+import { StaticImageData } from 'next/legacy/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import TabsNav, { TabType } from './renderTabsNav';
