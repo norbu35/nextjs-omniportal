@@ -6,43 +6,53 @@ import styles from './Register.module.scss';
 import { useRouter } from 'next/navigation';
 
 export default function RegisterForm() {
-  let [loading, setLoading] = useState(false);
-  let [formValues, setFormValues] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<string>('');
+  const [formValues, setFormValues] = useState({
     name: '',
     email: '',
     password: '',
+    repeat: '',
   });
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify(formValues),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    if (!passwordError) {
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          body: JSON.stringify(formValues),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-      setLoading(false);
-      if (!res.ok) {
-        alert((await res.json()).message);
-        return;
+        setLoading(false);
+        if (!res.ok) {
+          alert((await res.json()).message);
+          return;
+        }
+
+        signIn(undefined, { callbackUrl: '/' });
+      } catch (error: any) {
+        setLoading(false);
+        console.error(error);
+        alert(error.message);
       }
-
-      signIn(undefined, { callbackUrl: '/' });
-    } catch (error: any) {
-      setLoading(false);
-      console.error(error);
-      alert(error.message);
     }
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
+    console.log(formValues.password, formValues.repeat);
+    if (formValues.password !== formValues.repeat) {
+      setPasswordError('Passwords don\'t match');
+    } else {
+      setPasswordError('');
+    }
   }
 
   const router = useRouter();
@@ -80,6 +90,18 @@ export default function RegisterForm() {
         type="password"
         name="password"
         value={formValues.password}
+        onChange={handleChange}
+      />
+      <label className={styles.label} htmlFor="repeat">
+        Confirm Password
+      </label>
+      {passwordError && <span className={styles.error}>{passwordError}</span>}
+      <input
+        className={styles.input}
+        required
+        type="password"
+        name="repeat"
+        value={formValues.repeat}
         onChange={handleChange}
       />
       <button className={styles.submitButton} disabled={loading} type="submit">

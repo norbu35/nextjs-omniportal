@@ -2,6 +2,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.75rem;
   display: flex;
   border: 1px solid lightgrey;
   border-radius: 1rem;
@@ -9,7 +10,9 @@
   padding: 1.5rem;
 
   .label {
+    margin-bottom: -0.5em;
     width: 100%;
+    font-size: 0.85rem;
     text-align: left;
   }
 
@@ -31,6 +34,12 @@
     background-color: black;
     color: white;
     cursor: pointer;
+  }
+
+  .error {
+    font-size: 0.75rem;
+    color: red;
+    text-align: right;
   }
 
   .subtext {
