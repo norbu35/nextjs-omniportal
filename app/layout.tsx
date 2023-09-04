@@ -4,7 +4,10 @@ import  SessionProviderWrapper  from 'components/wrappers/SessionProviderWrapper
 import './globals.scss';
 
 export const metadata = {
-  title: 'OmniPortal',
+  title: {
+    default: 'OmniPortal',
+    template: '%s | OmniPortal',
+  },
   description: 'Your gateway to the Internet',
 };
 

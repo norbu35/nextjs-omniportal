@@ -1,5 +1,5 @@
-@use "/styles/themes/main.scss";
-@use "/styles/_mixins.scss";
+@use "/styles/themes/main.scss" as *;
+@use "/styles/mixins.scss" as *;
 
 .container {
   flex-direction: column;
@@ -18,7 +18,7 @@
     display: flex;
 
     .visuallyHidden {
-      @include mixins.visually-hidden;
+      @include visually-hidden;
     }
 
     .input {
@@ -66,7 +66,7 @@
       border-radius: 0.25rem;
       height: 2.5rem;
       padding: 0.5rem 1rem;
-      background-color: main.$fg-secondary;
+      background-color: $fg-secondary;
       color: white;
       cursor: pointer;
     }
@@ -81,14 +81,7 @@
     font-size: 0.85rem;
     font-weight: bold;
 
-    &::before {
-      content: "";
-      flex-grow: 1;
-      position: relative;
-      border-top: 1px solid grey;
-      margin-right: 0.5rem;
-    }
-
+    &::before,
     &::after {
       content: "";
       flex-grow: 1;

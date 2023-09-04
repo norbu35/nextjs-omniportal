@@ -10,3 +10,23 @@ body {
   background-color: main.$bg-primary;
   font-family: "Inter";
 }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+textarea {
+  overflow: auto;
+}
