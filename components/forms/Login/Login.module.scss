@@ -21,6 +21,10 @@
       @include visually-hidden;
     }
 
+    .error {
+      color: red;
+    }
+
     .input {
       border: none;
       border-radius: 0.25rem;

@@ -76,7 +76,7 @@ export default function LoginForm() {
           value={formValues.password}
           onChange={handleChange}
         />
-        {error && <span>{error}</span>}
+        {error && <span className={styles.error}>{error}</span>}
         <button className={styles.submitButton} type="submit">
           {isLoading ? 'Signing in...' : 'Sign In'}
         </button>

@@ -67,3 +67,4 @@
 6. Journal
 7. Dev cheat sheets
 8. Wallpaper picker
+9. Whiteboard (canvas)
